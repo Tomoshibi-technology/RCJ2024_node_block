@@ -1,5 +1,7 @@
 #include <Arduino.h>
 
+#define VERSION 0.23
+
 #include "./speaker/speaker.h"
 #define SPEAKER_PIN PB10
 SPEAKER speaker(SPEAKER_PIN);
@@ -54,9 +56,8 @@ HardwareSerial Serial1(PA10, PA9); //UART1 TX, RX
 
 void setup() {
 	oled.init();
-
 	delay(1000);
-	oled.display_version(1.1);
+	oled.display_version(VERSION);
 	oled.show();
 
 	power.init();
@@ -76,30 +77,29 @@ void setup() {
 unsigned long loop_timer = 10000;
 
 void loop() {
+	//ーーーーーーーーーーループ計測ーーーーーーーーーー
 	Serial1.println(millis() - loop_timer);
 	loop_timer = millis();
 
+	//ーーーーーーーーーーボタンと効果音ーーーーーーーーーー
 	bool val[3] = {0, 0, 0};
 	button.read(val);
-
 	if(val[0]) speaker.ring(C6);
 	if(val[1]) speaker.ring(E6);
 	if(val[2]) speaker.ring(G6);
 	if(!val[0] && !val[1] && !val[2]) speaker.mute();
 	
-
+	//ーーーーーーーーーー表示ーーーーーーーーーー
 	oled.clear();
-	oled.half_display_3button(val);
+	oled.display_title(name[dip.read_ID()]+" V" + String(VERSION));
+	oled.display_battary(power.voltage(), power.percentage());
 	oled.half_display_num(
 		"S = "+String(dip.read_ID()),
 		"R = "+String(power.percentage())+"%" // max,min
 	);
-
-	oled.display_battary(power.voltage(), power.percentage());
-	oled.display_title(name[dip.read_ID()]+" V" + String(1.13));
+	oled.half_display_3button(val);
 	oled.show();
 
 	// delay(10);
-	//speaker.beat(C5, 0.5, 240);
 
 }
