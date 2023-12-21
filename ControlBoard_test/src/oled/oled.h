@@ -7,6 +7,9 @@
 class OLED{
 		private:
 			U8G2_SSD1306_128X64_NONAME_F_SW_I2C* myU8G2;
+			
+			long timer = 0; 
+			int interval = 1000; //ms
 
 		public:
 			OLED(U8G2_SSD1306_128X64_NONAME_F_SW_I2C* ptr_myu8g2);
@@ -18,6 +21,7 @@ class OLED{
 			void half_display_num(String str0, String str1);
 			void display_battary(float voltage, int percentage);
 			void display_title(String str);
+			void half_display_3button(bool* n);
 			
 };
 
