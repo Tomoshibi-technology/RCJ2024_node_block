@@ -51,8 +51,19 @@ const String name[16] = {
 	"Robot15"
 };
 
+#include "./fled/fled.h"
+#include <Adafruit_NeoPixel.h>
+#define LED_PIN0 PA6
+#define LED_NUM 60
+Adafruit_NeoPixel neopixel0 = Adafruit_NeoPixel(LED_NUM, LED_PIN0, NEO_GRB + NEO_KHZ800);
+FLED led0(&neopixel0, LED_NUM);
 
-HardwareSerial Serial1(PA10, PA9); //UART1 TX, RX
+#include <HardwareSerial.h>
+HardwareSerial PC(PA10, PA9); //UART1 TX, RX
+HardwareSerial TWE(PA1, PA0); //UART2 TX, RX
+
+
+
 
 void setup() {
 	oled.init();
@@ -69,37 +80,74 @@ void setup() {
 
 	button.init();
 
+	led0.init();
+	led0.set_color_rgb(150, 0, 0);
+	led0.show();
+
 	delay(1000);
 
-	Serial1.begin(115200);
+	PC.begin(115200);
+	TWE.begin(115200);
 }
 
 unsigned long loop_timer = 10000;
 
 void loop() {
 	//ーーーーーーーーーーループ計測ーーーーーーーーーー
-	Serial1.println(millis() - loop_timer);
+	PC.print(millis() - loop_timer);
 	loop_timer = millis();
 
 	//ーーーーーーーーーーボタンと効果音ーーーーーーーーーー
 	bool val[3] = {0, 0, 0};
 	button.read(val);
-	if(val[0]) speaker.ring(C6);
-	if(val[1]) speaker.ring(E6);
-	if(val[2]) speaker.ring(G6);
-	if(!val[0] && !val[1] && !val[2]) speaker.mute();
-	
+
+	led0.clear();
+	if(val[0]){ 
+		speaker.ring(C6);
+		led0.set_color_hsv(70, 60, 70);
+	}
+	if(val[1]) {
+		speaker.ring(E6);
+		led0.set_color_hsv(150, 60, 70);
+	}
+	if(val[2]){
+		speaker.ring(G6);
+		led0.set_color_hsv(230, 60, 70);
+	}
+	if(!val[0] && !val[1] && !val[2]){
+	 speaker.mute();
+	 led0.set_color_hsv(0, 0, 0);
+	}
+	led0.show();
+
+	//ーーーーーーーーーー無線ーーーーーーーーーー
+	int send_data = val[0]*10 + val[1] * 20 + val[2] * 40;
+	int receive_data = 0;
+
+	TWE.write(send_data);
+	PC.print(" se:");
+	PC.print(send_data);
+	PC.print("  re:");
+
+	if(TWE.available()){
+		receive_data = TWE.read();
+		PC.print(receive_data);
+	}
+	PC.println();
+
 	//ーーーーーーーーーー表示ーーーーーーーーーー
 	oled.clear();
 	oled.display_title(name[dip.read_ID()]+" V" + String(VERSION));
 	oled.display_battary(power.voltage(), power.percentage());
 	oled.half_display_num(
-		"S = "+String(dip.read_ID()),
-		"R = "+String(power.percentage())+"%" // max,min
+		"S = "+String(send_data),
+		"R = "+String(receive_data) // max,min
 	);
 	oled.half_display_3button(val);
 	oled.show();
 
 	// delay(10);
+
+
 
 }
