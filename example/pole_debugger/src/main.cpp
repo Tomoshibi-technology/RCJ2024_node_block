@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
 #include "./oled/oled.h"
+#include "SSD1306.h"//ディスプレイ用ライブラリを読み込み
 
 #define SDA_PIN 21
 #define SCL_PIN 22
@@ -18,6 +19,7 @@ void setup(){
 	button.init();
 
 	Serial.begin(115200);
+	delay(1000);
 }
 
 int i = 0;
@@ -27,17 +29,16 @@ int receive_value = 0;
 	
 void loop(){
 	button.read(val);
-	printf("%d %d %d\n", val[0], val[1], val[2]);
-
+	// printf("%d %d %d\n", val[0], val[1], val[2]);
 	
 	send_value = val[0]*30+val[1]*40+val[2]*50;
-
 	Serial.print(send_value);
 	
 	if(Serial.available()){
 		receive_value = Serial.read();
+	}else{
+		receive_value = 0;
 	}
-
 
 	oled.clear();
 	oled.half_display_num("S = ", send_value, "R = ", receive_value);
