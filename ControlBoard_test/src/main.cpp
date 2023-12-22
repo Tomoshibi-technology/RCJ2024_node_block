@@ -58,9 +58,13 @@ const String name[16] = {
 Adafruit_NeoPixel neopixel0 = Adafruit_NeoPixel(LED_NUM, LED_PIN0, NEO_GRB + NEO_KHZ800);
 FLED led0(&neopixel0, LED_NUM);
 
+
+
+
 #include <HardwareSerial.h>
-HardwareSerial PC(PA10, PA9); //UART1 TX, RX
-HardwareSerial TWE(PA1, PA0); //UART2 TX, RX
+HardwareSerial PC(PA10, PA9); //UART1 RX, TX
+//HardwareSerial ARM(PC7, PC6); //UART6 RX, TX
+HardwareSerial TWE(PA1, PA0); //UART2 RX, TX
 
 
 
