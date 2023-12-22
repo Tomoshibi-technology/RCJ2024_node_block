@@ -1,0 +1,2 @@
+C:/Tomoshibi/RCJ2024_node_block/TweLite/slave/slave.cpp: In function 'loop()':
+C:/Tomoshibi/RCJ2024_node_block/TweLite/slave/slave.cpp:130:25: warning: 'sum' may be used uninitialized in this function [-Wmaybe-uninitialized]
