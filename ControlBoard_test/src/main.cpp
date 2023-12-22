@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-#define VERSION 0.23
+#define VERSION 0.25
 
 #include "./speaker/speaker.h"
 #define SPEAKER_PIN PB10
@@ -54,7 +54,7 @@ const String name[16] = {
 #include "./fled/fled.h"
 #include <Adafruit_NeoPixel.h>
 #define LED_PIN0 PA6
-#define LED_NUM 60
+#define LED_NUM 300
 Adafruit_NeoPixel neopixel0 = Adafruit_NeoPixel(LED_NUM, LED_PIN0, NEO_GRB + NEO_KHZ800);
 FLED led0(&neopixel0, LED_NUM);
 
@@ -67,7 +67,7 @@ HardwareSerial TWE(PA1, PA0); //UART2 TX, RX
 
 void setup() {
 	oled.init();
-	delay(1000);
+	delay(500);
 	oled.display_version(VERSION);
 	oled.show();
 
@@ -81,7 +81,7 @@ void setup() {
 	button.init();
 
 	led0.init();
-	led0.set_color_rgb(150, 0, 0);
+	led0.set_color_rgb(50, 0, 0);
 	led0.show();
 
 	delay(1000);
@@ -91,38 +91,19 @@ void setup() {
 }
 
 unsigned long loop_timer = 10000;
+byte receive_data = 0;
 
 void loop() {
 	//ーーーーーーーーーーループ計測ーーーーーーーーーー
 	PC.print(millis() - loop_timer);
 	loop_timer = millis();
 
-	//ーーーーーーーーーーボタンと効果音ーーーーーーーーーー
-	bool val[3] = {0, 0, 0};
-	button.read(val);
-
-	led0.clear();
-	if(val[0]){ 
-		speaker.ring(C6);
-		led0.set_color_hsv(70, 60, 70);
-	}
-	if(val[1]) {
-		speaker.ring(E6);
-		led0.set_color_hsv(150, 60, 70);
-	}
-	if(val[2]){
-		speaker.ring(G6);
-		led0.set_color_hsv(230, 60, 70);
-	}
-	if(!val[0] && !val[1] && !val[2]){
-	 speaker.mute();
-	 led0.set_color_hsv(0, 0, 0);
-	}
-	led0.show();
+	//ーーーーーーーーーーボタンーーーーーーーーーーー
+	bool btn_val[3] = {0, 0, 0};
+	button.read(btn_val);
 
 	//ーーーーーーーーーー無線ーーーーーーーーーー
-	int send_data = val[0]*10 + val[1] * 20 + val[2] * 40;
-	int receive_data = 0;
+	byte send_data = btn_val[0]*10 + btn_val[1] * 20 + btn_val[2] * 40;
 
 	TWE.write(send_data);
 	PC.print(" se:");
@@ -135,15 +116,41 @@ void loop() {
 	}
 	PC.println();
 
+	//ーーーーーーーーーー効果音と光ーーーーーーーーーー
+	led0.clear();
+
+	bool led_flg = 0;
+	if(btn_val[0] || receive_data == 10){ 
+		speaker.ring(C6);
+		led0.set_color_hsv(70, 250, 20);
+		led_flg = 1;
+	}
+	if(btn_val[1] || receive_data == 20) {
+		speaker.ring(E6);
+		led0.set_color_hsv(150, 250, 20);
+		led_flg = 1;
+	}
+	if(btn_val[2] || receive_data == 40){
+		speaker.ring(G6);
+		led0.set_color_hsv(230, 250, 20);
+		led_flg = 1;
+	}
+	if(!led_flg){
+	 speaker.mute();
+	 led0.set_color_hsv((millis()%2550)/10 , 150, 10);
+	}
+
+	led0.show();
+
 	//ーーーーーーーーーー表示ーーーーーーーーーー
 	oled.clear();
 	oled.display_title(name[dip.read_ID()]+" V" + String(VERSION));
 	oled.display_battary(power.voltage(), power.percentage());
 	oled.half_display_num(
 		"S = "+String(send_data),
-		"R = "+String(receive_data) // max,min
+		"R = "+String(receive_data)
 	);
-	oled.half_display_3button(val);
+	oled.half_display_3button(btn_val);
 	oled.show();
 
 	// delay(10);
