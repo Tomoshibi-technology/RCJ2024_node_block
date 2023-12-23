@@ -1,0 +1,4 @@
+C:/Tomoshibi/RCJ2024_node_block/TweLite/zig_receive/zig_receive.cpp: In function 'void receive()':
+C:/Tomoshibi/RCJ2024_node_block/TweLite/zig_receive/zig_receive.cpp:67:12: warning: variable 'temp2' set but not used [-Wunused-but-set-variable]
+C:/Tomoshibi/RCJ2024_node_block/TweLite/zig_receive/zig_receive.cpp:68:12: warning: variable 'vcc2' set but not used [-Wunused-but-set-variable]
+C:/Tomoshibi/RCJ2024_node_block/TweLite/zig_receive/zig_receive.cpp:93:28: warning: 'adrs' may be used uninitialized in this function [-Wmaybe-uninitialized]
