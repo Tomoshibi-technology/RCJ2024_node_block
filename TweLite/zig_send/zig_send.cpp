@@ -38,6 +38,10 @@ void setup() {
 	auto&&	nwksmpl = the_twelite.network.use<NWK_SIMPLE>();
 					nwksmpl << NWK_SIMPLE::logical_id(my_adrs);
 	the_twelite.begin();
+
+	// //ーーーーーー有線通信設定ーーーーーー
+	Serial1.setup(64, 192); // 64byte TX, 192byte RX
+	Serial1.begin(115200);
 	
 	//ーーーーー起動ーーーーー
 	Serial << "--- F446->TweLite ---" << mwx::crlf;
@@ -49,11 +53,48 @@ int16_t timzigwait = TIME_OFF; //ZigBeeの待ち時間
 uint8_t se_data[4] = {0,0,0,0}; //送信データ
 uint16_t send_i = 0;
 
+
+
+uint8_t receive_data[4] = {0,0,0,0};
 void loop() {
-	se_data[0] = 10 + (send_i%200);
-	se_data[1] = 20 + (send_i%200);
-	se_data[2] = 30 + (send_i%200);
-	se_data[3] = 40 + (send_i%200);
+	//ここからシリアル受信
+
+	while(Serial1.available()) {
+		uint8_t data = Serial1.read();
+		Serial << format("[%d]", data) << mwx::crlf << mwx::flush;;
+		if(data == (uint8_t)250){
+			uint8_t raw_receive_data[4] = {0,0,0,0};
+			bool receive_bad_flg = false;
+			for(int i=0; i<4; i++){
+				if(Serial1.available()){
+					raw_receive_data[i] = Serial1.read();
+					if(raw_receive_data[i] == (uint8_t)250){
+						receive_bad_flg = true;
+						break;
+					}
+				}else{
+					receive_bad_flg = true;
+					break;
+				}
+			}
+			if(!receive_bad_flg){
+				for(int i=0; i<4; i++){
+					receive_data[i] = raw_receive_data[i];
+					Serial << format("  %d  ", receive_data[i]);
+				}
+				Serial << mwx::crlf << mwx::flush;
+			}
+			break;
+		}
+	}
+
+	//Serial << format("[%d]", data) << crlf;
+
+	//ここまで
+	se_data[0] = receive_data[0]; //10 + (send_i%200);
+	se_data[1] = receive_data[1];//20 + (send_i%200);
+	se_data[2] = receive_data[2];//30 + (send_i%200);
+	se_data[3] = receive_data[3];//40 + (send_i%200);
 
 	if(TickTimer.available()){ //1msごとに実行
 		if(timzigwait > TIME_UP ){ //ZigBeeの待ち時間が終わったか
@@ -107,13 +148,13 @@ MWX_APIRET transmit() {
 	se_to_adrs = 0xFE; //送信先のアドレス 0xFEはブロードキャスト
 
 	if (auto&& pkt = the_twelite.network.use<NWK_SIMPLE>().prepare_tx_packet()) {
-		Serial 	<< "se_fr:" << format("0x%X", se_from_adrs) 
-						<< "  se_to:"	<< format("0x%X", se_to_adrs)
-						<< "  data: "	<< (int)se_data[0] 
-						<< " : "	<< (int)se_data[1]
-						<< " : "	<< (int)se_data[2]
-						<< " : "	<< (int)se_data[3]
-						<< mwx::crlf << mwx::flush;
+		// Serial 	<< "se_fr:" << format("0x%X", se_from_adrs) 
+		// 				<< "  se_to:"	<< format("0x%X", se_to_adrs)
+		// 				<< "  data: "	<< (int)se_data[0] 
+		// 				<< " : "	<< (int)se_data[1]
+		// 				<< " : "	<< (int)se_data[2]
+		// 				<< " : "	<< (int)se_data[3]
+		// 				<< mwx::crlf << mwx::flush;
 
 		pkt << tx_addr(se_to_adrs) 
 				<< tx_retry(0x2) //送信トライ回数

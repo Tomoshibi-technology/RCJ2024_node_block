@@ -52,7 +52,7 @@ void loop() {
 	control_send_data[0] = 100;
 	control_send_data[1] = 150;
 	control_send_data[2] = 200;
-	control_send_data[3] = 250;
+	control_send_data[3] = 230;
 	twelite.send(control_send_data);	
 	
 	// PC.print(micros() - loop_timer);
