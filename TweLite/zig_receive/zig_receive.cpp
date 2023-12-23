@@ -21,25 +21,25 @@ uint8_t re_from_adrs; //送信元のアドレス
 uint8_t re_data[4] = {0,0,0,0}; //送信データ
 
 //ピン
-const uint8_t DIP0= mwx::PIN_DIGITAL::DIO13; //adrs1
-const uint8_t DIP1= mwx::PIN_DIGITAL::DIO16; //adrs2
-const uint8_t LED0= mwx::PIN_DIGITAL::DIO9; 
-const uint8_t LED1= mwx::PIN_DIGITAL::DIO8; 
+// const uint8_t DIP0= mwx::PIN_DIGITAL::DIO13; //adrs1
+// const uint8_t DIP1= mwx::PIN_DIGITAL::DIO16; //adrs2
+// const uint8_t LED0= mwx::PIN_DIGITAL::DIO9; 
+// const uint8_t LED1= mwx::PIN_DIGITAL::DIO8; 
 
-uint8_t my_adrs; //自分のアドレス
+uint8_t my_adrs = 0xFE; //自分のアドレス
 
 void setup() {	
 	//ーーーーーID読み取りーーーーー
-	pinMode(DIP0,INPUT);
-	pinMode(DIP1,INPUT);
-	pinMode(LED0,OUTPUT);
-	pinMode(LED1,OUTPUT);
-	delay(10);
-	my_adrs += 0xA0;//子機のアドレスを計算
-	my_adrs += digitalRead(DIP1) << 1;//子機のアドレスを計算
-	my_adrs += digitalRead(DIP0); //子機のアドレスを計算
-	digitalWrite(LED0,digitalRead(DIP0));
-	digitalWrite(LED1,digitalRead(DIP1));
+	// pinMode(DIP0,INPUT);
+	// pinMode(DIP1,INPUT);
+	// pinMode(LED0,OUTPUT);
+	// pinMode(LED1,OUTPUT);
+	// delay(10);
+	// my_adrs += 0xA0;//子機のアドレスを計算
+	// my_adrs += digitalRead(DIP1) << 1;//子機のアドレスを計算
+	// my_adrs += digitalRead(DIP0); //子機のアドレスを計算
+	// digitalWrite(LED0,digitalRead(DIP0));
+	// digitalWrite(LED1,digitalRead(DIP1));
 	
 	//ーーーーーm無線通信設定ーーーーー
 	the_twelite
@@ -63,14 +63,16 @@ int16_t mytimer = -1;
 void loop() {
 	//ーーーーー受信ーーーーー
 	while (the_twelite.receiver.available()) { //受信待ち 受信したデータがなくなるまで繰り返す
+		Serial << "kita";
 		receive();
 		Serial 	<< "re_fr:" << format("0x%X", re_from_adrs) //送信元のアドレス 16進数で表示してます
 						<< "  data: " << (int)re_data[0]
 						<< " : " << (int)re_data[1]
 						<< " : " << (int)re_data[2]
 						<< " : " << (int)re_data[3]
-						<< " : " << (int)mytimer
+						// << " : " << (int)mytimer
 						<< mwx::crlf << mwx::flush;
+	}
 
 		//ーーーーーF446送信ーーーーー
 		// Serial1 << (byte)250; //スタートビット
@@ -78,7 +80,7 @@ void loop() {
 		// 	Serial1 << (byte)re_data[i];
 		// }
 		// Serial1 << mwx::flush;
-	}
+
 	
 	// if(TickTimer.available()){ //1msごとに実行
 	// 	mytimer++;
@@ -87,10 +89,6 @@ void loop() {
 	// if(mytimer >= 100){
 			// mytimer = 0;
 		// }
-	
-
-
-
 }
 
 /*add function recive()*/
