@@ -1,9 +1,9 @@
 Archive member included because of file (symbol)
 
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENET_BLUE.a(ToCoNet_event.o)
-                              objs_BLUE/slave.o (symbol from plugin) (PRSEV_u8RegisterEx)
+                              objs_BLUE/zig_receive.o (symbol from plugin) (PRSEV_u8RegisterEx)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENET_BLUE.a(ToCoNet_main.o)
-                              objs_BLUE/slave.o (symbol from plugin) (sToCoNet_Context)
+                              objs_BLUE/zig_receive.o (symbol from plugin) (sToCoNet_Context)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENET_BLUE.a(ToCoNet_utils.o)
                               ToCoNet_main.o (symbol from plugin) (ToCoNet_u32GetVersion)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENET_BLUE.a(ToCoNet_mod_Nwk_Common.o)
@@ -27,7 +27,7 @@ C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENEText_BLUE.a(no_ack_handler.o)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENEText_BLUE.a(Version.o)
                               ToCoNet_utils.o (symbol from plugin) (au8ToCoNetExtVersionInfo)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENETutils_BLUE.a(serial.o)
-                              objs_BLUE/slave.o (symbol from plugin) (SERIAL_bTxChar)
+                              objs_BLUE/zig_receive.o (symbol from plugin) (SERIAL_bTxChar)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENETutils_BLUE.a(uart.o)
                               serial.o (symbol from plugin) (UART_vInit)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENETutils_BLUE.a(ByteQueue.o)
@@ -47,7 +47,7 @@ C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENETutils_BLUE.a(aeskey.o)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENETutils_BLUE.a(aestab.o)
                               aeskey.o (symbol from plugin) (t_im)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENETstgs_BLUE.a(tweinteractive.o)
-                              objs_BLUE/slave.o (symbol from plugin) (TWEINTRCT_bIsVerbose)
+                              objs_BLUE/zig_receive.o (symbol from plugin) (TWEINTRCT_bIsVerbose)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENETstgs_BLUE.a(tweprintf.o)
                               tweinteractive.o (symbol from plugin) (TWE_fprintf)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENETstgs_BLUE.a(twesercmd_plus3.o)
@@ -55,19 +55,19 @@ C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENETstgs_BLUE.a(twesercmd_plus3.o)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENETstgs_BLUE.a(tweserial.o)
                               tweinteractive.o (symbol from plugin) (_TWE_fputs)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENETstgs_BLUE.a(twesysutils.o)
-                              objs_BLUE/slave.o (symbol from plugin) (TWESYSUTL_vWaitPoll)
+                              objs_BLUE/zig_receive.o (symbol from plugin) (TWESYSUTL_vWaitPoll)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENETstgs_BLUE.a(printf.o)
-                              objs_BLUE/slave.o (symbol from plugin) (fctprintf)
+                              objs_BLUE/zig_receive.o (symbol from plugin) (fctprintf)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENETstgs_BLUE.a(tweinputstring.o)
                               tweinteractive.o (symbol from plugin) (TWEINPSTR_vInit)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libmwx_BLUE.a(mwx_debug.o)
-                              objs_BLUE/slave.o (symbol from plugin) (MWX_Panic)
+                              objs_BLUE/zig_receive.o (symbol from plugin) (MWX_Panic)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libmwx_BLUE.a(mwx_appcore.o)
                               ToCoNet_main.o (symbol from plugin) (cbToCoNet_vMain)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libmwx_BLUE.a(mwx_memory.o)
-                              objs_BLUE/slave.o (symbol from plugin) (operator new(unsigned long))
+                              objs_BLUE/zig_receive.o (symbol from plugin) (operator new(unsigned long))
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libmwx_BLUE.a(mwx_periph_dio.o)
-                              objs_BLUE/slave.o (symbol from plugin) (pinMode(unsigned char, mwx::L1::enum_wapper<PIN_MODE::eMWX_DIO_MODE, unsigned char>))
+                              objs_BLUE/zig_receive.o (symbol from plugin) (pinMode(unsigned char, mwx::L1::enum_wapper<PIN_MODE::eMWX_DIO_MODE, unsigned char>))
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libmwx_BLUE.a(mwx_periph_buttons.o)
                               mwx_appcore.o (symbol from plugin) (mwx::L1::periph_buttons::begin(unsigned long, unsigned char, unsigned short))
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libmwx_BLUE.a(mwx_periph_analogue.o)
@@ -75,7 +75,7 @@ C:/MWSTAGE/MWSDK/TWENET/current/lib/libmwx_BLUE.a(mwx_periph_analogue.o)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libmwx_BLUE.a(mwx_stgs_standard.o)
                               objs_BLUE/_mwx_version.o (symbol from plugin) (INTRCT_USER_APP_ID)
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libmwx_BLUE.a(mwx_nwk_simple.o)
-                              objs_BLUE/slave.o (symbol from plugin) (mwx::L1::NwkSimple::on_create(unsigned long&))
+                              objs_BLUE/zig_receive.o (symbol from plugin) (mwx::L1::NwkSimple::on_create(unsigned long&))
 C:/MWSTAGE/MWSDK/TWENET/current/lib/libmwx_BLUE.a(mwx_duplicate_checker.o)
                               mwx_nwk_simple.o (symbol from plugin) (mwx::L1::duplciate_checker::begin())
 C:/MWSTAGE/MWSDK/ChipLib/SW4063V1416/Components/Library\libAppApi_JN516x.a(AppApi.o)
@@ -217,45 +217,47 @@ C:/MWSTAGE/MWSDK/ChipLib/SW4063V1416/Components/Library\libAppApi_JN516x.a(AppHo
 C:/MWSTAGE/MWSDK/ChipLib/SW4063V1416/Components/Library\libAes_JN516x.a(AEScoprocessorAPIinterrupts.o)
                               AHI_Init.o (symbol from plugin) (vACI_IntHandlerAes)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memset.o)
-                              objs_BLUE/slave.o (symbol from plugin) (memset)
+                              objs_BLUE/zig_receive.o (symbol from plugin) (memset)
+c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-strncmp.o)
+                              objs_BLUE/zig_receive.o (symbol from plugin) (strncmp)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcmp.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans5.ltrans.o (memcmp)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans6.ltrans.o (memcmp)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcpy.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans0.ltrans.o (memcpy)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans0.ltrans.o (memcpy)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(__udivsi3.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans2.ltrans.o (__udivsi3)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o (__udivsi3)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(__divsi3.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__divsi3)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o (__divsi3)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(__umodsi3.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__umodsi3)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o (__umodsi3)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(__modsi3.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__modsi3)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o (__modsi3)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(_fixunsdfsi.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__fixunsdfsi)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o (__fixunsdfsi)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(_udivdi3.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__udivdi3)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o (__udivdi3)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(_umoddi3.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__umoddi3)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o (__umoddi3)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(adddf3.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__adddf3)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans19.ltrans.o (__adddf3)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(divdf3.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__divdf3)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans19.ltrans.o (__divdf3)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(eqdf2.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__nedf2)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o (__nedf2)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(gedf2.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__gedf2)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans19.ltrans.o (__gedf2)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(ledf2.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__ledf2)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o (__ledf2)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(muldf3.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__muldf3)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o (__muldf3)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(subdf3.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__subdf3)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o (__subdf3)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(fixdfsi.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__fixdfsi)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o (__fixdfsi)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatsidf.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__floatsidf)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o (__floatsidf)
 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatunsidf.o)
-                              C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o (__floatunsidf)
+                              C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o (__floatunsidf)
 
 Allocating common symbols
 Common symbol       size              file
@@ -287,30 +289,28 @@ g_bLegacyHwBugEmulation
 Discarded input sections
 
  .text          0x0000000000000000        0x0 objs_BLUE/_mwx_version.o (symbol from plugin)
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans1.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans2.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans3.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans4.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans6.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o
- .bss           0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans10.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans11.ltrans.o
- .text.exit     0x0000000000000000        0x3 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans11.ltrans.o
- .bss           0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans12.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans13.ltrans.o
- .text.startup  0x0000000000000000      0x107 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans13.ltrans.o
- .ctors         0x0000000000000000        0x4 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans13.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans14.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans15.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans16.ltrans.o
- .rodata        0x0000000000000000       0x14 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans16.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans17.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans18.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans19.ltrans.o
- .rodata        0x0000000000000000        0x4 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans19.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans20.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans21.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans1.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans4.ltrans.o
+ .text.exit     0x0000000000000000        0x3 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans4.ltrans.o
+ .text.startup  0x0000000000000000      0x101 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans4.ltrans.o
+ .ctors         0x0000000000000000        0x4 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans4.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans5.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans6.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans7.ltrans.o
+ .bss           0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans7.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans8.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans10.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans11.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans12.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans14.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans15.ltrans.o
+ .bss           0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans16.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans17.ltrans.o
+ .rodata        0x0000000000000000        0x4 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans17.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans18.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans19.ltrans.o
+ .bss           0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans19.ltrans.o
  .data          0x0000000000000000        0x0 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcmp.o)
  .bss           0x0000000000000000        0x0 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcmp.o)
  .data          0x0000000000000000        0x0 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcpy.o)
@@ -351,27 +351,27 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatsidf.o)
  .data          0x0000000000000000        0x0 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatunsidf.o)
  .bss           0x0000000000000000        0x0 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatunsidf.o)
- .text          0x0000000000000000        0x0 objs_BLUE/slave.o (symbol from plugin)
+ .text          0x0000000000000000        0x0 objs_BLUE/zig_receive.o (symbol from plugin)
  .gnu.linkonce.t._ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE15_cbTweNet_vMainEPv
-                0x0000000000000000        0x0 objs_BLUE/slave.o (symbol from plugin)
+                0x0000000000000000        0x0 objs_BLUE/zig_receive.o (symbol from plugin)
  .gnu.linkonce.t._ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE19_cbTweNet_vNwkEventEPvRNS0_13packet_ev_nwkE
-                0x0000000000000000        0x0 objs_BLUE/slave.o (symbol from plugin)
- .gnu.linkonce.t._ZN3mwx2L114processev_crtpINS0_9NwkSimpleEE14vProcessEvCoreEP8_tsEvent7teEventm
-                0x0000000000000000        0x0 objs_BLUE/slave.o (symbol from plugin)
- .gnu.linkonce.t._ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE9_on_eventEPvmRm
-                0x0000000000000000        0x0 objs_BLUE/slave.o (symbol from plugin)
- .gnu.linkonce.t._ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE18_cbTweNet_vRxEventEPvRNS0_9packet_rxE
-                0x0000000000000000        0x0 objs_BLUE/slave.o (symbol from plugin)
- .gnu.linkonce.t._ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE18_cbTweNet_vHwEventEPvmm
-                0x0000000000000000        0x0 objs_BLUE/slave.o (symbol from plugin)
- .gnu.linkonce.t._ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE17_cbTweNet_u8HwIntEPvmm
-                0x0000000000000000        0x0 objs_BLUE/slave.o (symbol from plugin)
+                0x0000000000000000        0x0 objs_BLUE/zig_receive.o (symbol from plugin)
  .gnu.linkonce.t._ZN3mwx2L111_printobj_1IhE9_do_printEPvPFvcS3_ES3_
-                0x0000000000000000        0x0 objs_BLUE/slave.o (symbol from plugin)
+                0x0000000000000000        0x0 objs_BLUE/zig_receive.o (symbol from plugin)
+ .gnu.linkonce.t._ZN3mwx2L114processev_crtpINS0_9NwkSimpleEE14vProcessEvCoreEP8_tsEvent7teEventm
+                0x0000000000000000        0x0 objs_BLUE/zig_receive.o (symbol from plugin)
+ .gnu.linkonce.t._ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE9_on_eventEPvmRm
+                0x0000000000000000        0x0 objs_BLUE/zig_receive.o (symbol from plugin)
+ .gnu.linkonce.t._ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE18_cbTweNet_vRxEventEPvRNS0_9packet_rxE
+                0x0000000000000000        0x0 objs_BLUE/zig_receive.o (symbol from plugin)
+ .gnu.linkonce.t._ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE18_cbTweNet_vHwEventEPvmm
+                0x0000000000000000        0x0 objs_BLUE/zig_receive.o (symbol from plugin)
+ .gnu.linkonce.t._ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE17_cbTweNet_u8HwIntEPvmm
+                0x0000000000000000        0x0 objs_BLUE/zig_receive.o (symbol from plugin)
  .gnu.linkonce.t._ZN3mwx2L110serial_jen7vOutputEcPv
-                0x0000000000000000        0x0 objs_BLUE/slave.o (symbol from plugin)
+                0x0000000000000000        0x0 objs_BLUE/zig_receive.o (symbol from plugin)
  .gnu.linkonce.t._ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE18_cbTweNet_vTxEventEPvRNS0_12packet_ev_txE
-                0x0000000000000000        0x0 objs_BLUE/slave.o (symbol from plugin)
+                0x0000000000000000        0x0 objs_BLUE/zig_receive.o (symbol from plugin)
  .text          0x0000000000000000        0x0 ToCoNet_event.o (symbol from plugin)
  .text          0x0000000000000000        0x0 ToCoNet_main.o (symbol from plugin)
  .text          0x0000000000000000        0x0 ToCoNet_utils.o (symbol from plugin)
@@ -489,6 +489,8 @@ Discarded input sections
  .text          0x0000000000000000        0x0 AEScoprocessorAPIinterrupts.o (symbol from plugin)
  .data          0x0000000000000000        0x0 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memset.o)
  .bss           0x0000000000000000        0x0 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memset.o)
+ .data          0x0000000000000000        0x0 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-strncmp.o)
+ .bss           0x0000000000000000        0x0 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-strncmp.o)
 
 Memory Configuration
 
@@ -500,32 +502,30 @@ ram              0x000000000400004c 0x0000000000007fb4
 Linker script and memory map
 
 LOAD objs_BLUE/_mwx_version.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans0.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans1.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans2.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans3.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans4.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans5.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans6.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans8.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans9.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans10.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans11.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans12.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans13.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans14.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans15.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans16.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans17.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans18.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans19.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans20.ltrans.o
-LOAD C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans21.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans0.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans1.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans3.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans4.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans5.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans6.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans7.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans8.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans9.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans10.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans11.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans12.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans13.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans14.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans15.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans16.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans17.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans18.ltrans.o
+LOAD C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans19.ltrans.o
 LOAD c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a
 LOAD c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a
 LOAD c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a
-LOAD objs_BLUE/slave.o
+LOAD objs_BLUE/zig_receive.o
 LOAD C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENET_BLUE.a
 LOAD C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENEText_BLUE.a
 LOAD C:/MWSTAGE/MWSDK/TWENET/current/lib/libTWENETutils_BLUE.a
@@ -588,14 +588,14 @@ LOAD c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../..
                 0x000000000008001c        0x2 SHORT 0x0
                 0x000000000008001e        0x2 SHORT 0x0 ABSOLUTE (_SwConfig)
                 0x0000000000080020                _enc_start = ABSOLUTE (.)
-                0x0000000000080020        0x4 LONG 0xfd20 ABSOLUTE (_image_len)
-                0x0000000000080024        0x4 LONG 0x8fd08 ABSOLUTE (_flash_data_start)
+                0x0000000000080020        0x4 LONG 0xf6f0 ABSOLUTE (_image_len)
+                0x0000000000080024        0x4 LONG 0x8f6dc ABSOLUTE (_flash_data_start)
                 0x0000000000080028        0x2 SHORT 0x13 ((ABSOLUTE (_ram_data_start) / 0x4) & 0xffff)
-                0x000000000008002a        0x2 SHORT 0x6 ((ABSOLUTE (_ram_data_len) / 0x4) & 0xffff)
-                0x000000000008002c        0x2 SHORT 0x19 ((ABSOLUTE (_bss_start) / 0x4) & 0xffff)
-                0x000000000008002e        0x2 SHORT 0x57a ((ABSOLUTE (_bss_len) / 0x4) & 0xffff)
-                0x0000000000080030        0x4 LONG 0x8c006 ABSOLUTE (AppWarmStart)
-                0x0000000000080034        0x4 LONG 0x8c0d6 ABSOLUTE (AppColdStart)
+                0x000000000008002a        0x2 SHORT 0x5 ((ABSOLUTE (_ram_data_len) / 0x4) & 0xffff)
+                0x000000000008002c        0x2 SHORT 0x18 ((ABSOLUTE (_bss_start) / 0x4) & 0xffff)
+                0x000000000008002e        0x2 SHORT 0x57b ((ABSOLUTE (_bss_len) / 0x4) & 0xffff)
+                0x0000000000080030        0x4 LONG 0x860d0 ABSOLUTE (AppWarmStart)
+                0x0000000000080034        0x4 LONG 0x8737e ABSOLUTE (AppColdStart)
                 0x0000000000000000                _enc_offset = (_enc_start & 0xf)
                 0x0000000000000044                PROVIDE (vException_BusError, restore_state)
                 0x0000000000000044                PROVIDE (vException_UnalignedAccess, restore_state)
@@ -619,635 +619,626 @@ LOAD c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../..
                 0x0000000000080050                _exception_external_interrupt
                 0x00000000000800f8                _default_vsr_dummy
 
-.rodata         0x0000000000080100      0x630
+.rodata         0x0000000000080100      0x5ff
  *(.rodata*)
  .rodata.str1.1
-                0x0000000000080100       0x6a C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans0.ltrans.o
-                                         0x6c (size before relaxing)
- .rodata        0x000000000008016a        0x5 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans0.ltrans.o
- .rodata        0x000000000008016f      0x131 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans1.ltrans.o
+                0x0000000000080100       0x2a C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans0.ltrans.o
+ .rodata        0x000000000008012a        0x5 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans0.ltrans.o
+ *fill*         0x000000000008012f        0x1 00
+ .rodata        0x0000000000080130       0xd4 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans1.ltrans.o
+                0x0000000000080130                s_aprScanHandleEvt.14821
+                0x0000000000080160                apvActionCalls
+                0x00000000000801e8                aprLPBMacVectorRamTable
+                0x00000000000801fc                psTamMacContext
+                0x0000000000080200                psTAMcontext
  .rodata.str1.1
-                0x00000000000802a0        0xd C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans2.ltrans.o
- .rodata        0x00000000000802ad       0x19 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans2.ltrans.o
-                0x00000000000802ad                gbHighPowerMode
-                0x00000000000802ae                gu8ModuleID
- .rodata        0x00000000000802c6        0x6 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans3.ltrans.o
-                0x00000000000802c6                aeXcvPhyEvtToScanEvt.5394.14958
- .rodata        0x00000000000802cc       0x20 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans4.ltrans.o
-                0x00000000000802cc                au32TimerBaseAddress
- .rodata        0x00000000000802ec        0x4 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans5.ltrans.o
- .rodata        0x00000000000802f0       0x10 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans6.ltrans.o
+                0x0000000000080204       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o
+ *fill*         0x0000000000080216        0x2 00
+ .rodata        0x0000000000080218       0x60 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o
+ .rodata        0x0000000000080278        0xc C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans3.ltrans.o
+ .rodata        0x0000000000080284       0x28 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans4.ltrans.o
+                0x0000000000080284                au32TimerBaseAddress
+                0x0000000000080298                CSWTCH.35.25160.25160
+ .rodata        0x00000000000802ac      0x131 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans5.ltrans.o
+ *fill*         0x00000000000803dd        0x3 00
+ .rodata        0x00000000000803e0        0xc C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans6.ltrans.o
+                0x00000000000803e0                au32UartAddrOffset
+ .rodata        0x00000000000803ec        0xa C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans7.ltrans.o
+ .rodata        0x00000000000803f6        0x6 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans8.ltrans.o
+                0x00000000000803f6                aeXcvPhyEvtToScanEvt.5394.14824
  .rodata.str1.1
-                0x0000000000080300       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o
- *fill*         0x0000000000080312        0x6 00
- .rodata        0x0000000000080318       0x50 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o
- .rodata        0x0000000000080368       0x20 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans8.ltrans.o
+                0x00000000000803fc        0xe C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans9.ltrans.o
+ .rodata        0x000000000008040a        0x5 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans9.ltrans.o
+                0x000000000008040a                gbHighPowerMode
+                0x000000000008040b                gu8ModuleID
  .rodata.str1.1
-                0x0000000000080388       0x11 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans9.ltrans.o
+                0x000000000008040f       0x11 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans10.ltrans.o
+ .rodata        0x0000000000080420       0x7c C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans10.ltrans.o
+                0x0000000000080454                u32MacLow_TOCOS
+                0x0000000000080458                u32MacHigh_TOCOS
+ .rodata        0x000000000008049c       0x9a C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans11.ltrans.o
+ .rodata.str1.1
+                0x0000000000080536       0x8b C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans12.ltrans.o
+ .rodata.str1.1
+                0x00000000000805c1       0x11 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans13.ltrans.o
                                          0x22 (size before relaxing)
- *fill*         0x0000000000080399        0x3 00
- .rodata        0x000000000008039c       0x38 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans9.ltrans.o
-                0x000000000008039c                asStateFuncTbl.26442
- .rodata        0x00000000000803d4       0x9a C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans10.ltrans.o
+ *fill*         0x00000000000805d2        0x2 00
+ .rodata        0x00000000000805d4       0x38 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans13.ltrans.o
+                0x00000000000805d4                asStateFuncTbl.26308
  .rodata.str1.1
-                0x000000000008046e       0x88 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans11.ltrans.o
- *fill*         0x00000000000804f6        0x2 00
- .rodata        0x00000000000804f8       0x18 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans12.ltrans.o
- .rodata        0x0000000000080510       0xc0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans13.ltrans.o
-                0x0000000000080510                s_aprScanHandleEvt.14955
-                0x0000000000080540                apvActionCalls
-                0x00000000000805c8                psTamMacContext
-                0x00000000000805cc                psTAMcontext
- .rodata        0x00000000000805d0        0x8 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans15.ltrans.o
-                0x00000000000805d0                au32UartAddrOffset
+                0x000000000008060c        0xd C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans15.ltrans.o
+ .rodata        0x0000000000080619       0x14 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans15.ltrans.o
+ *fill*         0x000000000008062d        0x3 00
+ .rodata        0x0000000000080630       0x18 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans16.ltrans.o
  .rodata.str1.1
-                0x00000000000805d8       0x11 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans18.ltrans.o
- *fill*         0x00000000000805e9        0x3 00
- .rodata        0x00000000000805ec       0x7c C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans18.ltrans.o
-                0x0000000000080620                u32MacLow_TOCOS
-                0x0000000000080624                u32MacHigh_TOCOS
- .rodata.str1.1
-                0x0000000000080668       0xa4 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans19.ltrans.o
- .rodata.str1.1
-                0x000000000008070c        0xe C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans20.ltrans.o
- .rodata.str1.1
-                0x000000000008071a       0x16 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans21.ltrans.o
+                0x0000000000080648       0xb7 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans17.ltrans.o
 
-.text           0x0000000000080730     0xf5d7
+.text           0x0000000000080700     0xefdb
  *(.text*)
- .text          0x0000000000080730      0xce5 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans0.ltrans.o
-                0x0000000000080730                ToCoNet_vMain
- .text          0x0000000000081415      0xaee C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans1.ltrans.o
-                0x0000000000081415                mac_vLPBAdjustBeaconOffset
-                0x0000000000081472                mac_u32LPBGetBeaconTimeout
-                0x000000000008147b                eWEnDTmrExpiry.14596
-                0x0000000000081486                eWEnDEdDone.14593
-                0x00000000000814e1                eGenlDontCare.14590
-                0x00000000000814e6                eGenlIllegal.14215
-                0x00000000000814ed                u32GetTimer0
-                0x00000000000814f4                vSetTimer0
-                0x0000000000081503                _ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE18_cbTweNet_vHwEventEPvmm.local.196
-                0x0000000000081506                _ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE17_cbTweNet_u8HwIntEPvmm.local.195
-                0x000000000008150b                _out_fct.5933
-                0x000000000008151d                _out_null.5939
-                0x0000000000081520                vOutputStream.5804
-                0x000000000008152c                _ZN3mwx2L110serial_jen7vOutputEcPv.local.193
-                0x0000000000081553                vHandlerPatch.4917
-                0x000000000008165e                _ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE18_cbTweNet_vTxEventEPvRNS0_12packet_ev_txE.local.192
-                0x0000000000081678                _ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE19_cbTweNet_vNwkEventEPvRNS0_13packet_ev_nwkE.local.200
-                0x0000000000081681                _ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE15_cbTweNet_vMainEPv.local.201
-                0x0000000000081684                vTACu32ToPayloadM
-                0x000000000008169c                bTACframeInProgress
-                0x00000000000816c6                bTACassessBeaconForPayload
-                0x0000000000081717                bIsBbcSafeForTx
-                0x000000000008174c                vTATwriteAclMaterialToHardware
-                0x0000000000081771                vTATsetBLE
-                0x00000000000817a8                vTATgetFramePayload
-                0x00000000000817c5                eTATreadTXstatus
-                0x000000000008180b                vTAHsetPhyStateDirect.part.0.19080
-                0x0000000000081827                vMEMreturn
-                0x0000000000081898                vTACinformOriginator
-                0x00000000000818ba                pvMEMget
-                0x00000000000818e6                vTAMDEdetermineNullState
-                0x0000000000081900                vTAMCOupdatePendingList
-                0x00000000000819d2                vTAMCOsetCoordinator
-                0x00000000000819f8                vPhySetChannel
-                0x0000000000081a11                eScanHandleEvt.part.0.14626
-                0x0000000000081a3a                mac_eDcfmIndPost
-                0x0000000000081a5b                mac_psDcfmIndGetBuf
-                0x0000000000081a7c                vMLMErxEnableConfirm
-                0x0000000000081aae                vMLMEcommStatus
-                0x0000000000081b11                vMLMEcommStatusFromFrame
-                0x0000000000081b55                vMLMEsyncLoss
-                0x0000000000081b88                vPMICpostFailedAssocDcfm
-                0x0000000000081bc0                vPMICassocReqTO_2.13043
-                0x0000000000081bd7                MAC_vPibSetPanId
-                0x0000000000081bf2                vHandleTofRequest.11149
-                0x0000000000081bf5                vAppApiDefSetPrbsSeed
-                0x0000000000081c19                mwx::L1::duplciate_checker::_node_ele_init(mwx::L1::duplciate_checker::_node_ele*)
-                0x0000000000081c38                _ZN3mwx2L113serial_parserINS0_10alloc_heapIhEEEC1Ev.local.52
-                0x0000000000081c5a                _ZN3mwx2L16twenetC1Ev.local.58
-                0x0000000000081cf1                _ZN3mwx2L110serial_jenC1Eh.local.107
-                0x0000000000081d21                _ZN3mwx2L115periph_analogueC1Ev.local.125
-                0x0000000000081d4c                _ZN3mwx2L112appdefs_virt8on_eventEmRm.local.134
-                0x0000000000081d64                _ZN3mwx2L112appdefs_virt18cbToCoNet_vHwEventEmm.local.136
-                0x0000000000081d7c                _ZN3mwx2L112appdefs_virt18cbToCoNet_vTxEventERNS0_12packet_ev_txE.local.137
-                0x0000000000081d94                _ZN3mwx2L112appdefs_virt19cbToCoNet_vNwkEventERNS0_13packet_ev_nwkE.local.139
-                0x0000000000081dac                u8CCITT8
-                0x0000000000081dd2                bAES_CCM_KeyReg
-                0x0000000000081e11                bFifoPush.3622
-                0x0000000000081e4a                vAppQApiPostMlme.3608
-                0x0000000000081e69                vAppQApiPostMcps.3615
-                0x0000000000081e84                pvFifoPull.3619
-                0x0000000000081eab                psAppQApiGetMlmeBuffer.3605
-                0x0000000000081eb3                psAppQApiGetMcpsBuffer.3612
-                0x0000000000081ebb                _PRSEV_vProcessEvSingle
-                0x0000000000081ec9                ToCoNet_vMacStart
-                0x0000000000081ed6                PRSEV_vSetState
-                0x0000000000081ee6                _ZN3mwx2L18_smplbufIhNS0_12alloc_attachIhEEE9push_backEOh.local.166
+ .text          0x0000000000080700      0xa39 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans0.ltrans.o
+                0x0000000000080700                ToCoNet_vMain
+ *fill*         0x0000000000081139        0x3 00
+ .text          0x000000000008113c      0xbac C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans1.ltrans.o
+                0x000000000008113c                eWBRTTxDone.14478
+                0x000000000008115a                vTAMCOframeTXgoingIdle
+                0x0000000000081174                vTAMCOframeTXcap
+                0x000000000008119a                eWCoRRxDone.14469
+                0x0000000000081244                eWBcnRxDone.14481
+                0x000000000008182e                vTAMCOframeRXcap
+                0x0000000000081840                vTAMCOframeRXgoingIdle
+                0x0000000000081856                vTAMCOframeRXnobeacon
+                0x0000000000081868                vTAMDEframeRX
+                0x0000000000081892                vTAMDEframeRXtrackingDR
+                0x00000000000818d6                vTAMDEframePreSyncReq
+                0x00000000000818ef                vTAMCOframeTXbeacon
+                0x00000000000819b6                vTAMDEframeRXsyncReq
+                0x0000000000081c07                vTAMDEint1FiredTrackingCAPgts
+                0x0000000000081cba                eWONTTxDone.14475
+ .text          0x0000000000081ce8      0xe94 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o
+                0x0000000000081ef5                _ftoa.5873.constprop.316
+                0x000000000008224e                _ntoa_long_long.5847.constprop.313
+                0x0000000000082323                _ntoa_long.5835.constprop.318
+                0x00000000000823f0                bAHI_SetClockRate
+                0x00000000000824fb                bAES_CCM_DecodeKey
+                0x00000000000825b7                vMicroIntEnableOnly.constprop.304
+                0x00000000000825e3                QUEUE__u8RemoveItem.part.1.4985
+                0x000000000008261e                QUEUE__vAddItem.constprop.296
+                0x0000000000082650                _ToCoNet_bRfChChannel
+                0x00000000000826e5                ToCoNet_ChMgr_bCh_Reconfig
+                0x000000000008274d                ToCoNet_ChMgr_vCh_TxFin
+                0x0000000000082779                vHnd_E_STATE_WAIT_TX.26276
+                0x00000000000827e9                vHnd_E_STATE_IDLE.26268
+                0x000000000008284d                vAHI_ProtocolPower.constprop.303
+                0x000000000008285b                XCV_vCtor.constprop.301
+                0x00000000000829c0                _ZN3mwx2L16twenet5beginEv.local.112.constprop.278
+                0x0000000000082a05                pinMode(unsigned char, mwx::L1::enum_wapper<PIN_MODE::eMWX_DIO_MODE, unsigned char>)
  .text.unlikely
-                0x0000000000081f03       0x85 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans1.ltrans.o
-                0x0000000000081f03                _ZN3mwx2L112appdefs_virt18cbToCoNet_vRxEventERNS0_9packet_rxE.local.138
-                0x0000000000081f1b                _ZN3mwx2L110serial_jen5flushEv.local.147
-                0x0000000000081f2a                _PRSEV_vProcessEvSingleH
-                0x0000000000081f3a                _PRSEV_vProcessEv
-                0x0000000000081f4a                PRSEV_u8Register
- .text          0x0000000000081f88      0x994 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans2.ltrans.o
-                0x0000000000081f88                UART_vHandleUartInterrupt.5044
-                0x000000000008200f                vAppQApiPostHwIntT.3601
-                0x00000000000820e2                vRxChar.4942
-                0x0000000000082133                TWETERM_iGetC.26784
-                0x0000000000082196                vXCV_IntHandlerPhy
-                0x0000000000082248                vScanHandleTimer.14212
-                0x000000000008224d                bAES_CCM_EncodeKey
-                0x00000000000822fa                _ZN3mwx2L114processev_crtpINS0_9NwkSimpleEE14vProcessEvCoreEP8_tsEvent7teEventm.local.199
-                0x00000000000823ad                vXCV_IntHandlerBbc
-                0x0000000000082450                vTAMCOint2Fired
-                0x0000000000082471                _ZN3mwx2L110serial_jen13_set_baudrateEt.isra.2.6688
-                0x0000000000082522                UART_vSetTxInterrupt
-                0x000000000008256d                SERIAL_bTxChar
-                0x0000000000082624                u8TAM_AES_WriteAuxilliarySecurityHeaderIntoBuffer
-                0x0000000000082696                phy_ePibSet.part.1.16422
-                0x00000000000826de                u32AHI_ReadIndexSectorBits.constprop.219
-                0x000000000008273f                vTAIsetCapTime
-                0x0000000000082760                vTAIsetRxEnableTime
-                0x0000000000082781                vDoGoActive.20903
-                0x00000000000827a3                vTAMRXEint2Fired
-                0x00000000000827d9                vAHI_ApConfigure.part.0.24638.constprop.293
-                0x000000000008280b                _ZN3mwx2L115periph_analogue5setupEbhPFvvE.local.124.constprop.231
-                0x000000000008287c                vSetPHYfromMacValue.17737
-                0x00000000000828ae                vTAMDEint1FiredWaitDR
-                0x00000000000828bb                vTACsetPHYfromMacValue
-                0x00000000000828dc                vTAMRXEsetReceiveForPibChange
- *fill*         0x000000000008291c        0x0 00
- .text          0x000000000008291c      0xb9c C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans3.ltrans.o
-                0x000000000008291c                TSV_eStop
-                0x00000000000829bd                vTAStidyUpAfterFrameTX
-                0x00000000000829da                eWChCChanChgd.14623
-                0x0000000000082bca                eGenTmrExpiry.14908
-                0x0000000000082c0c                eWEDTEdDone.14911
-                0x0000000000082c30                MAC_vHandleMlmeReqRsp
-                0x00000000000833e1                vTAMDEint1FiredTracking
-                0x0000000000083451                vTAMDEint1FiredSyncReq
- .text          0x00000000000834b8      0xb26 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans4.ltrans.o
-                0x0000000000083618                bAES_CCM_DecodeKey
-                0x00000000000836d4                vHnd_E_STATE_RUNNING.26418
-                0x000000000008391e                bTAM_AES_CCMstarPatch
-                0x0000000000083a62                bTAM_AES_CCMstarPatch2006
-                0x0000000000083b69                vWriteFrame.19439
-                0x0000000000083d41                bTATsendFrame
-                0x0000000000083d94                bSendDataRequest.17741
-                0x0000000000083ea6                vTimerStart
-                0x0000000000083fa0                _ZN3mwx2L112periph_timer10_on_wakeupEv.local.131
- .text          0x0000000000083fde      0x9e5 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans5.ltrans.o
-                0x0000000000083fde                vTACintRXheader
-                0x00000000000847d9                cbAppColdStart.part.32.7348
- *fill*         0x00000000000849c3        0x1 00
- .text          0x00000000000849c4      0x97c C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans6.ltrans.o
-                0x0000000000084a0d                vProcessEvCoreTx.26379
-                0x0000000000084a92                mwx::L1::periph_analogue::ADC_handler(unsigned long, unsigned long)
-                0x0000000000084ada                vMicroIntEnableOnly.constprop.316
-                0x0000000000084b06                QUEUE__vAddItem.constprop.308
-                0x0000000000084b38                _ToCoNet_bRfChChannel
-                0x0000000000084bcd                ToCoNet_ChMgr_bCh_Reconfig
-                0x0000000000084c35                ToCoNet_ChMgr_vCh_TxFin
-                0x0000000000084c61                vHnd_E_STATE_WAIT_TX.26410
-                0x0000000000084cd1                vHnd_E_STATE_IDLE.26402
-                0x0000000000084d35                vAHI_ProtocolPower.constprop.315
-                0x0000000000084d43                XCV_vCtor.constprop.313
-                0x0000000000084ea8                bAHI_SetClockRate
-                0x0000000000084fb3                vAHI_Sleep
-                0x000000000008505b                vAHI_WakeTimerEnable.part.0.25610.constprop.298
-                0x00000000000850a0                mac_vLPBStartTimer
-                0x0000000000085185                _ZN3mwx2L16twenet5beginEv.local.112.constprop.276
-                0x00000000000851ca                pinMode(unsigned char, mwx::L1::enum_wapper<PIN_MODE::eMWX_DIO_MODE, unsigned char>)
+                0x0000000000082b7c       0x45 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o
+                0x0000000000082b7c                vAHI_MemoryHold.24926
+ .text          0x0000000000082bc1      0xaeb C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans3.ltrans.o
+                0x0000000000082bc1                mac_vLPBStartTimer
+                0x0000000000082ea6                vTimerCallback.24812
+                0x0000000000082eb1                vProcessEvCoreTx.26245
+                0x0000000000082fa1                vAHI_DoSetPullup.constprop.277
+                0x0000000000082fc1                vAHI_DioWakeEnable.constprop.276
+                0x0000000000082fd5                _ZN3mwx2L115periph_analogue10_adc_startEv.local.43.constprop.267
+                0x00000000000830be                mwx::L1::periph_analogue::ADC_handler(unsigned long, unsigned long)
+                0x0000000000083105                u8HwEventHandler.2568
+                0x00000000000831ad                vTimerStart
+                0x00000000000832c6                vAHI_TimerEnable.part.1.25027.constprop.251
+                0x0000000000083331                bAES_CCMstar
+                0x00000000000833fd                pvHeap_Alloc
+                0x0000000000083400                operator new(unsigned long)
+                0x0000000000083423                u32AHI_Init
+                0x00000000000834e5                vMicroIntRestoreState
+                0x00000000000834f1                vAHI_DoSetDataOut
+                0x0000000000083505                bAHI_DoEnableOutputs
+                0x000000000008352e                u8AHI_WakeTimerFiredStatus
+                0x0000000000083542                vAHI_WakeTimerStop.part.3.25492
+                0x0000000000083562                mac_vLPBStopTimer
+                0x000000000008356c                vAHI_UartSetClocksPerBit.part.18.25288
+                0x0000000000083593                vAHI_UartSetRTSCTS.part.15.25273
+                0x00000000000835ba                vAHI_UartReset.part.4.25246
+                0x00000000000835f2                vAHI_UartSetControl.part.2.25230
+                0x0000000000083643                vAHI_UartSetBaudDivisor.part.1.25226
+                0x0000000000083682                vAHI_WatchdogStop
+                0x0000000000083699                vAHI_CpuDoze
  .text.unlikely
-                0x0000000000085340      0x24a C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans6.ltrans.o
-                0x0000000000085340                _ZN3mwx2L110twenet_mac8transmitERNS0_9packet_txE.local.32.constprop.307
- .text          0x000000000008558a     0x10ec C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o
-                0x0000000000086028                _vsnprintf.constprop.321
-                0x000000000008663b                QUEUE__u8RemoveItem.part.1.5119
- .text          0x0000000000086676      0x9c4 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans8.ltrans.o
-                0x000000000008686a                vTimerCallback.24946
-                0x00000000000868e0                _ZN3mwx2L115periph_analogue10_adc_startEv.local.43.constprop.265
-                0x00000000000869c9                u8HwEventHandler.2702
-                0x0000000000086a71                vAHI_TimerEnable.part.1.25161.constprop.249
-                0x0000000000086adc                bAES_CCMstar
-                0x0000000000086ba8                pvHeap_Alloc
-                0x0000000000086bab                operator new(unsigned long)
-                0x0000000000086bce                _ZN3mwx2L114periph_twowireC1Eh.local.76
-                0x0000000000086c0b                u32AHI_Init
-                0x0000000000086ccd                vMicroIntRestoreState
-                0x0000000000086cd9                vAHI_TickTimerIntEnable
-                0x0000000000086d34                vAHI_TickTimerConfigure
-                0x0000000000086d4f                vAHI_DoSetDataOut
-                0x0000000000086d63                bAHI_DoEnableOutputs
-                0x0000000000086d8c                u8AHI_WakeTimerFiredStatus
-                0x0000000000086da0                vAHI_WakeTimerStop.part.3.25626
-                0x0000000000086dc0                mac_vLPBStopTimer
-                0x0000000000086dca                vAHI_UartSetClocksPerBit.part.18.25422
-                0x0000000000086df1                vAHI_UartSetRTSCTS.part.15.25407
-                0x0000000000086e18                vAHI_UartReset.part.4.25380
-                0x0000000000086e50                vAHI_UartSetControl.part.2.25364
-                0x0000000000086ea1                vAHI_UartSetBaudDivisor.part.1.25360
-                0x0000000000086ee0                vAHI_TimerStop.part.7.25190
-                0x0000000000086efe                vAHI_TimerDisable.part.2.25169
-                0x0000000000086f21                vAHI_WatchdogStop
-                0x0000000000086f38                vAHI_CpuDoze
-                0x0000000000086f4b                _ZN3mwx2L120periph_pulse_counter10_on_wakeupEv.part.18.6722
-                0x0000000000086fc1                u32AHI_DioWakeStatus
-                0x0000000000086fd2                vAHI_DioWakeEdge
-                0x0000000000086ff2                vAHI_DioSetPullup
-                0x0000000000087012                vAHI_DioSetOutput
-                0x0000000000087026                vAHI_DioSetDirection
+                0x00000000000836ac       0x11 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans3.ltrans.o
+                0x00000000000836ac                vStartXtal32kExternalRc.24826
+ *fill*         0x00000000000836bd        0x3 00
+ .text          0x00000000000836c0      0x4fc C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans4.ltrans.o
+                0x00000000000836c0                TWETERM_iPutS.26642
+                0x00000000000836e5                TWETERM_iPutC.26646
+                0x00000000000836f6                vAppApiDefMlmeRequest
+                0x0000000000083721                pvAppApiDefGetMacHandle
+                0x000000000008372a                vTimerConfig
+                0x0000000000083935                cbAppWarmStart.part.28.6993
+                0x0000000000083b89                _ZN3mwx2L110serial_jen5writeEi.local.146
+                0x0000000000083b98                _ZN3mwx2L16streamINS0_10serial_jenEE6_printEPKc.local.170
  .text.unlikely
-                0x000000000008703a       0x11 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans8.ltrans.o
-                0x000000000008703a                vStartXtal32kExternalRc.24960
- .text          0x000000000008704b      0xbd0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans9.ltrans.o
-                0x000000000008704b                TSV_eStart
-                0x000000000008712f                eTAStransmitRequest
-                0x00000000000874ca                TSV_eOpen
-                0x00000000000874d2                vAppApiDefRestoreMacSettings
-                0x00000000000875a3                vAppApiDefSaveMacSettings
-                0x0000000000087600                mac_vLPBSleep
-                0x0000000000087644                pvAppApiDefGetMacAddrLocation
-                0x000000000008764d                eAppApiDefPlmeGet
-                0x000000000008769f                eAppApiDefPlmeSet
-                0x00000000000876f8                vAppApiDefMcpsRequest
-                0x0000000000087723                vHnd_E_STATE_PREPARE_TX.26397
- .text          0x0000000000087c1b      0xad4 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans10.ltrans.o
-                0x0000000000087c1b                vAHI_IntHandlerAnalogPeriph
-                0x0000000000087c3b                vTTIBLETimerExpired
-                0x0000000000087c46                vACI_CmdWaitBusy
-                0x0000000000087caa                vACI_OptimisedCcmStar
-                0x0000000000087ec2                vTAIdisableInterrupt
-                0x0000000000087edb                vUpdateRegisters.24209
-                0x0000000000087f22                psRemove.part.0.24159
-                0x0000000000087f51                vMAC_MISCpollConfirm
-                0x0000000000087f82                MAC_u8AclFindInfo
-                0x00000000000880ac                vTASretrieveSecurity
-                0x00000000000880ce                MAC_bLookUpKeyDescriptor.21711
-                0x0000000000088148                u8TSCframeIncrease
-                0x0000000000088181                vTSCpostTransmitUpdate
-                0x00000000000881b1                vCopyToDataFromMacAddr.21621
-                0x00000000000881e4                bTSCgetOutgoingInfo
-                0x00000000000882ed                vDoGoOff.20901
-                0x0000000000088307                psTAQsearchFifo
-                0x0000000000088350                bTAQremoveFromFifo
-                0x000000000008838d                vTTITransactionTimerExpired
-                0x00000000000883b6                vTAMinsertEvent
-                0x000000000008841c                vTTITimer2Expired
-                0x0000000000088420                vTTITimer1Expired
-                0x0000000000088424                vTAM_TxRetryTimeout
-                0x0000000000088428                vTACsetTxFrameDefaults
-                0x000000000008844e                u8TACgetHeaderSize
-                0x000000000008848b                bUpdateTime.19939
-                0x00000000000884c6                vTACbuildBeacon
-                0x00000000000886ce                u32TACpayloadToU32M
- .text          0x00000000000886ef      0x592 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans11.ltrans.o
-                0x00000000000886ef                _ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE18_cbTweNet_vRxEventEPvRNS0_9packet_rxE.local.197
-                0x0000000000088c3d                eGenRxHdrDone.14606
-                0x0000000000088c4d                vAppApiDefMlmeRequest
-                0x0000000000088c78                pvAppApiDefGetMacHandle
- *fill*         0x0000000000088c81        0x3 00
+                0x0000000000083bbc      0x310 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans4.ltrans.o
+                0x0000000000083bd9                vProcessIncomingHwEvent.2737
+ .text          0x0000000000083ecc      0xad0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans5.ltrans.o
+                0x0000000000083ecc                mac_vLPBAdjustBeaconOffset
+                0x0000000000083f29                mac_u32LPBGetBeaconTimeout
+                0x0000000000083f32                eWEnDTmrExpiry.14462
+                0x0000000000083f3d                eWEnDEdDone.14459
+                0x0000000000083f98                eGenlDontCare.14456
+                0x0000000000083f9d                eGenlIllegal.14081
+                0x0000000000083fa4                u32GetTimer0
+                0x0000000000083fab                vSetTimer0
+                0x0000000000083fba                _ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE18_cbTweNet_vHwEventEPvmm.local.192
+                0x0000000000083fbd                _ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE17_cbTweNet_u8HwIntEPvmm.local.191
+                0x0000000000083fc2                _out_fct.5799
+                0x0000000000083fd4                _out_null.5805
+                0x0000000000083fd7                vOutputStream.5670
+                0x0000000000083fe3                _ZN3mwx2L110serial_jen7vOutputEcPv.local.190
+                0x000000000008400a                vHandlerPatch.4783
+                0x0000000000084041                _ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE18_cbTweNet_vTxEventEPvRNS0_12packet_ev_txE.local.189
+                0x000000000008405b                _ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE19_cbTweNet_vNwkEventEPvRNS0_13packet_ev_nwkE.local.197
+                0x0000000000084064                _ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE15_cbTweNet_vMainEPv.local.198
+                0x0000000000084067                vTACu32ToPayloadM
+                0x000000000008407f                bTACframeInProgress
+                0x00000000000840a9                bTACassessBeaconForPayload
+                0x00000000000840fa                bIsBbcSafeForTx
+                0x000000000008412f                vTATwriteAclMaterialToHardware
+                0x0000000000084154                vTATsetBLE
+                0x000000000008418b                vTATgetFramePayload
+                0x00000000000841a8                eTATreadTXstatus
+                0x00000000000841ee                vTAHsetPhyStateDirect.part.0.18946
+                0x000000000008420a                vMEMreturn
+                0x000000000008427b                vTACinformOriginator
+                0x000000000008429d                pvMEMget
+                0x00000000000842c9                vTAMDEdetermineNullState
+                0x00000000000842e3                vTAMCOupdatePendingList
+                0x00000000000843b5                vTAMCOsetCoordinator
+                0x00000000000843db                vPhySetChannel
+                0x00000000000843f4                eScanHandleEvt.part.0.14492
+                0x000000000008441d                mac_eDcfmIndPost
+                0x000000000008443e                mac_psDcfmIndGetBuf
+                0x000000000008445f                vMLMErxEnableConfirm
+                0x0000000000084491                vMLMEcommStatus
+                0x00000000000844f4                vMLMEcommStatusFromFrame
+                0x0000000000084538                vMLMEsyncLoss
+                0x000000000008456b                vPMICpostFailedAssocDcfm
+                0x00000000000845a3                vPMICassocReqTO_2.12909
+                0x00000000000845ba                MAC_vPibSetPanId
+                0x00000000000845d5                vHandleTofRequest.11015
+                0x00000000000845d8                vAppApiDefSetPrbsSeed
+                0x00000000000845fc                mwx::L1::duplciate_checker::_node_ele_init(mwx::L1::duplciate_checker::_node_ele*)
+                0x000000000008461b                _ZN3mwx2L113serial_parserINS0_10alloc_heapIhEEEC1Ev.local.52
+                0x000000000008463d                _ZN3mwx2L16twenetC1Ev.local.58
+                0x00000000000846d4                _ZN3mwx2L110serial_jenC1Eh.local.107
+                0x0000000000084704                _ZN3mwx2L115periph_analogueC1Ev.local.125
+                0x000000000008472f                _ZN3mwx2L112appdefs_virt8on_eventEmRm.local.134
+                0x0000000000084747                _ZN3mwx2L112appdefs_virt18cbToCoNet_vHwEventEmm.local.136
+                0x000000000008475f                _ZN3mwx2L112appdefs_virt18cbToCoNet_vTxEventERNS0_12packet_ev_txE.local.137
+                0x0000000000084777                _ZN3mwx2L112appdefs_virt19cbToCoNet_vNwkEventERNS0_13packet_ev_nwkE.local.139
+                0x000000000008478f                u8CCITT8
+                0x00000000000847b5                bAES_CCM_KeyReg
+                0x00000000000847f4                bFifoPush.3488
+                0x000000000008482d                vAppQApiPostMlme.3474
+                0x000000000008484c                vAppQApiPostMcps.3481
+                0x0000000000084867                pvFifoPull.3485
+                0x000000000008488e                psAppQApiGetMlmeBuffer.3471
+                0x0000000000084896                psAppQApiGetMcpsBuffer.3478
+                0x000000000008489e                PRSEV_vSetState
+                0x00000000000848ae                PRSEV_vProcessEv_core.2358
+                0x0000000000084950                PRSEV_vProcessEvPost
+                0x0000000000084982                _PRSEV_vProcessEvSingle
+                0x000000000008498f                ToCoNet_vMacStart
  .text.unlikely
-                0x0000000000088c84      0x304 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans11.ltrans.o
-                0x0000000000088ca1                vProcessIncomingHwEvent.2871
- .text          0x0000000000088f88      0x95c C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans12.ltrans.o
-                0x0000000000088f88                vPMICassocReqTO_1.13036
-                0x0000000000089010                vTAM_MCPSdataRequest
-                0x0000000000089053                bTACcheckPANconflict
-                0x000000000008910c                vTAMDEstartSync
-                0x000000000008918b                eTAMselect
-                0x00000000000892cc                MAC_pvCtor
-                0x00000000000896e7                vDeterminePowerState.17861
-                0x000000000008976b                vTAMDEint1FiredTrackingBeacon
-                0x000000000008980b                vTAMDEint2FiredTrackingDR
-                0x0000000000089830                vTAMDEframeTXtrackingDR
-                0x0000000000089889                vTAMDEint2FiredPollActive
-                0x00000000000898bd                vTAMDEreqTXnullTrackingCAP
-                0x00000000000898d6                vTAM_TxRetryTimer
- .text          0x00000000000898e4      0x7e4 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans13.ltrans.o
-                0x0000000000089cfe                vTAMCOframeRXcap
-                0x0000000000089d10                vTAMCOframeRXgoingIdle
-                0x0000000000089d26                vTAMCOframeRXnobeacon
-                0x0000000000089d38                vTAMDEframeRX
-                0x0000000000089d60                vTAMDEframeRXtrackingDR
-                0x0000000000089da3                vTAMDEframePreSyncReq
-                0x0000000000089dbb                eWCoRRxDone.14603
-                0x0000000000089e65                eWBcnRxDone.14615
-                0x000000000008a000                vTAMCOframeTXbeacon
- .text          0x000000000008a0c8      0x761 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans14.ltrans.o
-                0x000000000008a0c8                vTAMRXEsetPhy
-                0x000000000008a18b                vTAHsetPhyState
-                0x000000000008a1bb                vMLMEbeaconNotify
-                0x000000000008a31a                vMCPSframeReceived
-                0x000000000008a3de                bAHI_ReadMACID
-                0x000000000008a424                _ZL11digitalReadh.1828
-                0x000000000008a43f                ToCoNet_vInit
-                0x000000000008a782                vExpireHead.24164
-                0x000000000008a7b2                fctprintf
-                0x000000000008a7d4                _ZN3mwx2L111_printobj_1IhE9_do_printEPvPFvcS3_ES3_.local.194
-                0x000000000008a7e8                MWX_DebugMsg
+                0x000000000008499c       0x65 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans5.ltrans.o
+                0x000000000008499c                _ZN3mwx2L112appdefs_virt18cbToCoNet_vRxEventERNS0_9packet_rxE.local.138
+                0x00000000000849b4                PRSEV_u8Register
+                0x00000000000849f2                _PRSEV_vProcessEvSingleH
+ .text          0x0000000000084a01      0xa82 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans6.ltrans.o
+                0x0000000000084a4c                vAHI_IntHandlerTickTimer
+                0x0000000000084a93                SERIAL_bTxChar
+                0x0000000000084b44                TWETERM_vFlush.26619
+                0x0000000000084bc2                vTACintRXheader
+                0x00000000000853bd                eGenRxHdrDone.14472
+                0x00000000000853cd                vHnd_E_STATE_FINISH_TX_FAIL.26253
+ .text          0x0000000000085483      0xb76 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans7.ltrans.o
+                0x0000000000085483                cbToCoNet_vTxEvent
+                0x00000000000855c6                vHnd_E_STATE_FINISH_TX_SUCCESS.26258
+                0x0000000000085658                bTAM_AES_CCMstarPatch
+                0x000000000008579c                bTAM_AES_CCMstarPatch2006
+                0x0000000000085a7b                bTATsendFrame
+                0x0000000000085ace                vTrySendFromDirectCAP.17060
+                0x0000000000085ae9                vTrySendFromDirectNoBeacon.17064
+                0x0000000000085b14                vTAMCOint1Fired
+                0x0000000000085c30                vTAMCOstartBeacon
+                0x0000000000085c6b                vStartStoreValues.17128
+                0x0000000000085d22                bStartCallback.17157
+                0x0000000000085d51                vTAMCOint1FiredCAP
+                0x0000000000085dc4                vTAMCOreqTXnoBeacon
+                0x0000000000085dd6                vTAMCOreqTXinCAP
+                0x0000000000085dfc                vTrySendUnslotted.17605
+                0x0000000000085e16                bSendDataRequest.17607
+                0x0000000000085f28                bProcessBeaconRX.17610
+ *fill*         0x0000000000085ff9        0x3 00
+ .text          0x0000000000085ffc      0xa84 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans8.ltrans.o
+                0x0000000000085ffc                vPostDcfm.14465
+                0x00000000000860d0                AppWarmStart
+                0x00000000000861a0                vSetNextChannel.14513
+                0x00000000000861f9                MAC_vHandleMlmeReqRsp
+                0x00000000000869a9                vTAMDEint1FiredTracking
+                0x0000000000086a19                vTAMDEint1FiredSyncReq
+ .text          0x0000000000086a80      0x885 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans9.ltrans.o
+                0x0000000000086a80                vHnd_E_STATE_RUNNING.26284
+                0x0000000000086cca                SERIAL_vTxReady
+                0x0000000000086d64                vAppQApiPostHwIntT.3467
+                0x0000000000086e37                TWETERM_iGetC.26650
+                0x0000000000086e9a                vRxChar.4808
+                0x0000000000086eeb                MWX_Panic
+                0x0000000000086f4f                cbAppColdStart.part.32.7214
+                0x0000000000087139                _ZN3mwx2L110serial_jen13_set_baudrateEt.isra.2.6554
+                0x00000000000871ea                u8TAM_AES_WriteAuxilliarySecurityHeaderIntoBuffer
+                0x000000000008725c                phy_ePibSet.part.1.16288
+                0x00000000000872a4                u32AHI_ReadIndexSectorBits.constprop.219
  .text.unlikely
-                0x000000000008a829      0x187 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans14.ltrans.o
-                0x000000000008a899                bStartXtal32k.24970
-                0x000000000008a9a1                u32AppQApiInitInt_PATCH
- .text          0x000000000008a9b0      0x6a3 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans15.ltrans.o
-                0x000000000008a9b0                vTAMCOreqTXinCAP
-                0x000000000008a9d6                _ZN3mwx2L110serial_jen6_beginEv.part.25.6741
-                0x000000000008ac5b                vTrySendFromDirectCAP.17194
-                0x000000000008ac77                vTrySendFromDirectNoBeacon.17198
-                0x000000000008aca4                vTAMCOint1Fired
-                0x000000000008adc1                vTAMCOstartBeacon
-                0x000000000008adfc                vStartStoreValues.17262
-                0x000000000008aeb3                bStartCallback.17291
-                0x000000000008aee2                vTAMCOint1FiredCAP
-                0x000000000008af55                vTAMCOreqTXnoBeacon
-                0x000000000008af67                vTrySendUnslotted.17739
-                0x000000000008af82                bProcessBeaconRX.17744
- *fill*         0x000000000008b053        0x1 00
- .text          0x000000000008b054      0x888 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans16.ltrans.o
-                0x000000000008b093                bSendSyncLoss.19874
-                0x000000000008b0ab                bPollReqSent.23470
-                0x000000000008b0c3                bMCPSframeTXcomplete.15643
-                0x000000000008b118                bPMICdisassocReqSent.13032
-                0x000000000008b193                MAC_vHandleMcpsReqRsp
-                0x000000000008b220                bTASsendCommStatusInd
-                0x000000000008b235                bAssocRespSent.13028
-                0x000000000008b248                vTACcheckPollResponse
-                0x000000000008b27d                vTAMDEframeRXsyncReq
-                0x000000000008b4cc                vTAMDEint1FiredTrackingCAPgts
-                0x000000000008b57f                eTACprocessFrameTXcomplete
-                0x000000000008b6fd                eWONTTxDone.14609
-                0x000000000008b72b                eWBRTTxDone.14612
-                0x000000000008b749                vTAMCOframeTXgoingIdle
-                0x000000000008b762                vTAMCOframeTXcap
-                0x000000000008b786                vTAMCOframeTXnobeacon
-                0x000000000008b79b                vTAMCOframeStarting
-                0x000000000008b7b4                vTAMDEframeTXDEnull
-                0x000000000008b7d7                vTAMDEframeTXtrackingCAPgts
-                0x000000000008b803                bPMICassocReqSent.13024
-                0x000000000008b885                bPMICassocReqPollSent.13039
- .text          0x000000000008b8dc      0x655 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans17.ltrans.o
-                0x000000000008ba1f                vHnd_E_STATE_FINISH_TX_FAIL.26387
-                0x000000000008bad6                vHnd_E_STATE_FINISH_TX_SUCCESS.26392
-                0x000000000008bbe3                cbAppWarmStart.part.28.7127
-                0x000000000008be37                _MWX_periph_init()
- .text          0x000000000008bf31      0x6e1 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans18.ltrans.o
-                0x000000000008bf31                vPostDcfm.14599
-                0x000000000008c006                AppWarmStart
-                0x000000000008c0d6                AppColdStart
- .text          0x000000000008c612      0x5ce C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans19.ltrans.o
-                0x000000000008c612                u32AppApiDefInit
-                0x000000000008c6c7                _ToCoNet_vMacInit
-                0x000000000008c72d                _ToCoNet_vRfConfig
-                0x000000000008c86f                mwx::L1::NwkSimple::on_create(unsigned long&)
-                0x000000000008c8bf                _ZN3mwx2L123twenet_instance_manager3useINS0_9NwkSimpleEEERT_Rm.local.168.constprop.278
-                0x000000000008ca2b                setup()
- *fill*         0x000000000008cbe0        0x0 00
- .text          0x000000000008cbe0      0x374 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans20.ltrans.o
-                0x000000000008cbe0                SERIAL_vTxReady
-                0x000000000008cc41                TWETERM_vFlush.26753
-                0x000000000008ccf8                TWETERM_iPutS.26776
-                0x000000000008cd1d                TWETERM_iPutC.26780
-                0x000000000008cd2e                vTimerConfig
-                0x000000000008cebf                MWX_Panic
-                0x000000000008cf23                _ZN3mwx2L110serial_jen5writeEi.local.146
-                0x000000000008cf32                _ZN3mwx2L16streamINS0_10serial_jenEE6_printEPKc.local.171
+                0x0000000000087305       0x79 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans9.ltrans.o
+                0x0000000000087305                Delay.24830.constprop.248
+ .text          0x000000000008737e      0x53c C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans10.ltrans.o
+                0x000000000008737e                AppColdStart
  .text.unlikely
-                0x000000000008cf54      0x266 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans20.ltrans.o
-                0x000000000008cfe0                _MWX_vOnSleep()
-                0x000000000008d097                ToCoNet_vSleep.constprop.294
- .text          0x000000000008d1ba      0x157 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans21.ltrans.o
-                0x000000000008d1ba                _ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE9_on_eventEPvmRm.local.198
-                0x000000000008d2a9                vProcessEvCoreMac
+                0x00000000000878ba      0x43b C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans10.ltrans.o
+                0x00000000000878ba                ToCoNet_vStart
+ .text          0x0000000000087cf5      0xbe9 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans11.ltrans.o
+                0x0000000000087cf5                vAHI_IntHandlerSpiMaster
+                0x0000000000087d1b                vAHI_IntHandlerAnalogPeriph
+                0x0000000000087d3b                vTTIBLETimerExpired
+                0x0000000000087d46                _ZN3mwx2L120periph_pulse_counter10_on_wakeupEv.part.18.6588
+                0x0000000000087dbc                u32AHI_DioWakeStatus
+                0x0000000000087dcd                vAHI_DioWakeEdge
+                0x0000000000087ded                vAHI_DioSetPullup
+                0x0000000000087e0d                vAHI_DioSetOutput
+                0x0000000000087e21                vAHI_DioSetDirection
+                0x0000000000087e35                vACI_CmdWaitBusy
+                0x0000000000087e99                vACI_OptimisedCcmStar
+                0x00000000000880b1                vTAIdisableInterrupt
+                0x00000000000880ca                vUpdateRegisters.24075
+                0x0000000000088111                psRemove.part.0.24025
+                0x0000000000088140                vMAC_MISCpollConfirm
+                0x0000000000088171                MAC_u8AclFindInfo
+                0x000000000008829b                vTASretrieveSecurity
+                0x00000000000882bd                MAC_bLookUpKeyDescriptor.21577
+                0x0000000000088337                u8TSCframeIncrease
+                0x0000000000088370                vTSCpostTransmitUpdate
+                0x00000000000883a0                vCopyToDataFromMacAddr.21487
+                0x00000000000883d3                bTSCgetOutgoingInfo
+                0x00000000000884dc                vDoGoOff.20767
+                0x00000000000884f6                psTAQsearchFifo
+                0x000000000008853f                bTAQremoveFromFifo
+                0x000000000008857c                vTTITransactionTimerExpired
+                0x00000000000885a5                vTAMinsertEvent
+                0x000000000008860b                vTTITimer2Expired
+                0x000000000008860f                vTTITimer1Expired
+                0x0000000000088613                vTAM_TxRetryTimeout
+                0x0000000000088617                vTACsetTxFrameDefaults
+                0x000000000008863d                u8TACgetHeaderSize
+                0x000000000008867a                bUpdateTime.19805
+                0x00000000000886b5                vTACbuildBeacon
+                0x00000000000888bd                u32TACpayloadToU32M
+ .text          0x00000000000888de      0xaad C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans12.ltrans.o
+                0x00000000000888de                ToCoNet_vInit
+                0x0000000000088c21                vExpireHead.24030
+                0x0000000000088c51                fctprintf
+                0x0000000000088c73                _ZN3mwx2L111_printobj_1IhE9_do_printEPvPFvcS3_ES3_.local.196
+                0x0000000000088c87                MWX_DebugMsg
+                0x0000000000088cc8                _ZN3mwx2L112appdefs_crtpINS0_9NwkSimpleEE18_cbTweNet_vRxEventEPvRNS0_9packet_rxE.local.193
  .text.unlikely
-                0x000000000008d311      0x435 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans21.ltrans.o
-                0x000000000008d311                ToCoNet_vStart
- .text          0x000000000008d746       0x25 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcmp.o)
-                0x000000000008d746                memcmp
- .text          0x000000000008d76b       0x19 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcpy.o)
- *fill*         0x000000000008d784        0x0 00
- .text          0x000000000008d784      0x204 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(__udivsi3.o)
-                0x000000000008d784                __udivsi3
- .text          0x000000000008d988       0x30 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(__divsi3.o)
-                0x000000000008d988                __divsi3
- .text          0x000000000008d9b8      0x1b0 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(__umodsi3.o)
-                0x000000000008d9b8                __umodsi3
- .text          0x000000000008db68       0x24 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(__modsi3.o)
-                0x000000000008db68                __modsi3
- .text          0x000000000008db8c       0x39 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(_fixunsdfsi.o)
-                0x000000000008db8c                __fixunsdfsi
- .text          0x000000000008dbc5      0x350 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(_udivdi3.o)
-                0x000000000008dbc5                __udivdi3
- .text          0x000000000008df15      0x312 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(_umoddi3.o)
-                0x000000000008df15                __umoddi3
- .text          0x000000000008e227      0x682 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(adddf3.o)
-                0x000000000008e227                __adddf3
- *fill*         0x000000000008e8a9        0x3 00
- .text          0x000000000008e8ac      0x5c8 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(divdf3.o)
-                0x000000000008e8ac                __divdf3
- .text          0x000000000008ee74       0x7f c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(eqdf2.o)
-                0x000000000008ee74                __nedf2
-                0x000000000008ee74                __eqdf2
- .text          0x000000000008eef3       0xca c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(gedf2.o)
-                0x000000000008eef3                __gedf2
-                0x000000000008eef3                __gtdf2
- .text          0x000000000008efbd       0xcb c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(ledf2.o)
-                0x000000000008efbd                __ledf2
-                0x000000000008efbd                __ltdf2
- .text          0x000000000008f088      0x488 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(muldf3.o)
-                0x000000000008f088                __muldf3
- .text          0x000000000008f510      0x693 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(subdf3.o)
-                0x000000000008f510                __subdf3
- .text          0x000000000008fba3       0x64 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(fixdfsi.o)
-                0x000000000008fba3                __fixdfsi
- .text          0x000000000008fc07       0x61 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatsidf.o)
-                0x000000000008fc07                __floatsidf
- .text          0x000000000008fc68       0x4f c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatunsidf.o)
-                0x000000000008fc68                __floatunsidf
- .text          0x000000000008fcb7       0x27 C:/MWSTAGE/MWSDK/ChipLib/SW4063V1416/Components/Library\libHardwareApi_JN516x.a(AHI_Interrupt.o)
-                0x000000000008fcb7                vAHI_InterruptSetPriority
-                0x000000000008fcd5                vAHI_InterruptSetActivePriorityLevel
+                0x000000000008938b       0x2d C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans12.ltrans.o
+                0x000000000008938b                u32AppQApiInitInt_PATCH
+                0x000000000008939a                _ZN3mwx2L16streamINS0_10serial_jenEElsEi.local.174
+ .text          0x00000000000893b8      0xc4a C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans13.ltrans.o
+                0x00000000000893b8                TSV_eStart
+                0x000000000008949c                eTAStransmitRequest
+                0x0000000000089837                TSV_eOpen
+                0x000000000008983f                vAppApiDefRestoreMacSettings
+                0x0000000000089910                vAppApiDefSaveMacSettings
+                0x000000000008996d                mac_vLPBSleep
+                0x0000000000089a2b                pvAppApiDefGetMacAddrLocation
+                0x0000000000089a34                eAppApiDefPlmeGet
+                0x0000000000089a86                eAppApiDefPlmeSet
+                0x0000000000089adf                vAppApiDefMcpsRequest
+                0x0000000000089b0a                vHnd_E_STATE_PREPARE_TX.26263
+ .text          0x000000000008a002      0x606 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans14.ltrans.o
+                0x000000000008a002                bAES_CCM_EncodeKey
+                0x000000000008a334                u8Write802_15_4HeaderIntoBuffer.22776
+                0x000000000008a494                _ZN3mwx2L110serial_jen10_on_wakeupEv.part.27.6732
+                0x000000000008a50e                _MWX_periph_init()
+ .text.unlikely
+                0x000000000008a608      0x108 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans14.ltrans.o
+                0x000000000008a608                bStartXtal32k.24836
+ .text          0x000000000008a710      0x83a C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans15.ltrans.o
+                0x000000000008a710                UART_vHandleUartInterrupt.4910
+                0x000000000008a797                vXCV_IntHandlerPhy
+                0x000000000008a849                vScanHandleTimer.14078
+                0x000000000008a84e                _ZN3mwx2L114processev_crtpINS0_9NwkSimpleEE14vProcessEvCoreEP8_tsEvent7teEventm.local.195
+                0x000000000008a901                vXCV_IntHandlerBbc
+                0x000000000008a9a4                vTAIsetCapTime
+                0x000000000008a9c5                vTAIsetRxEnableTime
+                0x000000000008a9e6                vDoGoActive.20769
+                0x000000000008aa08                vTAMRXEint2Fired
+                0x000000000008aa3e                _ZN3mwx2L115periph_analogue5setupEbhPFvvE.local.124.constprop.231
+                0x000000000008aad8                vMLMEbeaconNotify
+                0x000000000008ac36                vMCPSframeReceived
+                0x000000000008acf9                vTAMRXEsetPhy
+                0x000000000008adbc                vTAHsetPhyState
+                0x000000000008adec                vTAMCOint2Fired
+                0x000000000008ae0c                vSetPHYfromMacValue.17603
+                0x000000000008ae3e                vTAMDEint1FiredWaitDR
+                0x000000000008ae4b                vTACsetPHYfromMacValue
+                0x000000000008ae6c                vTAMRXEsetReceiveForPibChange
+                0x000000000008aeac                bAHI_ReadMACID
+                0x000000000008aef2                _ZN3mwx2L114periph_twowireC1Eh.local.76
+                0x000000000008af2f                _ZL11digitalReadh.1713
+ *fill*         0x000000000008af4a        0x2 00
+ .text          0x000000000008af4c      0x95c C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans16.ltrans.o
+                0x000000000008af4c                vPMICassocReqTO_1.12902
+                0x000000000008afd4                vTAM_MCPSdataRequest
+                0x000000000008b017                bTACcheckPANconflict
+                0x000000000008b0d0                vTAMDEstartSync
+                0x000000000008b14f                eTAMselect
+                0x000000000008b290                MAC_pvCtor
+                0x000000000008b6ab                vDeterminePowerState.17727
+                0x000000000008b72f                vTAMDEint1FiredTrackingBeacon
+                0x000000000008b7cf                vTAMDEint2FiredTrackingDR
+                0x000000000008b7f4                vTAMDEframeTXtrackingDR
+                0x000000000008b84d                vTAMDEint2FiredPollActive
+                0x000000000008b881                vTAMDEreqTXnullTrackingCAP
+                0x000000000008b89a                vTAM_TxRetryTimer
+ .text          0x000000000008b8a8      0x6f6 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans17.ltrans.o
+                0x000000000008b8a8                u32AppApiDefInit
+                0x000000000008b95d                _ToCoNet_vMacInit
+                0x000000000008bb04                vProcessEvCoreMac
+                0x000000000008bca9                setup()
+ *fill*         0x000000000008bf9e        0x2 00
+ .text          0x000000000008bfa0      0x780 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans18.ltrans.o
+                0x000000000008bfa0                eGenTmrExpiry.14774
+                0x000000000008bfe2                eWEDTEdDone.14777
+                0x000000000008c006                TSV_eStop
+                0x000000000008c0c4                bPMICdisassocReqSent.12898
+                0x000000000008c17e                MAC_vHandleMcpsReqRsp
+                0x000000000008c20b                bMCPSframeTXcomplete.15509
+                0x000000000008c260                bSendSyncLoss.19740
+                0x000000000008c278                bPollReqSent.23336
+                0x000000000008c290                bTASsendCommStatusInd
+                0x000000000008c2a5                bAssocRespSent.12894
+                0x000000000008c2b8                eTACprocessFrameTXcomplete
+                0x000000000008c435                vTAMCOframeTXnobeacon
+                0x000000000008c44a                vTAMCOframeStarting
+                0x000000000008c463                vTAMDEframeTXDEnull
+                0x000000000008c486                vTAMDEframeTXtrackingCAPgts
+                0x000000000008c4b2                bPMICassocReqSent.12890
+                0x000000000008c534                bPMICassocReqPollSent.12905
+                0x000000000008c588                eWChCChanChgd.14489
+ .text          0x000000000008c720      0x9bf C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans19.ltrans.o
+                0x000000000008c720                _etoa.5893.constprop.314
+                0x000000000008cacc                _vsnprintf.constprop.312
+ .text          0x000000000008d0df       0x25 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcmp.o)
+                0x000000000008d0df                memcmp
+ .text          0x000000000008d104       0x19 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcpy.o)
+ *fill*         0x000000000008d11d        0x3 00
+ .text          0x000000000008d120      0x204 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(__udivsi3.o)
+                0x000000000008d120                __udivsi3
+ .text          0x000000000008d324       0x30 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(__divsi3.o)
+                0x000000000008d324                __divsi3
+ .text          0x000000000008d354      0x1b0 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(__umodsi3.o)
+                0x000000000008d354                __umodsi3
+ .text          0x000000000008d504       0x24 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(__modsi3.o)
+                0x000000000008d504                __modsi3
+ .text          0x000000000008d528       0x39 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(_fixunsdfsi.o)
+                0x000000000008d528                __fixunsdfsi
+ .text          0x000000000008d561      0x350 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(_udivdi3.o)
+                0x000000000008d561                __udivdi3
+ .text          0x000000000008d8b1      0x312 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(_umoddi3.o)
+                0x000000000008d8b1                __umoddi3
+ .text          0x000000000008dbc3      0x682 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(adddf3.o)
+                0x000000000008dbc3                __adddf3
+ *fill*         0x000000000008e245        0x3 00
+ .text          0x000000000008e248      0x5c8 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(divdf3.o)
+                0x000000000008e248                __divdf3
+ .text          0x000000000008e810       0x7f c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(eqdf2.o)
+                0x000000000008e810                __nedf2
+                0x000000000008e810                __eqdf2
+ .text          0x000000000008e88f       0xca c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(gedf2.o)
+                0x000000000008e88f                __gedf2
+                0x000000000008e88f                __gtdf2
+ .text          0x000000000008e959       0xcb c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(ledf2.o)
+                0x000000000008e959                __ledf2
+                0x000000000008e959                __ltdf2
+ .text          0x000000000008ea24      0x488 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(muldf3.o)
+                0x000000000008ea24                __muldf3
+ .text          0x000000000008eeac      0x693 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(subdf3.o)
+                0x000000000008eeac                __subdf3
+ .text          0x000000000008f53f       0x64 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(fixdfsi.o)
+                0x000000000008f53f                __fixdfsi
+ .text          0x000000000008f5a3       0x61 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatsidf.o)
+                0x000000000008f5a3                __floatsidf
+ .text          0x000000000008f604       0x4f c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatunsidf.o)
+                0x000000000008f604                __floatunsidf
+ .text          0x000000000008f653       0x27 C:/MWSTAGE/MWSDK/ChipLib/SW4063V1416/Components/Library\libHardwareApi_JN516x.a(AHI_Interrupt.o)
+                0x000000000008f653                vAHI_InterruptSetPriority
+                0x000000000008f671                vAHI_InterruptSetActivePriorityLevel
  .text.vMicroSyscall
-                0x000000000008fcde       0x17 C:/MWSTAGE/MWSDK/ChipLib/SW4063V1416/Components/Library\libMicroSpecific_JN516x.a(MicroSyscall_ba.o)
-                0x000000000008fcde                vMicroSyscall
- .text          0x000000000008fcf5       0x12 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memset.o)
-                0x000000000008fcf5                memset
-                0x000000000008fd07                _flash_end = ABSOLUTE (.)
+                0x000000000008f67a       0x17 C:/MWSTAGE/MWSDK/ChipLib/SW4063V1416/Components/Library\libMicroSpecific_JN516x.a(MicroSyscall_ba.o)
+                0x000000000008f67a                vMicroSyscall
+ .text          0x000000000008f691       0x12 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memset.o)
+                0x000000000008f691                memset
+ .text          0x000000000008f6a3       0x38 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-strncmp.o)
+                0x000000000008f6a3                strncmp
+                0x000000000008f6db                _flash_end = ABSOLUTE (.)
 
-.rela.dyn       0x000000000008fd08        0x0
- .rela.text     0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans0.ltrans.o
+.rela.dyn       0x000000000008f6dc        0x0
+ .rela.text     0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans0.ltrans.o
+ .rela.rodata   0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans0.ltrans.o
+ .rela.data     0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans0.ltrans.o
  .rela.text.unlikely
-                0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans0.ltrans.o
- .rela.data     0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans0.ltrans.o
- .rela.rodata   0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans0.ltrans.o
+                0x0000000000000000        0x0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans0.ltrans.o
                 0x000000000400004c                . = ORIGIN (ram)
 
-.data           0x000000000400004c       0x18 load address 0x000000000008fd08
+.data           0x000000000400004c       0x14 load address 0x000000000008f6dc
                 0x000000000400004c                _ram_data_start = ABSOLUTE (.)
  *(.data*)
- .data          0x000000000400004c        0x4 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans0.ltrans.o
- .data          0x0000000004000050        0x1 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans5.ltrans.o
-                0x0000000004000050                _toconet_tx_u8_init_queue_flag
- *fill*         0x0000000004000051        0x3 00
+ .data          0x000000000400004c        0x2 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans0.ltrans.o
+ *fill*         0x000000000400004e        0x2 00
  .data.initinboot
-                0x0000000004000054        0x8 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans6.ltrans.o
- .data          0x000000000400005c        0x4 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans8.ltrans.o
-                0x000000000400005c                u32HeapStart
- .data          0x0000000004000060        0x1 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans9.ltrans.o
-                0x0000000004000060                u8TxWkrNow.26520
- .data          0x0000000004000061        0x1 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans12.ltrans.o
+                0x0000000004000050        0x8 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o
+ .data          0x0000000004000058        0x4 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans3.ltrans.o
+                0x0000000004000058                u32HeapStart
+ .data          0x000000000400005c        0x1 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans9.ltrans.o
+                0x000000000400005c                _toconet_tx_u8_init_queue_flag
+ .data          0x000000000400005d        0x1 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans13.ltrans.o
+                0x000000000400005d                u8TxWkrNow.26386
+ .data          0x000000000400005e        0x1 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans16.ltrans.o
  .data.initinboot
-                0x0000000004000062        0x1 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans12.ltrans.o
-                0x0000000004000062                gMAC_u8MaxBuffers
+                0x000000000400005f        0x1 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans16.ltrans.o
+                0x000000000400005f                gMAC_u8MaxBuffers
  *(.data.*)
-                0x0000000004000064                . = ALIGN (0x4)
- *fill*         0x0000000004000063        0x1 00
-                0x0000000004000064                _ram_data_end = ABSOLUTE (.)
+                0x0000000004000060                . = ALIGN (0x4)
+                0x0000000004000060                _ram_data_end = ABSOLUTE (.)
 
-.bss            0x0000000004000064     0x15e8 load address 0x000000000008fd20
-                0x0000000004000064                _bss_start = ABSOLUTE (.)
+.bss            0x0000000004000060     0x15ec load address 0x000000000008f6f0
+                0x0000000004000060                _bss_start = ABSOLUTE (.)
  *(.bss*)
- .bss           0x0000000004000064       0x80 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans0.ltrans.o
-                0x0000000004000064                sMcpsIndQueue.3840
-                0x0000000004000074                sMcpsIndBufferQueue.3838
-                0x0000000004000084                sMlmeIndQueue.3841
-                0x0000000004000094                sMlmeIndBufferQueue.3839
-                0x00000000040000a4                sHwIndQueue.3842
-                0x00000000040000b4                sHwIndBufferQueue.3843
-                0x00000000040000c4                _u32_INT_adc_comp
-                0x00000000040000c8                _u32_INT_ticktimer
-                0x00000000040000cc                my_adrs
-                0x00000000040000d0                _periph_availmap
- .bss           0x00000000040000e4        0xc C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans1.ltrans.o
- .bss           0x00000000040000f0       0x20 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans2.ltrans.o
-                0x00000000040000f0                sAppHousekeeping
-                0x0000000004000108                prApAppCallback.24700
-                0x000000000400010c                prAppHwCallback.3846
- .bss           0x0000000004000110       0x20 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans3.ltrans.o
-                0x0000000004000110                sAssocSecurity.13653
-                0x000000000400011c                bScanInProgress.14951
-                0x000000000400011d                g_bJenieBackwardsCompatibilityMode
-                0x0000000004000120                s_sTimerList
- .bss           0x0000000004000130        0xc C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans4.ltrans.o
-                0x0000000004000130                TxWorker_u8Num.26477
-                0x0000000004000132                au16TimerSettings.25295
+ .bss           0x0000000004000060       0x80 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans0.ltrans.o
+                0x0000000004000060                sMcpsIndQueue.3706
+                0x0000000004000070                sMcpsIndBufferQueue.3704
+                0x0000000004000080                sMlmeIndQueue.3707
+                0x0000000004000090                sMlmeIndBufferQueue.3705
+                0x00000000040000a0                sHwIndQueue.3708
+                0x00000000040000b0                sHwIndBufferQueue.3709
+                0x00000000040000c0                _u32_INT_adc_comp
+                0x00000000040000c4                _u32_INT_ticktimer
+                0x00000000040000c8                the_vsettings
+                0x00000000040000cc                _periph_availmap
+ .bss           0x00000000040000e0       0x40 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans1.ltrans.o
+                0x00000000040000e0                g_sLP
+                0x000000000400011c                g_pvMac
+ .bss.initinboot
+                0x0000000004000120      0x1c0 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans1.ltrans.o
+                0x0000000004000120                g_sMac
+ .bss           0x00000000040002e0        0x2 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o
+ *fill*         0x00000000040002e2        0x2 00
  .bss.dontinitinboot
-                0x000000000400013c        0x1 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans4.ltrans.o
- *fill*         0x000000000400013d        0x3 00
- .bss           0x0000000004000140      0x618 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans5.ltrans.o
- .bss           0x0000000004000758       0x14 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans6.ltrans.o
-                0x0000000004000758                bAccumulateModeFlag.24699
-                0x000000000400075c                pvPostFunc.2573
-                0x0000000004000760                u32PostArg.2572
-                0x0000000004000764                evPost.2571
+                0x00000000040002e4        0x8 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o
+ .bss           0x00000000040002ec        0x8 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans3.ltrans.o
  .bss.dontinitinboot
-                0x000000000400076c        0x8 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans6.ltrans.o
- .bss           0x0000000004000774        0x8 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans8.ltrans.o
+                0x00000000040002f4        0x4 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans3.ltrans.o
+ .bss           0x00000000040002f8      0x118 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans4.ltrans.o
+                0x00000000040002f8                sSerCmd_P3.5622
+                0x0000000004000304                apfTimerAppCallback.25212
+                0x0000000004000318                prTickTimeAppCallback
+                0x000000000400031c                au16TimerSettings.25161
+                0x0000000004000328                the_mac
+                0x0000000004000344                Timer4
+                0x000000000400034c                Timer3
+                0x0000000004000354                Timer2
+                0x000000000400035c                Timer1
+                0x0000000004000364                Timer0
+                0x000000000400036c                Analogue
+                0x0000000004000384                SPI
+                0x0000000004000388                Wire
+                0x00000000040003a0                SerialParser
+                0x00000000040003dc                Serial1
+                0x00000000040003fc                Buttons
+                0x0000000004000404                PulseCounter1
+                0x0000000004000408                PulseCounter0
+ .bss           0x0000000004000410        0xc C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans5.ltrans.o
+ .bss           0x000000000400041c       0x64 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans6.ltrans.o
+                0x000000000400041c                asUARTS.4952
+                0x000000000400043c                _SERIAL_bmTxIntEnabled
+                0x0000000004000440                asSerialPorts
  .bss.dontinitinboot
-                0x000000000400077c        0x4 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans8.ltrans.o
- .bss           0x0000000004000780       0x28 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans9.ltrans.o
-                0x0000000004000780                sCh_Context.3478
-                0x0000000004000784                asTx.26476
+                0x0000000004000480        0x1 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans7.ltrans.o
+                0x0000000004000480                u8SecurityMode.22803
+ *fill*         0x0000000004000481        0x3 00
+ .bss           0x0000000004000484       0x90 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans8.ltrans.o
+                0x0000000004000484                _ZL5_vcbs.7366
+                0x0000000004000498                sToCoNet_AppContext
+                0x00000000040004b4                sToCoNet_Context
+                0x00000000040004fc                sAssocSecurity.13519
+                0x0000000004000508                g_bJenieBackwardsCompatibilityMode
+ .bss           0x0000000004000514      0x618 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans9.ltrans.o
+                0x0000000004000514                prAppHwCallback.3712
+                0x0000000004000518                TxWorker_u8Num.26343
+                0x0000000004000519                gbTimeOutFlag.24999
+ .bss           0x0000000004000b2c      0x28c C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans10.ltrans.o
+                0x0000000004000b2c                u8AppId_Pkt_head.4656
+                0x0000000004000b30                u32AppId.4653
+                0x0000000004000b34                u32MyAddr.4655
+                0x0000000004000b38                bRxQueue_Init.4654
+                0x0000000004000b3c                psRxQueueList.4652
+                0x0000000004000b50                asEventHandler.2425
+                0x0000000004000bf0                sEvVars
+                0x0000000004000c0c                u32TickCount_ms
+                0x0000000004000c10                au8Txdatabuff_idx_sTxQueue
+                0x0000000004000c14                u8TxBuffSiz_sTxQueue
+                0x0000000004000c18                sTxdatabuff_sTxQueue
+                0x0000000004000c1c                sTxQueue
+                0x0000000004000c38                au8Rxdatabuff_idx_sRxQueue
+                0x0000000004000c3c                u8RxBuffSiz_sRxQueue
+                0x0000000004000c40                sRxdatabuff_sRxQueue
+                0x0000000004000c44                sRxQueue
+                0x0000000004000c60                au8Rxdatabuff_idx_sRxQueueCmd
+                0x0000000004000c64                u8RxBuffSiz_sRxQueueCmd
+                0x0000000004000c68                sRxdatabuff_sRxQueueCmd
+                0x0000000004000c6c                sRxQueueCmd.2876
+                0x0000000004000c88                sContext.4777
+                0x0000000004000cb4                the_twelite
+                0x0000000004000d4c                sToCoNet_Modules
+ .bss           0x0000000004000db8        0x1 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans11.ltrans.o
+                0x0000000004000db8                u8TAM_TxStatusOverride
+ *fill*         0x0000000004000db9        0x3 00
+ .bss           0x0000000004000dbc      0x728 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans12.ltrans.o
+                0x0000000004000dbc                pvPostFunc.2439
+                0x0000000004000dc0                u32PostArg.2438
+                0x0000000004000dc4                evPost.2437
+                0x0000000004000dc8                prSpiAppCallback.24800
+                0x0000000004000dcc                prSiAppCallback.26013
+                0x0000000004000dd0                prAppMcpsCallback.3710
+                0x0000000004000dd4                prAppMlmeCallback.3711
  .bss.initinboot
-                0x00000000040007a8        0x1 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans9.ltrans.o
- .bss           0x00000000040007a9        0x1 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans10.ltrans.o
-                0x00000000040007a9                u8TAM_TxStatusOverride
- .bss           0x00000000040007aa        0x4 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans11.ltrans.o
- *fill*         0x00000000040007ae        0x2 00
+                0x00000000040014e4        0x4 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans12.ltrans.o
+                0x00000000040014e4                prSysCtrlAppCallback.25003
+ .bss           0x00000000040014e8       0x38 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans13.ltrans.o
+                0x00000000040014e8                sCh_Context.3344
+                0x00000000040014ec                the_vhw
+                0x00000000040014f0                the_vnet2
+                0x00000000040014f4                the_vnet
+                0x00000000040014f8                the_vapp
+                0x00000000040014fc                asTx.26342
  .bss.initinboot
-                0x00000000040007b0        0x8 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans12.ltrans.o
-                0x00000000040007b0                g_u32MacAddrLocation
-                0x00000000040007b4                prvUserTxStartedCallback
- .bss           0x00000000040007b8      0x1b8 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans13.ltrans.o
-                0x00000000040007b8                g_pvMac
-                0x00000000040007bc                the_mac
-                0x00000000040007d8                Buttons
-                0x00000000040007e0                Timer4
-                0x00000000040007e8                Timer3
-                0x00000000040007f0                Timer2
-                0x00000000040007f8                Timer1
-                0x0000000004000800                Timer0
-                0x0000000004000808                PulseCounter1
-                0x000000000400080c                PulseCounter0
-                0x0000000004000810                Analogue
-                0x0000000004000828                SPI
-                0x000000000400082c                Wire
-                0x0000000004000844                SerialParser
-                0x0000000004000880                Serial1
-                0x00000000040008a0                Serial
-                0x00000000040008c0                the_vnet2
-                0x00000000040008c4                the_vnet
-                0x00000000040008c8                the_vhw
-                0x00000000040008cc                the_vsettings
-                0x00000000040008d0                the_vapp
-                0x00000000040008d4                the_twelite
-                0x000000000400096c                txreq_stat
+                0x0000000004001520        0x1 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans13.ltrans.o
+ *fill*         0x0000000004001521        0x3 00
+ .bss           0x0000000004001524       0x64 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans14.ltrans.o
+                0x0000000004001524                prUart1AppCallback.25467
+                0x0000000004001528                prUart0AppCallback.25466
+                0x000000000400152c                sOpt.4959
+                0x000000000400153c                _psSerial
+ .bss           0x0000000004001588       0x24 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans15.ltrans.o
+                0x0000000004001588                bTxEventQueued.20635
+                0x0000000004001589                u8TxEventStatus.20636
+                0x000000000400158c                sAppHousekeeping
+                0x00000000040015a4                prApAppCallback.24566
+                0x00000000040015a8                bIntEnableFlag.24563
  .bss.initinboot
-                0x0000000004000970      0x1c0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans13.ltrans.o
-                0x0000000004000970                g_sMac
- .bss           0x0000000004000b30      0x71c C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans14.ltrans.o
-                0x0000000004000b30                prSpiAppCallback.24934
-                0x0000000004000b34                prSiAppCallback.26147
-                0x0000000004000b38                prAppMcpsCallback.3844
-                0x0000000004000b3c                prAppMlmeCallback.3845
-                0x0000000004000b40                gbTimeOutFlag.25133
-                0x0000000004000b41                bTxEventQueued.20769
-                0x0000000004000b42                u8TxEventStatus.20770
- .bss.initinboot
-                0x000000000400124c        0x4 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans14.ltrans.o
-                0x000000000400124c                prSysCtrlAppCallback.25137
- .bss           0x0000000004001250       0xb0 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans15.ltrans.o
-                0x0000000004001250                prUart1AppCallback.25601
-                0x0000000004001254                prUart0AppCallback.25600
-                0x0000000004001258                asUARTS.5086
-                0x0000000004001278                sOpt.5093
-                0x0000000004001288                asSerialPorts
- .bss           0x0000000004001300       0x40 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans16.ltrans.o
-                0x0000000004001300                u8AssocResponsesInProgress.13652
-                0x0000000004001304                g_sLP
- .bss           0x0000000004001340        0xc C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans17.ltrans.o
-                0x0000000004001340                _psSerial
- .bss           0x000000000400134c      0x118 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans18.ltrans.o
-                0x000000000400134c                sContext.4911
-                0x0000000004001378                sToCoNet_Modules
-                0x00000000040013d0                _ZL5_vcbs.7500
-                0x00000000040013e4                sToCoNet_AppContext
-                0x0000000004001400                sToCoNet_Context
- .bss           0x0000000004001464       0x20 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans19.ltrans.o
-                0x0000000004001464                g_sXcv
-                0x0000000004001468                prMcpsRequest.10036
-                0x000000000400146c                prMlmeRequest.10035
-                0x0000000004001470                prOriginalHandler.4921
- .bss           0x0000000004001484       0x2c C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans20.ltrans.o
-                0x0000000004001484                sSerCmd_P3.5756
-                0x0000000004001490                bIntEnableFlag.24697
-                0x0000000004001494                apfTimerAppCallback.25346
-                0x00000000040014a8                prTickTimeAppCallback
-                0x00000000040014ac                _SERIAL_bmTxIntEnabled
- .bss           0x00000000040014b0      0x15c C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans21.ltrans.o
-                0x00000000040014b0                u8AppId_Pkt_head.4790
-                0x00000000040014b4                u32AppId.4787
-                0x00000000040014b8                u32MyAddr.4789
-                0x00000000040014bc                bRxQueue_Init.4788
-                0x00000000040014c0                psRxQueueList.4786
-                0x00000000040014d4                asEventHandler.2559
-                0x0000000004001574                sEvVars
-                0x0000000004001590                u32TickCount_ms
-                0x0000000004001594                au8Txdatabuff_idx_sTxQueue
-                0x0000000004001598                u8TxBuffSiz_sTxQueue
-                0x000000000400159c                sTxdatabuff_sTxQueue
-                0x00000000040015a0                sTxQueue
-                0x00000000040015bc                au8Rxdatabuff_idx_sRxQueue
-                0x00000000040015c0                u8RxBuffSiz_sRxQueue
-                0x00000000040015c4                sRxdatabuff_sRxQueue
-                0x00000000040015c8                sRxQueue
-                0x00000000040015e4                au8Rxdatabuff_idx_sRxQueueCmd
-                0x00000000040015e8                u8RxBuffSiz_sRxQueueCmd
-                0x00000000040015ec                sRxdatabuff_sRxQueueCmd
-                0x00000000040015f0                sRxQueueCmd.3010
+                0x00000000040015ac        0x8 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans16.ltrans.o
+                0x00000000040015ac                g_u32MacAddrLocation
+                0x00000000040015b0                prvUserTxStartedCallback
+ .bss           0x00000000040015b4       0x44 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans17.ltrans.o
+                0x00000000040015b4                g_sXcv
+                0x00000000040015b8                prMcpsRequest.9902
+                0x00000000040015bc                prMlmeRequest.9901
+                0x00000000040015c0                prOriginalHandler.4787
+                0x00000000040015c4                Serial
+ .bss           0x00000000040015f8       0x14 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans18.ltrans.o
+                0x00000000040015f8                s_sTimerList
+                0x0000000004001608                u8AssocResponsesInProgress.13518
  .bss.dontinitinboot
                 0x000000000400160c       0x40 C:/MWSTAGE/MWSDK/ChipLib/SW4063V1416/Components/Library\libBoot_JN516x.a(ExceptionHandler.o)
                 0x000000000400160c                isr_handlers
@@ -1258,65 +1249,63 @@ LOAD c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../..
                 0x000000000400164c                . = ALIGN (0x4)
                 0x000000000400164c                _bss_end = ABSOLUTE (.)
 
-.heap           0x000000000400164c      0xd16 load address 0x0000000000091308
+.heap           0x000000000400164c      0xd16 load address 0x0000000000090cdc
                 0x000000000400164c                _heap_start = ABSOLUTE (.)
                 0x0000000004002362                . = (. + _minimum_heap_size)
  *fill*         0x000000000400164c      0xd16 00
 
-.stack          0x0000000004007800      0x800 load address 0x00000000000974bc
+.stack          0x0000000004007800      0x800 load address 0x0000000000096e90
                 0x0000000004007800                _heap_end = ABSOLUTE (.)
                 0x0000000004007800                _stack_low_water_mark = ABSOLUTE (.)
                 0x0000000004008000                . = (. + _stack_size)
  *fill*         0x0000000004007800      0x800 00
 
-.test           0x000000000008fd20        0x1
-                0x000000000008fd20        0x1 BYTE 0xff
-                0x000000000008fd08                _flash_data_start = LOADADDR (.data)
-                0x0000000000000018                _ram_data_len = (((_ram_data_end - _ram_data_start) + 0x3) & 0xfffffffffffffffc)
-                0x00000000000015e8                _bss_len = (((_bss_end - _bss_start) + 0x3) & 0xfffffffffffffffc)
-                0x000000000000fd20                _image_len = ((((_flash_end - _flash_start) + _ram_data_len) + 0x3) & 0xfffffffffffffffc)
+.test           0x000000000008f6f0        0x1
+                0x000000000008f6f0        0x1 BYTE 0xff
+                0x000000000008f6dc                _flash_data_start = LOADADDR (.data)
+                0x0000000000000014                _ram_data_len = (((_ram_data_end - _ram_data_start) + 0x3) & 0xfffffffffffffffc)
+                0x00000000000015ec                _bss_len = (((_bss_end - _bss_start) + 0x3) & 0xfffffffffffffffc)
+                0x000000000000f6f0                _image_len = ((((_flash_end - _flash_start) + _ram_data_len) + 0x3) & 0xfffffffffffffffc)
                 0x0000000004008000                _ram_top = (ABSOLUTE (ORIGIN (ram)) + 0x7fb4)
                 0x0000000004008000                ram_top = (ABSOLUTE (ORIGIN (ram)) + 0x7fb4)
                 0x0000000001001580                _app_ram_start = 0x1001580
-                0x000000000400005c                PROVIDE (_heap_location, u32HeapStart)
-                0x000000000400005c                PROVIDE (heap_location, u32HeapStart)
-                0x00000000000874ca                TSV_eOpenVector = TSV_eOpen
-                0x000000000008704b                TSV_eStartVector = TSV_eStart
-                0x000000000008291c                TSV_eStopVector = TSV_eStop
-                0x0000000000088c78                pvAppApiGetMacHandle = pvAppApiDefGetMacHandle
-                0x000000000008c612                u32AppApiInit = u32AppApiDefInit
-                0x0000000000088c4d                vAppApiMlmeRequest = vAppApiDefMlmeRequest
-                0x00000000000876f8                vAppApiMcpsRequest = vAppApiDefMcpsRequest
-                0x000000000008769f                eAppApiPlmeSet = eAppApiDefPlmeSet
-                0x000000000008764d                eAppApiPlmeGet = eAppApiDefPlmeGet
-                0x0000000000087644                pvAppApiGetMacAddrLocation = pvAppApiDefGetMacAddrLocation
-                0x00000000000875a3                vAppApiSaveMacSettings = vAppApiDefSaveMacSettings
-                0x00000000000874d2                vAppApiRestoreMacSettings = vAppApiDefRestoreMacSettings
-OUTPUT(objs_BLUE/slave_BLUE_L1305_V0-1-0.elf elf32-ba)
+                0x0000000004000058                PROVIDE (_heap_location, u32HeapStart)
+                0x0000000004000058                PROVIDE (heap_location, u32HeapStart)
+                0x0000000000089837                TSV_eOpenVector = TSV_eOpen
+                0x00000000000893b8                TSV_eStartVector = TSV_eStart
+                0x000000000008c006                TSV_eStopVector = TSV_eStop
+                0x0000000000083721                pvAppApiGetMacHandle = pvAppApiDefGetMacHandle
+                0x000000000008b8a8                u32AppApiInit = u32AppApiDefInit
+                0x00000000000836f6                vAppApiMlmeRequest = vAppApiDefMlmeRequest
+                0x0000000000089adf                vAppApiMcpsRequest = vAppApiDefMcpsRequest
+                0x0000000000089a86                eAppApiPlmeSet = eAppApiDefPlmeSet
+                0x0000000000089a34                eAppApiPlmeGet = eAppApiDefPlmeGet
+                0x0000000000089a2b                pvAppApiGetMacAddrLocation = pvAppApiDefGetMacAddrLocation
+                0x0000000000089910                vAppApiSaveMacSettings = vAppApiDefSaveMacSettings
+                0x000000000008983f                vAppApiRestoreMacSettings = vAppApiDefRestoreMacSettings
+OUTPUT(objs_BLUE/zig_receive_BLUE_L1305_V0-1-0.elf elf32-ba)
 
 .comment        0x0000000000000000       0x11
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans0.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans1.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans2.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans3.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans4.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans5.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans6.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans7.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans8.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans9.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans10.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans11.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans12.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans13.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans14.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans15.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans16.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans17.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans18.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans19.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans20.ltrans.o
- .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\cco9Hmkd.ltrans21.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans0.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans1.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans2.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans3.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans4.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans5.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans6.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans7.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans8.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans9.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans10.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans11.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans12.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans13.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans14.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans15.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans16.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans17.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans18.ltrans.o
+ .comment       0x0000000000000000       0x12 C:\Users\saiju\AppData\Local\Temp\ccbr4Tpk.ltrans19.ltrans.o
  .comment       0x0000000000000000       0x12 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcmp.o)
  .comment       0x0000000000000000       0x12 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcpy.o)
  .comment       0x0000000000000000       0x12 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(_fixunsdfsi.o)
@@ -1335,8 +1324,9 @@ OUTPUT(objs_BLUE/slave_BLUE_L1305_V0-1-0.elf elf32-ba)
  .comment       0x0000000000000000       0x11 C:/MWSTAGE/MWSDK/ChipLib/SW4063V1416/Components/Library\libMicroSpecific_JN516x.a(MicroSyscall_ba.o)
                                          0x12 (size before relaxing)
  .comment       0x0000000000000000       0x12 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memset.o)
+ .comment       0x0000000000000000       0x12 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-strncmp.o)
 
-.debug_info     0x0000000000000000     0x3453
+.debug_info     0x0000000000000000     0x3526
  .debug_info    0x0000000000000000       0xf3 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcmp.o)
  .debug_info    0x00000000000000f3      0x106 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcpy.o)
  .debug_info    0x00000000000001f9       0xb7 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(__udivsi3.o)
@@ -1358,8 +1348,9 @@ OUTPUT(objs_BLUE/slave_BLUE_L1305_V0-1-0.elf elf32-ba)
  .debug_info    0x0000000000003107      0x1cb c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatunsidf.o)
  .debug_info    0x00000000000032d2       0xaa C:/MWSTAGE/MWSDK/ChipLib/SW4063V1416/Components/Library\libBoot_JN516x.a(ExceptionHandler.o)
  .debug_info    0x000000000000337c       0xd7 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memset.o)
+ .debug_info    0x0000000000003453       0xd3 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-strncmp.o)
 
-.debug_abbrev   0x0000000000000000     0x113e
+.debug_abbrev   0x0000000000000000     0x11ae
  .debug_abbrev  0x0000000000000000       0x8e c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcmp.o)
  .debug_abbrev  0x000000000000008e       0xa4 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcpy.o)
  .debug_abbrev  0x0000000000000132       0x14 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(__udivsi3.o)
@@ -1381,8 +1372,9 @@ OUTPUT(objs_BLUE/slave_BLUE_L1305_V0-1-0.elf elf32-ba)
  .debug_abbrev  0x0000000000000f74      0x128 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatunsidf.o)
  .debug_abbrev  0x000000000000109c       0x14 C:/MWSTAGE/MWSDK/ChipLib/SW4063V1416/Components/Library\libBoot_JN516x.a(ExceptionHandler.o)
  .debug_abbrev  0x00000000000010b0       0x8e c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memset.o)
+ .debug_abbrev  0x000000000000113e       0x70 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-strncmp.o)
 
-.debug_loc      0x0000000000000000     0x599c
+.debug_loc      0x0000000000000000     0x59f6
  .debug_loc     0x0000000000000000       0x73 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcmp.o)
  .debug_loc     0x0000000000000073       0x39 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcpy.o)
  .debug_loc     0x00000000000000ac       0x48 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(_fixunsdfsi.o)
@@ -1399,8 +1391,9 @@ OUTPUT(objs_BLUE/slave_BLUE_L1305_V0-1-0.elf elf32-ba)
  .debug_loc     0x0000000000005626      0x1be c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatsidf.o)
  .debug_loc     0x00000000000057e4      0x179 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatunsidf.o)
  .debug_loc     0x000000000000595d       0x3f c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memset.o)
+ .debug_loc     0x000000000000599c       0x5a c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-strncmp.o)
 
-.debug_aranges  0x0000000000000000      0x2a0
+.debug_aranges  0x0000000000000000      0x2c0
  .debug_aranges
                 0x0000000000000000       0x20 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcmp.o)
  .debug_aranges
@@ -1443,8 +1436,10 @@ OUTPUT(objs_BLUE/slave_BLUE_L1305_V0-1-0.elf elf32-ba)
                 0x0000000000000260       0x20 C:/MWSTAGE/MWSDK/ChipLib/SW4063V1416/Components/Library\libBoot_JN516x.a(ExceptionHandler.o)
  .debug_aranges
                 0x0000000000000280       0x20 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memset.o)
+ .debug_aranges
+                0x00000000000002a0       0x20 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-strncmp.o)
 
-.debug_line     0x0000000000000000     0x2bd2
+.debug_line     0x0000000000000000     0x2d38
  .debug_line    0x0000000000000000      0x15a c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcmp.o)
  .debug_line    0x000000000000015a      0x14e c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcpy.o)
  .debug_line    0x00000000000002a8      0x47b c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(__udivsi3.o)
@@ -1466,8 +1461,9 @@ OUTPUT(objs_BLUE/slave_BLUE_L1305_V0-1-0.elf elf32-ba)
  .debug_line    0x0000000000002839       0xbe c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatunsidf.o)
  .debug_line    0x00000000000028f7      0x197 C:/MWSTAGE/MWSDK/ChipLib/SW4063V1416/Components/Library\libBoot_JN516x.a(ExceptionHandler.o)
  .debug_line    0x0000000000002a8e      0x144 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memset.o)
+ .debug_line    0x0000000000002bd2      0x166 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-strncmp.o)
 
-.debug_str      0x0000000000000000      0x6be
+.debug_str      0x0000000000000000      0x709
  .debug_str     0x0000000000000000       0x49 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcmp.o)
                                         0x155 (size before relaxing)
  .debug_str     0x0000000000000049       0x5d c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcpy.o)
@@ -1500,8 +1496,10 @@ OUTPUT(objs_BLUE/slave_BLUE_L1305_V0-1-0.elf elf32-ba)
                                         0x185 (size before relaxing)
  .debug_str     0x00000000000005a2      0x11c c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memset.o)
                                         0x155 (size before relaxing)
+ .debug_str     0x00000000000006be       0x4b c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-strncmp.o)
+                                        0x157 (size before relaxing)
 
-.debug_frame    0x0000000000000000      0x24c
+.debug_frame    0x0000000000000000      0x26c
  .debug_frame   0x0000000000000000       0x20 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcmp.o)
  .debug_frame   0x0000000000000020       0x20 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memcpy.o)
  .debug_frame   0x0000000000000040       0x2c c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(_fixunsdfsi.o)
@@ -1516,6 +1514,7 @@ OUTPUT(objs_BLUE/slave_BLUE_L1305_V0-1-0.elf elf32-ba)
  .debug_frame   0x00000000000001ec       0x20 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatsidf.o)
  .debug_frame   0x000000000000020c       0x20 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(floatunsidf.o)
  .debug_frame   0x000000000000022c       0x20 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-memset.o)
+ .debug_frame   0x000000000000024c       0x20 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/../../../../ba-elf/lib/mcpu_jn51xx_sizeopt\libc.a(lib_a-strncmp.o)
 
 .debug_ranges   0x0000000000000000      0x558
  .debug_ranges  0x0000000000000000       0xa0 c:/mwstage/tools/ba-elf-ba2-r36379.w10/bin/../lib/gcc/ba-elf/4.7.4/mcpu_jn51xx_sizeopt\libgcc.a(_udivdi3.o)

@@ -11,34 +11,22 @@ const uint32_t APP_ID = 0x1234abcd; // application ID
 const uint8_t CHANNEL = 13; // channel 11-26
 const char APP_FOURCHAR[] = "TECH";
 
-//ピン
-const uint8_t DIP0= mwx::PIN_DIGITAL::DIO13; //adrs1
-const uint8_t DIP1= mwx::PIN_DIGITAL::DIO16; //adrs2
-const uint8_t LED0= mwx::PIN_DIGITAL::DIO9; 
-const uint8_t LED1= mwx::PIN_DIGITAL::DIO8; 
-
 //送るときのやつ
 MWX_APIRET txreq_stat;
 MWX_APIRET transmit();
-uint8_t se_to_adrs = 0x00; //送信先のアドレス(マスター)
+uint8_t se_to_adrs; //送信先のアドレス
 uint8_t se_from_adrs; //送信元のアドレス 自分のアドレス
 
+uint8_t my_adrs = 0x00; //自分のアドレス
 
-uint8_t my_adrs; //自分のアドレス
+
+const uint8_t LED0= mwx::PIN_DIGITAL::DIO9; 
+const uint8_t LED1= mwx::PIN_DIGITAL::DIO8; 
 
 
 void setup() {
-	//ーーーーーID読み取りーーーーー
-	pinMode(DIP0,INPUT);
-	pinMode(DIP1,INPUT);
 	pinMode(LED0,OUTPUT);
 	pinMode(LED1,OUTPUT);
-	delay(10);
-	my_adrs += 0xA0;//子機のアドレスを計算
-	my_adrs += digitalRead(DIP1) << 1;//子機のアドレスを計算
-	my_adrs += digitalRead(DIP0); //子機のアドレスを計算
-	digitalWrite(LED0,digitalRead(DIP0));
-	digitalWrite(LED1,digitalRead(DIP1));
 
 	//ーーーーー通信設定ーーーーー
 	txreq_stat = MWX_APIRET(false,0);
@@ -48,11 +36,11 @@ void setup() {
 		<< TWENET::channel(CHANNEL) 
 		<< TWENET::rx_when_idle();      
 	auto&&	nwksmpl = the_twelite.network.use<NWK_SIMPLE>();
-					nwksmpl << NWK_SIMPLE::logical_id(my_adrs); //子機をセット  
+					nwksmpl << NWK_SIMPLE::logical_id(my_adrs);
 	the_twelite.begin();
 	
 	//ーーーーー起動ーーーーー
-	Serial << "--- wakup-com->start ---" << mwx::crlf;
+	Serial << "--- F446->TweLite ---" << mwx::crlf;
 }
 
 
@@ -61,8 +49,10 @@ int16_t timzigwait = TIME_OFF; //ZigBeeの待ち時間
 uint8_t se_data[4] = {0,0,0,0}; //送信データ
 
 void loop() {
-	se_data[0] = 100 + my_adrs-0xA0;
-	se_data[1] = 200 + my_adrs-0xA0;
+	se_data[0] = 10;
+	se_data[1] = 20;
+	se_data[2] = 30;
+	se_data[3] = 40;
 
 	if(TickTimer.available()){ //1msごとに実行
 		if(timzigwait > TIME_UP ){ //ZigBeeの待ち時間が終わったか
@@ -71,6 +61,8 @@ void loop() {
 	}
 
 	if (b_transmit) {
+		digitalWrite(LED0,HIGH);
+		digitalWrite(LED1,LOW);
 		//送信受付は完了
 		if (the_twelite.tx_status.is_complete(txreq_stat.get_value())) {
 			//送信完了
@@ -89,6 +81,8 @@ void loop() {
 			}
 		}
 	}else{
+		digitalWrite(LED0,LOW);
+		digitalWrite(LED1,HIGH);
 		//送信受付はしていない
 		txreq_stat = transmit();
 		if(txreq_stat){
@@ -107,17 +101,19 @@ void loop() {
 
 /*** transmit a packet */
 MWX_APIRET transmit() {
-	se_from_adrs = my_adrs;
+	se_from_adrs = my_adrs; //0x00
+	se_to_adrs = 0xFE; //送信先のアドレス 0xFEはブロードキャスト
 
 	if (auto&& pkt = the_twelite.network.use<NWK_SIMPLE>().prepare_tx_packet()) {
 		Serial 	<< "se_fr:" << format("0x%X", se_from_adrs) 
+						<< "  se_to:"	<< format("0x%X", se_to_adrs)
 						<< "  data: "	<< (int)se_data[0] 
 						<< " : "	<< (int)se_data[1]
 						<< " : "	<< (int)se_data[2]
 						<< " : "	<< (int)se_data[3]
 						<< mwx::crlf << mwx::flush;
 
-		pkt << tx_addr(se_to_adrs) //送信先(0x00:親)
+		pkt << tx_addr(se_to_adrs) 
 				<< tx_retry(0x2) //送信トライ回数
 				<< tx_packet_delay(0,0,2);	//最低待ち時間、最長待ち時間、再送間隔
 																		//直ちに再送、2ms待って再送

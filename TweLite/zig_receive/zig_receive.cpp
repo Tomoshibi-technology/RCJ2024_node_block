@@ -1,4 +1,8 @@
-// use twelite mwx c++ template library
+/*
+Zigbeeを受信して
+F446に送信する
+*/
+
 #include <TWELITE>
 #include <NWK_SIMPLE>
 
@@ -16,20 +20,45 @@ uint8_t re_from_adrs; //送信元のアドレス
 
 uint8_t re_data[4] = {0,0,0,0}; //送信データ
 
+//ピン
+const uint8_t DIP0= mwx::PIN_DIGITAL::DIO13; //adrs1
+const uint8_t DIP1= mwx::PIN_DIGITAL::DIO16; //adrs2
+const uint8_t LED0= mwx::PIN_DIGITAL::DIO9; 
+const uint8_t LED1= mwx::PIN_DIGITAL::DIO8; 
 
-void setup() {
-	//ーーーーー通信設定ーーーーー
+uint8_t my_adrs; //自分のアドレス
+
+void setup() {	
+	//ーーーーーID読み取りーーーーー
+	pinMode(DIP0,INPUT);
+	pinMode(DIP1,INPUT);
+	pinMode(LED0,OUTPUT);
+	pinMode(LED1,OUTPUT);
+	delay(10);
+	my_adrs += 0xA0;//子機のアドレスを計算
+	my_adrs += digitalRead(DIP1) << 1;//子機のアドレスを計算
+	my_adrs += digitalRead(DIP0); //子機のアドレスを計算
+	digitalWrite(LED0,digitalRead(DIP0));
+	digitalWrite(LED1,digitalRead(DIP1));
+	
+	//ーーーーーm無線通信設定ーーーーー
 	the_twelite
 		<< TWENET::appid(APP_ID) 
 		<< TWENET::channel(CHANNEL) 
 		<< TWENET::rx_when_idle(); 
 	auto&& 	nwksmpl = the_twelite.network.use<NWK_SIMPLE>();
-					nwksmpl << NWK_SIMPLE::logical_id(0x00); //0x00→マスター 0xFE→スレーブ
+					nwksmpl << NWK_SIMPLE::logical_id(my_adrs); //0x00→マスター 0xFE→スレーブ
 	the_twelite.begin(); // start twelite!
 
+	// //ーーーーーー有線通信設定ーーーーーー
+	// Serial1.setup(192, 192); // 64byte TX, 192byte RX
+	// Serial1.begin(115200);
+
 	//ーーーーー起動ーーーーー
-	Serial << "--- Parent act ---" << mwx::crlf;
+	Serial << "--- TweLite->F446 ---" << mwx::crlf;
 }
+
+int16_t mytimer = -1;
 
 void loop() {
 	//ーーーーー受信ーーーーー
@@ -40,10 +69,28 @@ void loop() {
 						<< " : " << (int)re_data[1]
 						<< " : " << (int)re_data[2]
 						<< " : " << (int)re_data[3]
+						<< " : " << (int)mytimer
 						<< mwx::crlf << mwx::flush;
-	}
 
-	//ーーーーー送信ーーーーー
+		//ーーーーーF446送信ーーーーー
+		// Serial1 << (byte)250; //スタートビット
+		// for(int i=0;i<4;i++){
+		// 	Serial1 << (byte)re_data[i];
+		// }
+		// Serial1 << mwx::flush;
+	}
+	
+	// if(TickTimer.available()){ //1msごとに実行
+	// 	mytimer++;
+	// }
+	//ーーーーーF446送信ーーーーー
+	// if(mytimer >= 100){
+			// mytimer = 0;
+		// }
+	
+
+
+
 }
 
 /*add function recive()*/
