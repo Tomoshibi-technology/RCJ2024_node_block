@@ -1,0 +1,8 @@
+objs_BLUE/wireless_test.o (symbol from plugin): In function `send':
+(.text+0x0): multiple definition of `loop()'
+objs_BLUE/BRD_APPTWELITE.o (symbol from plugin):(.text+0x0): first defined here
+objs_BLUE/wireless_test.o (symbol from plugin): In function `send':
+(.text+0x0): multiple definition of `setup()'
+objs_BLUE/BRD_APPTWELITE.o (symbol from plugin):(.text+0x0): first defined here
+collect2.exe: error: ld returned 1 exit status
+make: *** [objs_BLUE/wireless_test_BLUE_L1305_V0-1-0.elf] Error 1

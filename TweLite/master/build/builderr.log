@@ -1,2 +1,0 @@
-C:/Tomoshibi/RCJ2024_node_block/TweLite/master/master.cpp: In function 'receive()':
-C:/Tomoshibi/RCJ2024_node_block/TweLite/master/master.cpp:92:28: warning: 'adrs' may be used uninitialized in this function [-Wmaybe-uninitialized]

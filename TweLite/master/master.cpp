@@ -2,23 +2,27 @@
 #include <TWELITE>
 #include <NWK_SIMPLE>
 
-#define CNT_MAX 1000
-
 /*** Config part */
 const uint32_t APP_ID = 0x1234abcd;
 const uint8_t CHANNEL = 13;
-// const uint8_t PIN_DI1 = mwx::PIN_DIGITAL::DIO10; 
-// const uint8_t PIN_DO1 = mwx::PIN_DIGITAL::DIO9; 
 
 // application use
-int16_t cnt1ms;
-uint32_t ts;
-bool rcvflg;
 const char APP_FOURCHAR[] = "TECH";
 uint8_t u8devid = 0;
 
 /*** function prototype */
 void receive();
+
+//読み取るときのやつ
+uint8_t re_to_adrs; //送信先のアドレス 自分のアドレス
+uint8_t re_from_adrs0; //送信元のアドレス
+uint8_t re_from_adrs1; //送信元のアドレス
+//送るときのやつ
+// uint8_t se_to_adrs; //送信先のアドレス
+// uint8_t se_from_adrs; //送信元のアドレス 自分のアドレス
+
+uint16_t vcc;
+uint16_t temp;
 
 /*** setup procedure (run once at cold boot) */
 void setup() {
@@ -35,34 +39,19 @@ void setup() {
 }
 
 void loop() {
-	if(TickTimer.available()){
-		cnt1ms++; //1msカウント
-	}
-
 	while (the_twelite.receiver.available()) { //受信待ち 受信したデータがなくなるまで繰り返す
 		receive();
-		rcvflg = true;
 	}
-
-	if(cnt1ms >= CNT_MAX){ //1000msごとに実行
-		cnt1ms -= CNT_MAX; 
-		ts = (ts + 1) % 100000; //秒数をカウントアップ
-
-		if(rcvflg){
-			rcvflg = false;
-		}else{
-			Serial << "ts:" <<  int(ts) << mwx::crlf << mwx::flush;;
-		}
-	}
+	
+	Serial 	<< " r_fr0:" << format("0x%X", re_from_adrs0) //送信元のアドレス 16進数で表示してます
+					<< " r_fr1:" << format("0x%X", re_from_adrs1) //送信先のアドレス(自分のアドレス)
+					<< " vcc:" << (int)vcc
+					<< " tem:" << (int)temp
+					<< mwx::crlf << mwx::flush;
 }
 
 /*add function recive()*/
 void receive() {
-	uint8_t adrs;
-	uint16_t vcc;
-	uint16_t temp;
-	double temp2;
-	double vcc2;
 
 	auto&& rx = the_twelite.receiver.read(); //受信値をRXに読み込む
 	char fourchars[5]{}; // 判定用
@@ -81,24 +70,25 @@ void receive() {
 	expand_bytes(
 		np,
 		rx.get_payload().end(),
-		adrs,
+		re_from_adrs0,
 		vcc,
 		temp
 	);
+	re_from_adrs1 = rx.get_addr_src_lid(); //送信元のアドレスを格納
+}
 
-	temp2 = (double)(temp-500)/10; //電圧値から温度換算
-	vcc2 = (double)vcc/1000; //電圧値から電源電圧換算
+MWX_APIRET transmit(void) {
+    uint8_t txadrs;
+    
+    //送信先を選択する処理(省略)
+    if (auto&& pkt = the_twelite.network.use<NWK_SIMPLE>().prepare_tx_packet()) {
+	pkt << tx_addr(txadrs)  //送信先を指定
+            << tx_retry(0x3) 
+	    << tx_packet_delay(0,0,2);
 
-	Serial	<< "ts:" << int(ts) 
-					<< "：" << int(rx.get_addr_src_lid()) //送信元の論理ID <NWK_SIMPLE>で指定してるやつ
-					<< " adrs: " 	<< (int)adrs //
-					<< " vcc: " << vcc2 << "V"
-					<< " temp: " << temp2 << "deg" 
-					<< mwx::crlf << mwx::flush;
+        pack_bytes(pkt.get_payload(), make_pair(APP_CHAR, 3));//ヘッダー
+        pack_bytes(pkt.get_payload(),do_out); //do_outをパッケージ化する
 
-	Serial 	<< int (rx.get_addr_src_lid())
-					<< "," << (int)adrs
-					<< "," << (int)vcc
-					<< "," << (int)temp
-					<< mwx::crlf << mwx::flush;
+	return pkt.transmit(); //パケットを送信
+    }
 }
