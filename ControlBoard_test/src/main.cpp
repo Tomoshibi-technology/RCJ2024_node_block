@@ -58,14 +58,13 @@ const String name[16] = {
 Adafruit_NeoPixel neopixel0 = Adafruit_NeoPixel(LED_NUM, LED_PIN0, NEO_GRB + NEO_KHZ800);
 FLED led0(&neopixel0, LED_NUM);
 
-
-
-
 #include <HardwareSerial.h>
 HardwareSerial PC(PA10, PA9); //UART1 RX, TX
 //HardwareSerial ARM(PC7, PC6); //UART6 RX, TX
 HardwareSerial TWE(PA1, PA0); //UART2 RX, TX
 
+#include "./twelite/twelite.h"
+TWELITE twelite(&TWE);
 
 
 
@@ -90,13 +89,13 @@ void setup() {
 
 	delay(1000);
 
+	twelite.init();
+
 	PC.begin(115200);
-	TWE.begin(115200);
 	PC.println("start");
 }
 
 unsigned long loop_timer = 10000;
-byte receive_data[4] = {0, 0, 0, 0};
 
 void loop() {
 	//ーーーーーーーーーーループ計測ーーーーーーーーーー
@@ -112,87 +111,32 @@ void loop() {
 
 	//ーーーーーーーーーー無線ーーーーーーーーーー
 	byte send_data = btn_val[0]*10 + btn_val[1] * 20 + btn_val[2] * 40;
-	
-	delay(3);
-	if(TWE.available()>10){
-		byte data = TWE.read();
-		if(data == 250){
-			byte raw_receive_data[4] = {0, 0, 0, 0};
-			bool receive_bad_flg = 0; //受信失敗フラグ
-			for(int i=0; i<4; i++){
-				if(TWE.available()>0){
-					raw_receive_data[i] = TWE.read();
-					if(raw_receive_data[i] == 250){receive_bad_flg = 1; break;} //受信失敗フラグを立てる(250が来たら
-				}else{
-					receive_bad_flg = 1; break;
-				}
-			}
-			if(!receive_bad_flg){
-				for(int i=0; i<4; i++){
-					receive_data[i] = raw_receive_data[i];
-				}
-				//せっかく更新したので、中身を表示
-				PC.print(micros() - loop_timer);
-				for(int i=0; i<4; i++){
-					PC.print("  :");
-					PC.print(receive_data[i]);
-				}
-				PC.println();
-			}
+
+	if(twelite.read()){ //tweliteから受信成功したら1を返す
+		PC.print(micros() - loop_timer);
+		for(int i=0; i<4; i++){
+			PC.print("  :");
+			PC.print(twelite.receive_data[i]);
 		}
+		PC.println();
 	}
-
-	// if(TWE.available()>0){
-	// 	while(true){
-	// 		if(TWE.available()>0){
-	// 			int data = TWE.read();
-	// 			if(data==250){break;}
-	// 		}
-	// 	}
-	// 	int k = 0;
-	// 	byte raw_receive_data[4] = {0, 0, 0, 0};
-	// 	bool receive_bad_flg = 0; //受信失敗フラグ
-	// 	while(k<4){
-	// 		if(TWE.available()>0){
-	// 			raw_receive_data[k]=TWE.read();
-	// 			k++;
-	// 			if(raw_receive_data[k] == 250){receive_bad_flg = 1; break;} //受信失敗フラグを立てる(250が来たら
-	// 		}
-	// 	}
-	// 	if(!receive_bad_flg){
-	// 		for(int i=0; i<4; i++){
-	// 			receive_data[i] = raw_receive_data[i];
-	// 		}
-	// 	}
-	// }
-
-	// if(receive_data[0] != 0){
-	// 	PC.print(micros() - loop_timer);
-	// 	for(int i=0; i<4; i++){
-	// 		PC.print("  :");
-	// 		PC.print(receive_data[i]);
-	// 	}
-	// 	PC.println();
-	// }
 	
-	
-
 	// //ーーーーーーーーーー効果音と光ーーーーーーーーーー
 	led0.clear();
 
 
 	bool led_flg = 0;
-	if(btn_val[0] || receive_data[0] == 10){ 
+	if(btn_val[0] || twelite.receive_data[0] == 10){ 
 		speaker.ring(C6);
 		led0.set_color_hsv_all(70, 250, 20);
 		led_flg = 1;
 	}
-	if(btn_val[1] || receive_data[0] == 20) {
+	if(btn_val[1] || twelite.receive_data[0] == 20) {
 		speaker.ring(E6);
 		led0.set_color_hsv_all(150, 250, 20);
 		led_flg = 1;
 	}
-	if(btn_val[2] || receive_data[0] == 40){
+	if(btn_val[2] || twelite.receive_data[0] == 40){
 		speaker.ring(G6);
 		led0.set_color_hsv_all(230, 250, 20);
 		led_flg = 1;
@@ -209,8 +153,8 @@ void loop() {
 	oled.display_title(name[dip.read_ID()]+" V" + String(VERSION));
 	oled.display_battary(power.voltage(), power.percentage());
 	oled.half_display_num(
-		"S = "+String(send_data),
-		"R = "+String(receive_data[0])
+		"D0 = "+String(twelite.receive_data[0]) + "  D1 = "+String(twelite.receive_data[1]),
+		"D2 = "+String(twelite.receive_data[2]) + "  D3 = "+String(twelite.receive_data[3])
 	);
 	oled.half_display_3button(btn_val);
 	oled.show();
