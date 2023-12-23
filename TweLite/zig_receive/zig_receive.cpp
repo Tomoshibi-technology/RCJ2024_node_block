@@ -72,12 +72,17 @@ void loop() {
 						<< " : " << (int)re_data[2]
 						<< " : " << (int)re_data[3]
 						<< mwx::crlf << mwx::flush;
+	}
+	if(TickTimer.available()){ //1msごとに実行
+		mytimer++;
+	}
+	if(mytimer >= 10){//10msごとに実行
 		Serial1 << (byte)250; //スタートビット
 		for(int dataId=0;dataId<4;dataId++){
 			Serial1 << (byte)re_data[dataId];
 		}
+		mytimer = 0;
 	}
-
 
 	//ーーーーーF446送信ーーーーー
 	// Serial1 << (byte)250; //スタートビット

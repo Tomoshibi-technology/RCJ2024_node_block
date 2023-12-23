@@ -85,7 +85,7 @@ void setup() {
 	button.init();
 
 	led0.init();
-	led0.set_color_rgb(50, 0, 0);
+	led0.set_color_rgb_all(50, 0, 0);
 	led0.show();
 
 	delay(1000);
@@ -96,6 +96,7 @@ void setup() {
 }
 
 unsigned long loop_timer = 10000;
+byte receive_data[4] = {0, 0, 0, 0};
 
 void loop() {
 	//ーーーーーーーーーーループ計測ーーーーーーーーーー
@@ -111,9 +112,8 @@ void loop() {
 
 	//ーーーーーーーーーー無線ーーーーーーーーーー
 	byte send_data = btn_val[0]*10 + btn_val[1] * 20 + btn_val[2] * 40;
-	// byte send_data = 10;
-	byte receive_data[4] = {0, 0, 0, 0};
 	
+	delay(3);
 	if(TWE.available()>10){
 		byte data = TWE.read();
 		if(data == 250){
@@ -122,65 +122,98 @@ void loop() {
 			for(int i=0; i<4; i++){
 				if(TWE.available()>0){
 					raw_receive_data[i] = TWE.read();
+					if(raw_receive_data[i] == 250){receive_bad_flg = 1; break;} //受信失敗フラグを立てる(250が来たら
 				}else{
-					receive_bad_flg = 1;
+					receive_bad_flg = 1; break;
 				}
 			}
 			if(!receive_bad_flg){
 				for(int i=0; i<4; i++){
 					receive_data[i] = raw_receive_data[i];
 				}
+				//せっかく更新したので、中身を表示
+				PC.print(micros() - loop_timer);
+				for(int i=0; i<4; i++){
+					PC.print("  :");
+					PC.print(receive_data[i]);
+				}
+				PC.println();
 			}
 		}
 	}
 
-	if(receive_data[0] != 0){
-		PC.print(micros() - loop_timer);
-		for(int i=0; i<4; i++){
-			PC.print("  :");
-			PC.print(receive_data[i]);
-		}
-		PC.println();
-	}
+	// if(TWE.available()>0){
+	// 	while(true){
+	// 		if(TWE.available()>0){
+	// 			int data = TWE.read();
+	// 			if(data==250){break;}
+	// 		}
+	// 	}
+	// 	int k = 0;
+	// 	byte raw_receive_data[4] = {0, 0, 0, 0};
+	// 	bool receive_bad_flg = 0; //受信失敗フラグ
+	// 	while(k<4){
+	// 		if(TWE.available()>0){
+	// 			raw_receive_data[k]=TWE.read();
+	// 			k++;
+	// 			if(raw_receive_data[k] == 250){receive_bad_flg = 1; break;} //受信失敗フラグを立てる(250が来たら
+	// 		}
+	// 	}
+	// 	if(!receive_bad_flg){
+	// 		for(int i=0; i<4; i++){
+	// 			receive_data[i] = raw_receive_data[i];
+	// 		}
+	// 	}
+	// }
+
+	// if(receive_data[0] != 0){
+	// 	PC.print(micros() - loop_timer);
+	// 	for(int i=0; i<4; i++){
+	// 		PC.print("  :");
+	// 		PC.print(receive_data[i]);
+	// 	}
+	// 	PC.println();
+	// }
 	
 	
 
 	// //ーーーーーーーーーー効果音と光ーーーーーーーーーー
-	// led0.clear();
+	led0.clear();
+
 
 	bool led_flg = 0;
 	if(btn_val[0] || receive_data[0] == 10){ 
 		speaker.ring(C6);
-		// led0.set_color_hsv(70, 250, 20);
+		led0.set_color_hsv_all(70, 250, 20);
 		led_flg = 1;
 	}
 	if(btn_val[1] || receive_data[0] == 20) {
 		speaker.ring(E6);
-		// led0.set_color_hsv(150, 250, 20);
+		led0.set_color_hsv_all(150, 250, 20);
 		led_flg = 1;
 	}
 	if(btn_val[2] || receive_data[0] == 40){
 		speaker.ring(G6);
-		// led0.set_color_hsv(230, 250, 20);
+		led0.set_color_hsv_all(230, 250, 20);
 		led_flg = 1;
 	}
 	if(!led_flg){
 	 speaker.mute();
-	//  led0.set_color_hsv((millis()%2550)/10 , 150, 10);
+	 led0.set_color_hsv_all((millis()%2550)/10 , 150, 10);
 	}
 
-	// led0.show();
+	led0.show();
 
 	// //ーーーーーーーーーー表示ーーーーーーーーーー
-	// oled.clear();
-	// oled.display_title(name[dip.read_ID()]+" V" + String(VERSION));
-	// oled.display_battary(power.voltage(), power.percentage());
-	// oled.half_display_num(
-	// 	"S = "+String(send_data),
-	// 	"R = "+String(receive_data)
-	// );
-	// oled.half_display_3button(btn_val);
-	// oled.show();
+	oled.clear();
+	oled.display_title(name[dip.read_ID()]+" V" + String(VERSION));
+	oled.display_battary(power.voltage(), power.percentage());
+	oled.half_display_num(
+		"S = "+String(send_data),
+		"R = "+String(receive_data[0])
+	);
+	oled.half_display_3button(btn_val);
+	oled.show();
 
 	// // delay(10);
 
