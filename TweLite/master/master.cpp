@@ -7,17 +7,16 @@ const uint32_t APP_ID = 0x1234abcd;
 const uint8_t CHANNEL = 13;
 const char APP_FOURCHAR[] = "TECH";
 
-/*** function prototype */
+//関数
 void receive();
 
 //読み取るときのやつ
 uint8_t re_to_adrs; //送信先のアドレス 自分のアドレス
 uint8_t re_from_adrs; //送信元のアドレス
 
-uint16_t re_data[2] = {0,0}; //送信データ
+uint8_t re_data[4] = {0,0,0,0}; //送信データ
 
 
-/*** setup procedure (run once at cold boot) */
 void setup() {
 	//ーーーーー通信設定ーーーーー
 	the_twelite
@@ -28,6 +27,7 @@ void setup() {
 					nwksmpl << NWK_SIMPLE::logical_id(0x00); //0x00→マスター 0xFE→スレーブ
 	the_twelite.begin(); // start twelite!
 
+	//ーーーーー起動ーーーーー
 	Serial << "--- Parent act ---" << mwx::crlf;
 }
 
@@ -36,8 +36,10 @@ void loop() {
 	while (the_twelite.receiver.available()) { //受信待ち 受信したデータがなくなるまで繰り返す
 		receive();
 		Serial 	<< "re_fr:" << format("0x%X", re_from_adrs) //送信元のアドレス 16進数で表示してます
-						<< "  data0:" << (int)re_data[0]
-						<< "  data1:" << (int)re_data[1]
+						<< "  data: " << (int)re_data[0]
+						<< " : " << (int)re_data[1]
+						<< " : " << (int)re_data[2]
+						<< " : " << (int)re_data[3]
 						<< mwx::crlf << mwx::flush;
 	}
 
@@ -61,8 +63,10 @@ void receive() {
 		np,
 		rx.get_payload().end(),
 		re_from_adrs, //uint8_t
-		re_data[0], //uint16_t
-		re_data[1]  //uint16_t
+		re_data[0], //uint8_t
+		re_data[1], //uint8_t
+		re_data[2], //uint8_t
+		re_data[3]  //uint8_t
 	);
 }
 

@@ -34,8 +34,9 @@ void setup() {
 	pinMode(LED0,OUTPUT);
 	pinMode(LED1,OUTPUT);
 	delay(10);
-	my_adrs = digitalRead(DIP1) << 1;//子機のアドレスを計算
-	my_adrs = my_adrs + digitalRead(DIP0); //子機のアドレスを計算
+	my_adrs += 0xA0;//子機のアドレスを計算
+	my_adrs += digitalRead(DIP1) << 1;//子機のアドレスを計算
+	my_adrs += digitalRead(DIP0); //子機のアドレスを計算
 	digitalWrite(LED0,digitalRead(DIP0));
 	digitalWrite(LED1,digitalRead(DIP1));
 
@@ -47,7 +48,7 @@ void setup() {
 		<< TWENET::channel(CHANNEL) 
 		<< TWENET::rx_when_idle();      
 	auto&&	nwksmpl = the_twelite.network.use<NWK_SIMPLE>();
-					nwksmpl << NWK_SIMPLE::logical_id(0xA0 + my_adrs); //子機をセット  
+					nwksmpl << NWK_SIMPLE::logical_id(my_adrs); //子機をセット  
 	the_twelite.begin();
 	
 	//ーーーーー起動ーーーーー
@@ -57,10 +58,11 @@ void setup() {
 
 bool b_transmit = false; //送信中かどうか
 int16_t timzigwait = TIME_OFF; //ZigBeeの待ち時間
-uint16_t se_data[2] = {0,0}; //送信データ
+uint8_t se_data[4] = {0,0,0,0}; //送信データ
 
 void loop() {
-	se_data[0] = 10231;
+	se_data[0] = 100 + my_adrs-0xA0;
+	se_data[1] = 200 + my_adrs-0xA0;
 
 	if(TickTimer.available()){ //1msごとに実行
 		if(timzigwait > TIME_UP ){ //ZigBeeの待ち時間が終わったか
@@ -74,14 +76,14 @@ void loop() {
 			//送信完了
 			timzigwait = TIME_OFF; //-1
 			b_transmit = false; 
-			the_twelite.sleep(5);
+			the_twelite.sleep(1);
 		}else{
 			//送信未完了
 			if(timzigwait == TIME_UP){
 				//送信完了待ち時間が終わった
 				timzigwait = TIME_OFF; //-1
 				b_transmit = false;
-				the_twelite.sleep(5);
+				the_twelite.sleep(1);
 			}else{
 				//送信中	
 			}
@@ -97,7 +99,7 @@ void loop() {
 			//送信受け付け失敗
 			//Serial << "..chk2." << mwx::crlf << mwx::flush;
 			b_transmit = false; //送信できないよ
-			the_twelite.sleep(5);
+			the_twelite.sleep(1);
 		}
 	}	
 }
@@ -109,12 +111,14 @@ MWX_APIRET transmit() {
 
 	if (auto&& pkt = the_twelite.network.use<NWK_SIMPLE>().prepare_tx_packet()) {
 		Serial 	<< "se_fr:" << format("0x%X", se_from_adrs) 
-						<< "  data0:"	<< int(se_data[0]) 
-						<< "  data1:"	<< int(se_data[1])
+						<< "  data: "	<< (int)se_data[0] 
+						<< " : "	<< (int)se_data[1]
+						<< " : "	<< (int)se_data[2]
+						<< " : "	<< (int)se_data[3]
 						<< mwx::crlf << mwx::flush;
 
 		pkt << tx_addr(se_to_adrs) //送信先(0x00:親)
-				<< tx_retry(0x1) //送信トライ回数
+				<< tx_retry(0x2) //送信トライ回数
 				<< tx_packet_delay(0,0,2);	//最低待ち時間、最長待ち時間、再送間隔
 																		//直ちに再送、2ms待って再送
 
@@ -122,8 +126,10 @@ MWX_APIRET transmit() {
 			pkt.get_payload(),
 			make_pair(APP_FOURCHAR, 4), //4バイトの文字列
 			se_from_adrs, //自分のアドレス uint8_t
-			se_data[0],   //uint16_t
-			se_data[1]    //uint16_t
+			se_data[0],   //uint8_t
+			se_data[1],   //uint8_t
+			se_data[2],   //uint8_t
+			se_data[3]    //uint8_t
 		);
 		return pkt.transmit();
 	}
