@@ -75,7 +75,6 @@ void control_init(){
 
 void control_loop(){
 		//ーーーーーーーーーーボタンーーーーーーーーーーー
-	bool btn_val[3] = {0, 0, 0};
 	button.read(btn_val);
 
 	//ーーーーーーーーーー無線ーーーーーーーーーー

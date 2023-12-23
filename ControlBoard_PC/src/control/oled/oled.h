@@ -8,8 +8,8 @@ class OLED{
 		private:
 			U8G2_SSD1306_128X64_NONAME_F_SW_I2C* myU8G2;
 			
-			long timer = 0; 
-			int interval = 500; //ms
+			long timer = 0;  
+			int interval = 200; //ms こいつだけ特別に速くしてます
 
 		public:
 			OLED(U8G2_SSD1306_128X64_NONAME_F_SW_I2C* ptr_myu8g2);

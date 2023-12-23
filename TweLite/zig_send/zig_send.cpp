@@ -68,7 +68,7 @@ void loop() {
 			for(int i=0; i<4; i++){
 				if(Serial1.available()){
 					raw_receive_data[i] = Serial1.read();
-					if(raw_receive_data[i] == (uint8_t)250){
+					if(raw_receive_data[i] == (uint8_t)250||raw_receive_data[i] == (uint8_t)0){
 						receive_bad_flg = true;
 						break;
 					}
