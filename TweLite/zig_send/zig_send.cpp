@@ -47,12 +47,13 @@ void setup() {
 bool b_transmit = false; //送信中かどうか
 int16_t timzigwait = TIME_OFF; //ZigBeeの待ち時間
 uint8_t se_data[4] = {0,0,0,0}; //送信データ
+uint16_t send_i = 0;
 
 void loop() {
-	se_data[0] = 10;
-	se_data[1] = 20;
-	se_data[2] = 30;
-	se_data[3] = 40;
+	se_data[0] = 10 + (send_i%200);
+	se_data[1] = 20 + (send_i%200);
+	se_data[2] = 30 + (send_i%200);
+	se_data[3] = 40 + (send_i%200);
 
 	if(TickTimer.available()){ //1msごとに実行
 		if(timzigwait > TIME_UP ){ //ZigBeeの待ち時間が終わったか
@@ -89,6 +90,7 @@ void loop() {
 			//Serial << "..sleep2." << mwx::crlf << mwx::flush;
 			b_transmit = true; //送信しよう！！
 			timzigwait = ZIG_WAIT_MAX; //100msなら待ってあげる
+			send_i++; //送信データをいじっているだけ
 		}else{
 			//送信受け付け失敗
 			//Serial << "..chk2." << mwx::crlf << mwx::flush;

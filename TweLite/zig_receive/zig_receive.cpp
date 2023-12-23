@@ -18,7 +18,6 @@ void receive();
 uint8_t re_to_adrs; //送信先のアドレス 自分のアドレス
 uint8_t re_from_adrs; //送信元のアドレス
 
-uint8_t re_data[4] = {0,0,0,0}; //送信データ
 
 //ピン
 const uint8_t DIP0= mwx::PIN_DIGITAL::DIO13; //adrs1
@@ -51,14 +50,16 @@ void setup() {
 	the_twelite.begin(); // start twelite!
 
 	// //ーーーーーー有線通信設定ーーーーーー
-	// Serial1.setup(192, 192); // 64byte TX, 192byte RX
-	// Serial1.begin(115200);
+	Serial1.setup(192, 192); // 64byte TX, 192byte RX
+	Serial1.begin(115200);
 
 	//ーーーーー起動ーーーーー
 	Serial << "--- TweLite->F446 ---" << mwx::crlf;
 }
 
 int16_t mytimer = -1;
+
+uint8_t re_data[4] = {0,0,0,0}; //送信データ
 
 void loop() {
 	//ーーーーー受信ーーーーー
@@ -71,22 +72,19 @@ void loop() {
 						<< " : " << (int)re_data[2]
 						<< " : " << (int)re_data[3]
 						<< mwx::crlf << mwx::flush;
-
-		//ーーーーーF446送信ーーーーー
-		// Serial1 << (byte)250; //スタートビット
-		// for(int i=0;i<4;i++){
-		// 	Serial1 << (byte)re_data[i];
-		// }
-		// Serial1 << mwx::flush;
+		Serial1 << (byte)250; //スタートビット
+		for(int dataId=0;dataId<4;dataId++){
+			Serial1 << (byte)re_data[dataId];
+		}
 	}
-	
-	// if(TickTimer.available()){ //1msごとに実行
-	// 	mytimer++;
-	// }
+
+
 	//ーーーーーF446送信ーーーーー
-	// if(mytimer >= 100){
-			// mytimer = 0;
-		// }
+	// Serial1 << (byte)250; //スタートビット
+	// for(int i=0;i<4;i++){
+	// 	Serial1 << (byte)re_data[i];
+	// }
+	// Serial1 << mwx::flush;
 }
 
 /*add function recive()*/

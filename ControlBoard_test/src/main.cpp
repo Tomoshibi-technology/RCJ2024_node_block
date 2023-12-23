@@ -102,7 +102,7 @@ void loop() {
 	// PC.println(millis() - loop_timer);
 	// loop_timer = millis();
 	
-	// PC.println(micros() - loop_timer);
+	// PC.print(micros() - loop_timer);
 	loop_timer = micros();
 
 	//ーーーーーーーーーーボタンーーーーーーーーーーー
@@ -110,65 +110,31 @@ void loop() {
 	button.read(btn_val);
 
 	//ーーーーーーーーーー無線ーーーーーーーーーー
-	// byte send_data = btn_val[0]*10 + btn_val[1] * 20 + btn_val[2] * 40;
-	byte send_data = 10;
+	byte send_data = btn_val[0]*10 + btn_val[1] * 20 + btn_val[2] * 40;
+	// byte send_data = 10;
 	byte receive_data[4] = {0, 0, 0, 0};
-
-	// while(TWE.available() > 10){
-	// 	TWE.read();
-	// }
-	// if(TWE.available()>0){
-	// 	PC.println("receiveA");
-	// 	while(TWE.available()>0){
-	// 		if(TWE.read() == 250){
-	// 			break;
-	// 		}
-	// 	}
-	// 	int i = 0;
-	// 	int data[4];
-	// 	PC.println("receiveB");
-	// 	while(TWE.available()>0 && i<4){
-	// 		data[i] = TWE.read();
-	// 		i++;
-	// 	}
-	// 	if(i == 4){
-	// 		PC.println("receiveC");
-	// 		receive_data[0] = data[0];
-	// 		receive_data[1] = data[1];
-	// 		receive_data[2] = data[2];
-	// 		receive_data[3] = data[3];
-	// 	}
-	// }
-
-	// while(true){
-	// 	if(TWE.available()>0){
-	// 		byte data = TWE.read();
-	// 		if(data == 250){
-	// 			break;
-	// 		}
-	// 	}
-	// }
-
-	int mytime = millis();
-	int i = 0;
-
-	while(true){
-		if(TWE.available()>0){
-			receive_data[i] = TWE.read();
-			PC.println("read!!!!!!!!!!!");
-			i++;
-		}
-		if(millis()>mytime+10){
-			PC.println("break");
-			break;
+	
+	if(TWE.available()>10){
+		byte data = TWE.read();
+		if(data == 250){
+			byte raw_receive_data[4] = {0, 0, 0, 0};
+			bool receive_bad_flg = 0; //受信失敗フラグ
+			for(int i=0; i<4; i++){
+				if(TWE.available()>0){
+					raw_receive_data[i] = TWE.read();
+				}else{
+					receive_bad_flg = 1;
+				}
+			}
+			if(!receive_bad_flg){
+				for(int i=0; i<4; i++){
+					receive_data[i] = raw_receive_data[i];
+				}
+			}
 		}
 	}
 
-	PC.println("a");
-
 	if(receive_data[0] != 0){
-		// PC.print(" se:");
-		// PC.print(send_data);
 		PC.print(micros() - loop_timer);
 		for(int i=0; i<4; i++){
 			PC.print("  :");
@@ -177,30 +143,31 @@ void loop() {
 		PC.println();
 	}
 	
+	
 
 	// //ーーーーーーーーーー効果音と光ーーーーーーーーーー
 	// led0.clear();
 
-	// bool led_flg = 0;
-	// if(btn_val[0] || receive_data == 10){ 
-	// 	speaker.ring(C6);
-	// 	// led0.set_color_hsv(70, 250, 20);
-	// 	led_flg = 1;
-	// }
-	// if(btn_val[1] || receive_data == 20) {
-	// 	speaker.ring(E6);
-	// 	// led0.set_color_hsv(150, 250, 20);
-	// 	led_flg = 1;
-	// }
-	// if(btn_val[2] || receive_data == 40){
-	// 	speaker.ring(G6);
-	// 	// led0.set_color_hsv(230, 250, 20);
-	// 	led_flg = 1;
-	// }
-	// if(!led_flg){
-	//  speaker.mute();
-	// //  led0.set_color_hsv((millis()%2550)/10 , 150, 10);
-	// }
+	bool led_flg = 0;
+	if(btn_val[0] || receive_data[0] == 10){ 
+		speaker.ring(C6);
+		// led0.set_color_hsv(70, 250, 20);
+		led_flg = 1;
+	}
+	if(btn_val[1] || receive_data[0] == 20) {
+		speaker.ring(E6);
+		// led0.set_color_hsv(150, 250, 20);
+		led_flg = 1;
+	}
+	if(btn_val[2] || receive_data[0] == 40){
+		speaker.ring(G6);
+		// led0.set_color_hsv(230, 250, 20);
+		led_flg = 1;
+	}
+	if(!led_flg){
+	 speaker.mute();
+	//  led0.set_color_hsv((millis()%2550)/10 , 150, 10);
+	}
 
 	// led0.show();
 
