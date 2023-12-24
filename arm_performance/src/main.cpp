@@ -12,6 +12,10 @@
 #define numpixels 24
 #define led_count 12
 
+int now = 0;
+int once = 0;
+int start = 0;
+
 HardwareSerial Serial1(PA10, PA9);
 HardwareSerial ServoSerial(servo_RX, servo_TX);
 
@@ -50,7 +54,7 @@ void exe16();
 
 void setup()
 {
-	control_init();
+  control_init();
   led1.init();
   led2.init();
   raw_led1.clear();
@@ -65,49 +69,61 @@ void setup()
 
 void loop()
 {
-	control_loop();
-	if(twelite.read()){ //tweliteから受信成功したら1を返す
-		//PC.print(micros() - loop_timer);
-		// for(int i=0; i<4; i++){
-		// 	Serial1.print("  :");
-		// 	Serial1.print(twelite.receive_data[i]);
-		// }
-		// Serial1.println();
-	}
+  control_loop();
+  if (twelite.receive_data[2] == 200 && once == 0)
+  {
+    start = int(millis() / 100);
+    once += 1;
+    Serial1.println("!!!!!!!");
+    Serial1.println(start);
+  }
+  if (twelite.read())
+  { // tweliteから受信成功したら1を返す
+    // PC.print(micros() - loop_timer);
+    //  for(int i=0; i<4; i++){
+    //  	Serial1.print("  :");
+    //  	Serial1.print(twelite.receive_data[i]);
+    //  }
+    //  Serial1.println();
+  }
   //---------------------
-  unsigned long now = millis();
-  if (1000 <= now && now < 7000)
-    exe1();
-  if (7000 <= now && now < 8000)
-    exe2();
-  if (8500 <= now && now < 9500)
-    exe3();
-  if (10000 <= now && now < 12000)
-    exe4();
-  if (11000 <= now && now < 13000)
-    exe5();
-  if (13000 <= now && now < 15000)
-    exe6();
-  if (15000 <= now && now < 17000)
-    exe7();
-  if (21500 <= now && now < 22500)
-    exe8();
-  if (22500 <= now && now < 24500)
-    exe9();
-  if (25500 <= now && now < 27500)
-    exe10();
-  if (28000 <= now && now < 32000)
-    exe11();
-  if (32000 <= now && now < 37000)
-    exe12();
-  if (42000 <= now && now < 47000)
-    exe13();
-  if (47000 <= now && now < 53000)
-    exe14();
-  if (53000 <= now && now < 55000)
-    exe15();
-  if (55000 <= now && now < 56000)
-    exe16();
+  // unsigned long now = millis();
+  if (once == 1)
+  {
+    now = int(millis() / 100) - start;
+    if (40 <= now && now < 100)
+      exe1();
+    if (100 <= now && now < 110)
+      exe2();
+    if (115 <= now && now < 125)
+      exe3();
+    if (130 <= now && now < 150)
+      exe4();
+    if (140 <= now && now < 160)
+      exe5();
+    if (160 <= now && now < 180)
+      exe6();
+    if (180 <= now && now < 200)
+      exe7();
+    if (245 <= now && now < 255)
+      exe8();
+    if (255 <= now && now < 275)
+      exe9();
+    if (285 <= now && now < 305)
+      exe10();
+    if (310 <= now && now < 350)
+      exe11();
+    if (350 <= now && now < 400)
+      exe12();
+    if (450 <= now && now < 500)
+      exe13();
+    if (500 <= now && now < 550)
+      exe14();
+    if (555 <= now && now < 570)
+      exe15();
+    if (580 <= now && now < 590)
+      exe16();
+  }
 }
 
 void exe1()
@@ -212,7 +228,7 @@ void exe12()
   apply(1, 360, 400, 50);
   apply(2, 270, 300, 50);
   apply(3, 0, 400, 50);
-  for(int i = 0; i < 256; i++)
+  for (int i = 0; i < 256; i++)
   {
     exe_led(11, 120, 255 - i, 0, 100 + 2 * i, 255);
     exe_led(12, 180, 255 - i, 0, 100 + 2 * i, 255);
@@ -224,7 +240,7 @@ void exe12()
 
 void exe13()
 {
-  for(int i = 0; i < 900; i++)
+  for (int i = 0; i < 900; i++)
   {
     apply(1, 180 + 180 * sin(i / 100), 2000, 100);
     apply(2, 180 + 180 * sin(i / 100), 2000, 100);
@@ -238,7 +254,7 @@ void exe13()
 
 void exe14()
 {
-  for(int i = 0; i < 900; i++)
+  for (int i = 0; i < 900; i++)
   {
     apply(1, 0, 700, 50);
     apply(2, 270, 700, 50);
