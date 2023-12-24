@@ -12,7 +12,7 @@ FLED led0(&neopixel0, LED_NUM);
 #include <HardwareSerial.h>
 HardwareSerial PC(PA10, PA9); //UART1 RX, TX
 //HardwareSerial ARM(PC7, PC6); //UART6 RX, TX
-HardwareSerial POLE(PD2, PC12)
+HardwareSerial POLE(PD2, PC12);
 
 void setup() {
 	PC.begin(115200);
@@ -39,6 +39,15 @@ void loop() {
 	//ーーーーーーーーーーループ計測ーーーーーーーーーー
 	// PC.print(micros() - loop_timer);
 	loop_timer = micros();
+
+	uint8_t send_data[13] = {2,70,100,200,50,30,200,60,50,30,20,1,4};
+
+	//有線送信
+	POLE.write(250);
+	for(int i=0; i<13; i++){
+		POLE.write(send_data[i]);
+	}
+	
 
 	//ーー無線の内容が見れます(別に消して大丈夫)ーー
 	if(twelite.read()){ //tweliteから受信成功したら1を返す

@@ -4,18 +4,21 @@
 #include "SSD1306.h"//ディスプレイ用ライブラリを読み込み
 #include "music_scale.h"
 
-#include <WiFi.h>
-#include <WiFiUdp.h>
-#include <ArtnetWifi.h>
+// #include <WiFi.h>
+// #include <WiFiUdp.h>
+// #include <ArtnetWifi.h>
 
-const char* ssid = "TomoshibiTechnology_IoT";
-const char* password = "All_outlook";
+// const char* ssid = "TomoshibiTechnology_IoT";
+// const char* password = "All_outlook";
 
 // const char* ssid = "OPPO Reno5 A (eSIM)";
 // const char* password = "w3cc33mb";
 
 // const char* ssid = "TP-Link_0D38_2.4G";
 // const char* password = "04701842";
+
+
+HardwareSerial CTRL(2);
 
 #define SDA_PIN 21
 #define SCL_PIN 22
@@ -48,8 +51,8 @@ CRGB led_D[numLeds];
 CRGB led_E[numleds_of_around];
 
 // Artnet settings
-ArtnetWifi artnet;
-const int startUniverse = 2;
+// ArtnetWifi artnet;
+// const int startUniverse = 2;
 
 //bool sendFrame = 1;
 int previousDataLength = 0;
@@ -57,19 +60,24 @@ int previousDataLength = 0;
 int pre_beat;
 int pre_beat_od_around;
 
-boolean ConnectWifi(void);
-void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* data);
+// boolean ConnectWifi(void);
+// void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* data);
 
 void leds_set_rgb(int r, int g, int b);
 void leds_set_hsv(int h, int s, int v);
 void led_delay(int colorvalue, int delayvalue);
 
+void receive_show(void);
 
 int fog_random[3];
 int star_count = 0;
 
+
+
 void setup() {
 	Serial.begin(115200);
+	CTRL.begin(115200);
+	
   FastLED.addLeds<WS2812, LED_A_PIN, GRB>(led_A, numLeds);
   FastLED.addLeds<WS2812, LED_B_PIN, GRB>(led_B, numLeds);
   FastLED.addLeds<WS2812, LED_C_PIN, GRB>(led_C, numLeds);
@@ -107,8 +115,8 @@ void setup() {
 	leds_set_hsv(0,0,0);
 	delay(1000);
 
-  ConnectWifi();
-  artnet.begin();
+  // ConnectWifi();
+  // artnet.begin();
 	pinMode(2,OUTPUT);
 	digitalWrite(2,HIGH);
 	display.resetDisplay();
@@ -127,10 +135,10 @@ void setup() {
 
 	///LED初期化
   for(int i=0; i<numLeds; i++){
-    led_A[i]=CRGB(170,120,50);
-    led_B[i]=CRGB(170,120,50);
-    led_C[i]=CRGB(170,120,50);
-    led_D[i]=CRGB(170,120,50);
+    led_A[i]=CRGB(17,12,5);
+    led_B[i]=CRGB(17,12,5);
+    led_C[i]=CRGB(17,12,5);
+    led_D[i]=CRGB(17,12,5);
   }
 	FastLED.show();
 
@@ -144,7 +152,7 @@ void setup() {
 		Serial.println(fog_random[i]);
 	}
 
-	artnet.setArtDmxCallback(onDmxFrame);
+	// artnet.setArtDmxCallback(onDmxFrame);
 
 }
 
@@ -170,15 +178,53 @@ void loop() {
 		star_time = millis();
 	}
 	
-	artnet.read();
+	// artnet.read();
+
+	// int a = CTRL.available();
+	// Serial.println(a);
+	// Serial.print(" ");
+	// if(CTRL.available()>30){
+	// 	Serial.println(CTRL.read());
+	// }
+
+	receive_show();
 	
 }
 
 
 
 
-void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* data){
-
+void receive_show(void){
+	byte data[13] = {0,0,0,0,0,0,0,0,0,0,0,0,0};
+	while(CTRL.available()>26){
+		byte n = CTRL.read();
+	}
+	if(CTRL.available()){
+		byte mydata = CTRL.read();
+		if(mydata == 250){
+			byte raw_receive_data[13] = {0,0,0,0,0,0,0,0,0,0,0,0,0};
+			bool receive_bad_flg = 0; //受信失敗フラグ
+			for(int i=0; i<13; i++){
+				if(CTRL.available()){
+					raw_receive_data[i] = CTRL.read();
+					if(raw_receive_data[i] == 250){receive_bad_flg = 1; break;} //受信失敗フラグを立てる(250が来たら
+				}else{
+					receive_bad_flg = 1; break;
+				}
+			}
+			if(!receive_bad_flg){
+				for(int i=0; i<13; i++){
+					data[i] = raw_receive_data[i];
+				}
+				for(int i=0; i<13; i++){
+					Serial.print(data[i]);
+					Serial.print(" ");
+				}
+				Serial.println();
+			}
+		}
+	}
+	// uint8_t data[13] = {0,0,0,0,0,0,0,0,0,0,0,0,0};
   mode = data[0];
 
   int beat = data[1]/2.2; //255を120に
@@ -346,38 +392,38 @@ void led_delay(int colorvalue, int delayvalue){
 }
 
 // connect to wifi – returns true if successful or false if not
-boolean ConnectWifi(void)
-{
-  boolean state = true;
-  int i = 0;
+// boolean ConnectWifi(void)
+// {
+//   boolean state = true;
+//   int i = 0;
 
-  WiFi.begin(ssid, password);
-  Serial.println("");
-  Serial.println("Connecting to WiFi");
+//   WiFi.begin(ssid, password);
+//   Serial.println("");
+//   Serial.println("Connecting to WiFi");
 
-  // Wait for connection
-  Serial.print("Connecting");
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-    if (i > 20){
-      state = false;
-      break;
-    }
-    i++;
-  }
-  if (state){
-    Serial.println("");
-    Serial.print("Connected to ");
-    Serial.println(ssid);
-    Serial.print("IP address: ");
-    Serial.println(WiFi.localIP());
-  } else {
-    Serial.println("");
-    Serial.println("Connection failed.");
-  }
-  return state;
-}
+//   // Wait for connection
+//   Serial.print("Connecting");
+//   while (WiFi.status() != WL_CONNECTED) {
+//     delay(500);
+//     Serial.print(".");
+//     if (i > 20){
+//       state = false;
+//       break;
+//     }
+//     i++;
+//   }
+//   if (state){
+//     Serial.println("");
+//     Serial.print("Connected to ");
+//     Serial.println(ssid);
+//     Serial.print("IP address: ");
+//     Serial.println(WiFi.localIP());
+//   } else {
+//     Serial.println("");
+//     Serial.println("Connection failed.");
+//   }
+//   return state;
+// }
 
 void id_begin(){
 	pinMode(ID_PIN_A, INPUT);
