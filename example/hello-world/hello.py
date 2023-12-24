@@ -20,6 +20,6 @@ time.sleep(5)
 
 while True:
 	ser.write(b"1")
-	time.sleep(.5)
+	time.sleep(.05)
 	ser.write(b"0")
-	time.sleep(.5)
+	time.sleep(.05)
