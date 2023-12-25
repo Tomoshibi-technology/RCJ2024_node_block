@@ -44,8 +44,11 @@ void setup() {
 	twelite.init();
 
 	pinMode(PB13, OUTPUT);
+	pinMode(PC11,INPUT);
 }
 
+
+uint32_t test_timer = 0;
 void loop() {
 	//ーーーこれは必須ーーーーー
 	control_loop();
@@ -85,10 +88,43 @@ void loop() {
 	}else{
 		time_cnt = 0;
 	}
+
+	byte mode = 0;
+	if(digitalRead(PC11) == 1){
+		if(time_cnt < 630){
+			mode = 1;
+		}else if(time_cnt < 1180){
+			mode = 2;
+		}else if(time_cnt < 1800){
+			mode = 3;
+		}else if(time_cnt <	2400){
+			mode = 4;
+		}else{
+			mode = 5;
+		}
+	}else{
+		test_timer++;
+		if(test_timer < 500){
+			mode = 1;
+		}else if(test_timer < 1000){
+			mode = 2;
+		}else if(test_timer < 1500){
+			mode = 3;
+		}else if(test_timer < 2000){
+			mode = 4;
+		}else{	
+			mode = 5;
+			test_timer = 0;
+		}
+	}
+
+
+
+
 	control_send_data[0] = byte(time_cnt % 240 +5);
 	control_send_data[1] = byte(time_cnt / 240 +5);
 	control_send_data[2] = byte(start_frg*150 + 50);
-	control_send_data[3] = byte(100 + 1);
+	control_send_data[3] = byte(mode + 5);
 	twelite.send(control_send_data);	
 	
 	// PC.print(micros() - loop_timer);

@@ -41,6 +41,14 @@ void loop() {
 	loop_timer = micros();
 
 	uint8_t send_data[13] = {2,70,100,200,50,30,200,60,50,30,20,1,4};
+	
+	if(twelite.receive_data[2]==200 ){ //スタートスイッチの有無
+		send_data[0] = 10;
+	}else{
+		send_data[0] = 2;
+	}
+
+	send_data[1] = twelite.receive_data[3]; //フェーズ 6-9
 
 	//有線送信
 	POLE.write(250);
