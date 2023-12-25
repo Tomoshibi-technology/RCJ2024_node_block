@@ -19,9 +19,7 @@ ser = serial.Serial(auto_detect_serial_port(), 115200, timeout=0.1)
 time.sleep(5)
 
 while True:
-	data = 'Hello, World!'
-	ser.write(data.encode())
-
-	data = ser.read(10)
-	print(data)
-	time.sleep(.001)
+	ser.write(b"1")
+	time.sleep(.05)
+	ser.write(b"0")
+	time.sleep(.05)

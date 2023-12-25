@@ -1,0 +1,5 @@
+C:/Tomoshibi/RCJ2024_node_block/TweLite/AppTwelite_test/AppTwelite_test.cpp: In function 'mwx::L1::MWX_APIRET transmit()':
+C:/Tomoshibi/RCJ2024_node_block/TweLite/AppTwelite_test/AppTwelite_test.cpp:150:18: error: 'u8devid' was not declared in this scope
+C:/Tomoshibi/RCJ2024_node_block/TweLite/AppTwelite_test/AppTwelite_test.cpp: In function 'void on_rx_packet(mwx::L1::packet_rx&, bool_t&)':
+C:/Tomoshibi/RCJ2024_node_block/TweLite/AppTwelite_test/AppTwelite_test.cpp:172:9: warning: unused variable 'set' [-Wunused-variable]
+make: *** [objs_BLUE/AppTwelite_test.o] Error 1
