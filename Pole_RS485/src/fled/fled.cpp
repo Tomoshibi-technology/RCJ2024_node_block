@@ -74,6 +74,19 @@ void FLED::set_width_rgb(float center, float width, int r, int g, int b){
 	while(to > TOTAL)to -= (float)TOTAL;
 	while(to < 0)to += (float)TOTAL;
 
+
+	// for(int i=0; i<TOTAL; i++){
+		// 例として2つのベクトルを用意
+		// Vector vectorA = {cos(i*PI/TOTAL), sin(i*PI/TOTAL)};
+		Vector vectorA = {1, 2};
+		Vector vectorB = {-2, -1};
+
+	  // コサイン類似度を計算
+	  float similarity = cosineSimilarity(vectorA, vectorB);
+	// }
+
+	Serial.print(similarity);
+	Serial.print(" ");
 	Serial.print(center);
 	Serial.print(" ");
 	Serial.print(from);
@@ -81,40 +94,8 @@ void FLED::set_width_rgb(float center, float width, int r, int g, int b){
 	Serial.print(to);
 	Serial.print(" ");
 
-	for(int i=0; i<TOTAL; i++){
-		if((from<to)&&(from<=i&&i<=to)){
-			int R=0, G=0, B=0;
-			if(r != 0) R = r-(abs(i-center)*r/diff);
-			if(g != 0) G = g-(abs(i-center)*g/diff);
-			if(b != 0) B = b-(abs(i-center)*b/diff);
-			
-			Serial.print(" a ");
-			Serial.print(i);
-			Serial.print(" ");
-			Serial.print(R);
-			Serial.print(" ");
-			Serial.print(G);
-			Serial.print(" ");
-			Serial.print(B);
-			set_color_rgb(i, R, G, B);
-		}else if((from>to)&&(from<=i||i<=to)){
-			int R=0, G=0, B=0;
-			if(r != 0) R = r-(abs(i-center)*r/diff);
-			if(g != 0) G = g-(abs(i-center)*g/diff);
-			if(b != 0) B = b-(abs(i-center)*b/diff);
-
-			Serial.print(" b ");
-			Serial.print(i);
-			Serial.print(" ");
-			Serial.print(R);
-			Serial.print(" ");
-			Serial.print(G);
-			Serial.print(" ");
-			Serial.print(B);
-			set_color_rgb(i, R, G, B);
-		}
-	}
 	Serial.println();
+	
 
 }
 
@@ -159,3 +140,6 @@ int FLED::get_num(int n){
 	}
 	return result;
 }
+
+
+

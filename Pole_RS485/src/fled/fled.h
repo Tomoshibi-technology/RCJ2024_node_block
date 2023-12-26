@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
+#include "../cossim/cossim.h"
 
 class FLED{
 	private:
