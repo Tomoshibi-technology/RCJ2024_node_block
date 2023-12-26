@@ -57,31 +57,53 @@ void FLED::set_color_hsv_all(int h, int s, int v){
 
 void FLED::set_width_rgb(float center, float width, int r, int g, int b){
 
-	while(center > TOTAL){
-		center -= (float)TOTAL;
-	}
-	while(center < 0){
-		center += (float)TOTAL;
-	}
+	// while(center > TOTAL){
+	// 	center -= (float)TOTAL;
+	// }
+	// while(center < 0){
+	// 	center += (float)TOTAL;
+	// }
 
 	float diff = width / 2;
 	float from = center - diff;
 	float to = center + diff;
+	while(center > TOTAL)center -= (float)TOTAL;
+	while(center < 0)center += (float)TOTAL;
+	while(from > TOTAL)from -= (float)TOTAL;
+	while(from < 0)from += (float)TOTAL;
+	while(to > TOTAL)to -= (float)TOTAL;
+	while(to < 0)to += (float)TOTAL;
+
+	Serial.print(center);
+	Serial.print(" ");
+	Serial.print(from);
+	Serial.print(" ");
+	Serial.print(to);
+	Serial.print(" ");
 
 	for(int i=0; i<TOTAL; i++){
-		if(from <= i && i <= to){
+		if((from<to)&&(from<=i&&i<=to)){
 			int R=0, G=0, B=0;
-			if(r != 0){
-				R = r-(abs(i-center)*r/diff);
-			}
-			if(g != 0){
-				G = g-(abs(i-center)*g/diff);
-			}
-			if(b != 0){
-				B = b-(abs(i-center)*b/diff);
-			}
-			// G=B=0;
-			Serial.print(" | ");
+			if(r != 0) R = r-(abs(i-center)*r/diff);
+			if(g != 0) G = g-(abs(i-center)*g/diff);
+			if(b != 0) B = b-(abs(i-center)*b/diff);
+			
+			Serial.print(" a ");
+			Serial.print(i);
+			Serial.print(" ");
+			Serial.print(R);
+			Serial.print(" ");
+			Serial.print(G);
+			Serial.print(" ");
+			Serial.print(B);
+			set_color_rgb(i, R, G, B);
+		}else if((from>to)&&(from<=i||i<=to)){
+			int R=0, G=0, B=0;
+			if(r != 0) R = r-(abs(i-center)*r/diff);
+			if(g != 0) G = g-(abs(i-center)*g/diff);
+			if(b != 0) B = b-(abs(i-center)*b/diff);
+
+			Serial.print(" b ");
 			Serial.print(i);
 			Serial.print(" ");
 			Serial.print(R);
