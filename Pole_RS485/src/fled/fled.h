@@ -3,7 +3,15 @@
 
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
-#include "../cossim/cossim.h"
+//#include "../cossim/cossim.h" 
+
+struct Vector {//あとでライブラリ化して、ifndefで囲って使いやすくする
+  float X;
+  float Y;
+
+	Vector() : X(0), Y(0) {} //指定しなければ0で初期化
+	Vector(float x, float y) : X(x), Y(y) {} //初期化子リストってやつを使ってみたの巻
+};
 
 class FLED{
 	private:
@@ -20,12 +28,15 @@ class FLED{
 		int get_num(int n);
 		void get_hsv2rgb(int h, int s, int v, int* r, int* g, int* b);
 
+		Vector* pixel_vector;
+
 	public:
 		FLED(Adafruit_NeoPixel* ptr_neopixel, int led_from, int led_to);
 
 		void init(void);
 		void show(void);
 		void clear(void);
+		void debug(void);
 
 		void set_color_rgb(int num, int r, int g, int b);
 		void set_color_hsv(int num, int h, int s, int v);
@@ -34,6 +45,10 @@ class FLED{
 
 		void set_width_rgb(float center, float width, int r, int g, int b);
 		void set_width_hsv(float center, float width, int h, int s, int v);
+
+		~FLED(){ //デストラクタ
+			delete[] pixel_vector; //一応メモリ解放しておく
+		}
 };
 
 #endif

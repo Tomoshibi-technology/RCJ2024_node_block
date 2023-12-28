@@ -7,9 +7,15 @@ FLED::FLED(Adafruit_NeoPixel* ptr_neopixel, int led_from, int led_to){
 	LED_FROM = led_from;
 	LED_TO = led_to;
 	if(LED_FROM > LED_TO){
-		TOTAL = LED_FROM - LED_TO;
+		TOTAL = LED_FROM - LED_TO + 1;
 	}else{
-		TOTAL = LED_TO - LED_FROM;
+		TOTAL = LED_TO - LED_FROM + 1;
+	}
+
+	pixel_vector = new Vector[TOTAL];
+	for(int i=0; i<TOTAL; i++){
+		pixel_vector[i].X = cos(i*2*PI/TOTAL);
+		pixel_vector[i].Y = sin(i*2*PI/TOTAL);
 	}
 }
 
@@ -35,7 +41,7 @@ void FLED::set_color_rgb(int num, int r, int g, int b){
 }
 
 void FLED::set_color_rgb_all(int r, int g, int b){
-	for(int i=0; TOTAL; i++){
+	for(int i=0; i<TOTAL; i++){
 		NEOPIXEL->setPixelColor(i, r, g, b);
 	}
 }
@@ -56,52 +62,66 @@ void FLED::set_color_hsv_all(int h, int s, int v){
 
 
 void FLED::set_width_rgb(float center, float width, int r, int g, int b){
-
-	// while(center > TOTAL){
-	// 	center -= (float)TOTAL;
-	// }
-	// while(center < 0){
-	// 	center += (float)TOTAL;
-	// }
-
 	float diff = width / 2;
 	float from = center - diff;
 	float to = center + diff;
-	while(center > TOTAL)center -= (float)TOTAL;
-	while(center < 0)center += (float)TOTAL;
-	while(from > TOTAL)from -= (float)TOTAL;
-	while(from < 0)from += (float)TOTAL;
-	while(to > TOTAL)to -= (float)TOTAL;
-	while(to < 0)to += (float)TOTAL;
 
+	Vector center_vector(cos(center*2.0*PI/float(TOTAL)), sin(center*2.0*PI/float(TOTAL))); //目標のベクトル
+	//todo 三角関数の中身がfloatになっているか確認する
+	Vector from_vector(cos(from*2.0*PI/float(TOTAL)), sin(from*2.0*PI/float(TOTAL)));
+	Vector to_vector(cos(to*2.0*PI/float(TOTAL)), sin(to*2.0*PI/float(TOTAL)));
 
-	// for(int i=0; i<TOTAL; i++){
-		// 例として2つのベクトルを用意
-		// Vector vectorA = {cos(i*PI/TOTAL), sin(i*PI/TOTAL)};
-		Vector vectorA = {1, 2};
-		Vector vectorB = {-2, -1};
+	float dot_from = (from_vector.X * center_vector.X + from_vector.Y * center_vector.Y +1) /2;
+	float dot_to = (to_vector.X * center_vector.X + to_vector.Y * center_vector.Y +1) /2;
 
-	  // コサイン類似度を計算
-	  float similarity = cosineSimilarity(vectorA, vectorB);
-	// }
+	//dot積の値は、0から1までの値をとる
+	//1に近いほど、中心に近い
 
-	Serial.print(similarity);
-	Serial.print(" ");
+	Serial.print("center:");
 	Serial.print(center);
-	Serial.print(" ");
-	Serial.print(from);
-	Serial.print(" ");
-	Serial.print(to);
-	Serial.print(" ");
-
-	Serial.println();
+	Serial.print(" diff:");
+	Serial.print(diff);
+	Serial.print(" from:");
+	Serial.print(dot_from);
+	Serial.print(" to:");
+	Serial.println(dot_to);
 	
 
+	Serial.print(" center_vector: ");
+	Serial.print(center_vector.X);
+	Serial.print(":");
+	Serial.println(center_vector.Y);
+
+	Serial.print(" dot: ");
+	for(int i=0; i<TOTAL; i++){
+		float dot = pixel_vector[i].X * center_vector.X + pixel_vector[i].Y * center_vector.Y;
+		Serial.print(i);
+		Serial.print(":");
+		Serial.print(dot);
+		Serial.print("  ");
+	}
+	Serial.println();
+}
+
+void FLED::debug(void){
+	Serial.print(" TOTAL: ");
+	Serial.print(TOTAL);
+	Serial.print("  | ");
+	for(int i=0; i<TOTAL; i++){
+		Serial.print(pixel_vector[i].X);
+		Serial.print(" ");
+		Serial.print(pixel_vector[i].Y);
+		Serial.print(" | ");
+	}
+	Serial.println();
 }
 
 
-//---------private---------
 
+
+
+
+//---------private---------
 void FLED::get_hsv2rgb(int h, int s, int v, int* r, int* g, int* b){
 	if (s == 0) {
 		*r = *g = *b = v;
@@ -127,8 +147,8 @@ void FLED::get_hsv2rgb(int h, int s, int v, int* r, int* g, int* b){
 int FLED::get_num(int n){
 	int result;
 	
-	if(n >= TOTAL + 1){
-		result = n % (TOTAL+1);
+	if(n >= TOTAL){
+		result = n % (TOTAL);
 	}else{
 		result = n;
 	}

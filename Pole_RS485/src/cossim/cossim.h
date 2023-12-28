@@ -8,8 +8,8 @@ struct Vector {
   int y;
 };
 
-double dotProduct(const Vector& a, const Vector& b);
-double norm(const Vector& v);
-double cosineSimilarity(const Vector& a, const Vector& b);
+// double dotProduct(const Vector& a, const Vector& b);
+// double norm(const Vector& v);
+// double cosineSimilarity(const Vector& a, const Vector& b);
 
 #endif
