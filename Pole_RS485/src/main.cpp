@@ -35,26 +35,18 @@ FLED circuit_led[4] = {
 
 
 #include "./ser_ctrl/ser_ctrl.h"
-
 HardwareSerial ctrl(2);
 CTRL ser_ctrl(&ctrl);  
 
+void led_test(float piyo);
 
 void setup() {
-	for(int i=0; i<5; i++){
-		rawpixel[i].begin();
-		rawpixel[i].show();
-	}
+	for(int i=0; i<5; i++)rawpixel[i].begin();
+	for(int i=0; i<6; i++)led[i].init();
+	for(int i=0; i<4; i++)circuit_led[i].init();
 
-	for(int i=0; i<6; i++){
-		led[i].init();
-	}
-	ser_ctrl.init();
 	Serial.begin(115200);
-
-	for(int i=0; i<4; i++){
-		circuit_led[i].init();
-	}
+	ser_ctrl.init();
 }
 
 
@@ -67,48 +59,17 @@ void loop(){
 	Serial.println(micros()-loop_time);
 	loop_time = micros();
 
-	for(int i=0; i<4; i++){
-		circuit_led[i].clear();
-	}
-	for(int i=0; i<6; i++){
-		led[i].clear();
-	}
+	circuit_led[0].clear();
+	circuit_led[0].set_color_rgb_all(0, 10, 0);
+	circuit_led[0].set_width_hsv(2, 5.0*(sin(piyo)+1.0), 10, 240, 100);
+	circuit_led[0].show();
 
-	// circuit_led[0].set_color_rgb_all(0, 10, 0);
-	// circuit_led[0].set_width_hsv(2, 5.0*(sin(piyo)+1.0), 10, 240, 100);
-
-	circuit_led[0].set_width_hsv(piyo, 5.5, 0, 240, 100);
-	circuit_led[1].set_width_hsv(piyo, 5.5, 63, 240, 100);
-	circuit_led[2].set_width_hsv(piyo, 5.5, 126, 240, 100);
-	circuit_led[3].set_width_hsv(piyo, 5.5, 189, 240, 100);
-
-	for(int i=0; i<6; i++){
-		led[i].set_color_hsv_all(0, 10, 3);
-	}
-
-	// for(int i=0; i<6; i++){]
-	// int i = loop_time /1000000;
-	int i = 0;
-	led[(0+i)%6].set_width_hsv( 30 + 3*sin(3*piyo + 3), 7, 0, 240, 150);
-	led[(1+i)%6].set_width_hsv( 10 + 3*sin(2*piyo + 2), 7, 42, 240, 150);
-	led[(2+i)%6].set_width_hsv( 20 + 3*sin(1*piyo + 1), 7, 84, 240, 150);
-	led[(3+i)%6].set_width_hsv( 40 + 3*sin(3*piyo + 3), 7, 126, 240, 150);
-	led[(4+i)%6].set_width_hsv( 30 + 3*sin(5*piyo + 5), 7, 168, 240, 150);
-	led[(5+i)%6].set_width_hsv( 26 + 3*sin(4*piyo + 2), 7, 210, 240, 150);
-	
-	
-	for(int i=0; i<4; i++){
-		circuit_led[i].show();
-	}
-	for(int i=0; i<6; i++){
-		led[i].show();
-	}
-	delay(30);
-
-
-	piyo += 0.01;
-	// hoge++;
+  piyo += 0.1;
+	hoge++;
+	delay(10);
 }
+
+
 
 
 //ーーーーーーーーーーーーーーーメモ帳ーーーーーーーーーーーーーーーー
@@ -122,5 +83,36 @@ void loop(){
 	// ser_ctrl.read();
 	// byte kidou = ser_ctrl.data[0]; //10 起動 2 停止
 	// byte phase = ser_ctrl.data[1] - 5; //1-4
+
+void led_test(float piyo){
+	for(int i=0; i<4; i++){
+		circuit_led[i].clear();
+	}
+	for(int i=0; i<6; i++){
+		led[i].clear();
+	}
+
+	circuit_led[0].set_width_hsv(piyo, 5.5, 0, 240, 100);
+	circuit_led[1].set_width_hsv(piyo, 5.5, 63, 240, 100);
+	circuit_led[2].set_width_hsv(piyo, 5.5, 126, 240, 100);
+	circuit_led[3].set_width_hsv(piyo, 5.5, 189, 240, 100);
+
+	for(int i=0; i<6; i++){
+		led[i].set_color_hsv_all(0, 10, 3);
+	}
+	int i = 0;
+	led[(0+i)%6].set_width_hsv( 30 + piyo, 7, 0, 240, 150);
+	led[(1+i)%6].set_width_hsv( 10 + piyo, 7, 42, 240, 150);
+	led[(2+i)%6].set_width_hsv( 20 + piyo, 7, 84, 240, 150);
+	led[(3+i)%6].set_width_hsv( 40 + piyo, 7, 126, 240, 150);
+	led[(4+i)%6].set_width_hsv( 30 + piyo, 7, 168, 240, 150);
+	led[(5+i)%6].set_width_hsv( 26 + piyo, 7, 210, 240, 150);
+	for(int i=0; i<4; i++){
+		circuit_led[i].show();
+	}
+	for(int i=0; i<6; i++){
+		led[i].show();
+	}	
+}
 
 
