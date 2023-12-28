@@ -13,9 +13,12 @@ FLED::FLED(Adafruit_NeoPixel* ptr_neopixel, int led_from, int led_to){
 	}
 
 	pixel_vector = new Vector[TOTAL];
+
+	num2rad_gain = 2.0*PI/TOTAL;
+
 	for(int i=0; i<TOTAL; i++){
-		pixel_vector[i].X = cos(i*2*PI/TOTAL);
-		pixel_vector[i].Y = sin(i*2*PI/TOTAL);
+		pixel_vector[i].X = cos(i*num2rad_gain);
+		pixel_vector[i].Y = sin(i*num2rad_gain);
 	}
 }
 
@@ -29,6 +32,7 @@ void FLED::init(void){
 void FLED::show(void){
 	if(timer + interval < millis()){
 		NEOPIXEL->show();
+		timer = millis();
 	}
 }
 
@@ -63,55 +67,66 @@ void FLED::set_color_hsv_all(int h, int s, int v){
 
 void FLED::set_width_rgb(float center, float width, int r, int g, int b){
 	float diff = width / 2;
+	while(center <= diff){
+		center += TOTAL;
+	}
 	float from = center - diff;
 	float to = center + diff;
 
-	Vector center_vector(cos(center*2.0*PI/float(TOTAL)), sin(center*2.0*PI/float(TOTAL))); //目標のベクトル
-	//todo 三角関数の中身がfloatになっているか確認する
-	Vector from_vector(cos(from*2.0*PI/float(TOTAL)), sin(from*2.0*PI/float(TOTAL)));
+	//目標のベクトル
+	Vector center_vector(cos(center*num2rad_gain), sin(center*num2rad_gain));
+	//端のベクトル
+	Vector edge_vector(cos(from*num2rad_gain), sin(from*num2rad_gain));
 
-	float dot_edge = (from_vector.X * center_vector.X + from_vector.Y * center_vector.Y +1) / 2;//内積 0-1
-	float r_gain = r/(1.0-dot_edge);
-	float g_gain = g/(1.0-dot_edge);
-	float b_gain = b/(1.0-dot_edge);
-
-	for(int i=from+1; from<=i&&i<=to; i++){	//fromに+1すれば、切り上げられるはず
+	float dot_edge = (edge_vector.X * center_vector.X + edge_vector.Y * center_vector.Y +1) / 2;//内積 0-1
+	
+	
+	if(dot_edge == 1.0){ //fromがcenterと同じとき
+		this->set_color_rgb(from+1, r, g, b);
+	}else{
+		float r_gain, g_gain, b_gain;
+		r_gain = r/(1.0-dot_edge);
+		g_gain = g/(1.0-dot_edge);
+		b_gain = b/(1.0-dot_edge);
+		for(int i=from+1; from<=i&&i<=to; i++){	//fromに+1すれば、切り上げられるはず
 																					//5.0とかのとき、6からになっちゃうけど、どうせ0なので問題なし
-		//内積 0.0-1.0
-		float dot_now = (pixel_vector[i%TOTAL].X * center_vector.X + pixel_vector[i%TOTAL].Y * center_vector.Y + 1) / 2;
-		float dot_diff = abs(dot_now - dot_edge); 
-		int R = r_gain * dot_diff;
-		int G = g_gain * dot_diff;
-		int B = b_gain * dot_diff;
+			//内積 0.0-1.0
+			float dot_now = (pixel_vector[i%TOTAL].X * center_vector.X + pixel_vector[i%TOTAL].Y * center_vector.Y + 1) / 2;
+			float dot_diff = abs(dot_now - dot_edge); //内積の差分 0.0-1.0
 
-		if(0 <= r && r <= 255 && 0 <= g && g <= 255 && 0 <= b && b <= 255){
-			// NEOPIXEL->setPixelColor(get_num(i), r, g, b);
+			int R = r_gain * dot_diff;
+			int G = g_gain * dot_diff;
+			int B = b_gain * dot_diff;
 			this->set_color_rgb(i, R, G, B);
-		}else{
-			this->set_color_rgb(i, 0, 0, 0);
-			// NEOPIXEL->setPixelColor(get_num(i), 0, 0, 0);
 		}
 	}
-
-	for(int i=0; i<TOTAL; i++){
-		float dot = pixel_vector[i].X * center_vector.X + pixel_vector[i].Y * center_vector.Y;
-	}
 }
 
-void FLED::debug(void){
-	Serial.print(" TOTAL: ");
-	Serial.print(TOTAL);
-	Serial.print("  | ");
-	for(int i=0; i<TOTAL; i++){
-		Serial.print(pixel_vector[i].X);
-		Serial.print(" ");
-		Serial.print(pixel_vector[i].Y);
-		Serial.print(" | ");
+void FLED::set_width_hsv(float center, float width, int h, int s, int v){
+	float diff = width / 2;
+	while(center <= diff){
+		center += TOTAL;
 	}
-	Serial.println();
+	float from = center - diff;
+	float to = center + diff;
+
+	Vector center_vector(cos(center*num2rad_gain), sin(center*num2rad_gain));
+	Vector edge_vector(cos(from*num2rad_gain), sin(from*num2rad_gain));
+	float dot_edge = (edge_vector.X * center_vector.X + edge_vector.Y * center_vector.Y +1) / 2;//内積 0-1
+	
+	
+	if(dot_edge == 1.0){
+		this->set_color_hsv(from+1, h, s, v);
+	}else{
+		float v_gain = v/(1.0-dot_edge);
+		for(int i=from+1; from<=i&&i<=to; i++){
+			float dot_now = (pixel_vector[i%TOTAL].X * center_vector.X + pixel_vector[i%TOTAL].Y * center_vector.Y + 1) / 2;
+			float dot_diff = abs(dot_now - dot_edge);
+			int V = v_gain * dot_diff;
+			this->set_color_hsv(i, h, s, V);
+		}
+	}
 }
-
-
 
 
 
@@ -141,7 +156,10 @@ void FLED::get_hsv2rgb(int h, int s, int v, int* r, int* g, int* b){
 
 int FLED::get_num(int n){
 	int result;
-	
+
+	while(n < 0){
+		n += TOTAL;
+	}
 	if(n >= TOTAL){
 		result = n % (TOTAL);
 	}else{

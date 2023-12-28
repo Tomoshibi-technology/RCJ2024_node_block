@@ -59,14 +59,22 @@ void setup() {
 
 
 uint32_t hoge = 0;
-float piyo = 0.0;
+float piyo = -30.0;
 
+uint32_t loop_time = 0;
 void loop(){
+	Serial.print("loop_time: ");
+	Serial.println(micros()-loop_time);
+	loop_time = micros();
+
 	for(int i=0; i<4; i++){
 		circuit_led[i].clear();
 	}
-	circuit_led[0].set_width_rgb(5, 5.0*(sin(piyo)+1), 10, 40, 100);
-	// circuit_led[0].set_width_rgb(piyo, 2, 40, 100, 10);
+
+	// circuit_led[0].set_color_rgb_all(0, 10, 0);
+	circuit_led[0].set_width_hsv(2, 5.0*(sin(piyo)+1.0), 10, 240, 100);
+
+	// circuit_led[0].set_width_rgb(piyo, 5.5, 10, 100, 40);
 	// circuit_led[1].set_width_rgb(piyo, 5.5, 100, 10, 40);
 	// circuit_led[2].set_width_rgb(piyo, 5.5, 40, 100, 10);
 	// circuit_led[3].set_width_rgb(piyo, 5.5, 40, 10, 100);
@@ -76,28 +84,9 @@ void loop(){
 	}
 	delay(100);
 
-	// circuit_led[0].clear();
-	// circuit_led[0].set_color_rgb(0, 10, 0, 0);
-	// circuit_led[0].set_color_rgb(4, 10, 0, 0);
-	// circuit_led[0].set_color_rgb(5, 10, 0, 0);
-	// circuit_led[0].set_color_rgb(9, 10, 0, 0);
-	// circuit_led[0].set_color_rgb(10, 0, 10, 0);
-	// circuit_led[0].show();
-	// delay(1000);
-
-	// for(int i=0; i<6; i++){
-	// 	led[i].clear();
-	// }
-
-	// circuit_led[0].set_width_rgb(0, 5.3, 255, 10, 30);
-	// for(int i=0; i<4; i++){
-	// 	circuit_led[i].show();
-	// }
 
 	piyo += 0.1;
 	// hoge++;
-
-	// delay(50);
 }
 
 
