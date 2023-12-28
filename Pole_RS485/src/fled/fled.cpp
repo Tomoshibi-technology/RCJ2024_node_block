@@ -46,7 +46,7 @@ void FLED::set_color_rgb(int num, int r, int g, int b){
 
 void FLED::set_color_rgb_all(int r, int g, int b){
 	for(int i=0; i<TOTAL; i++){
-		NEOPIXEL->setPixelColor(i, r, g, b);
+		NEOPIXEL->setPixelColor(get_num(i), r, g, b);
 	}
 }
 
@@ -60,7 +60,7 @@ void FLED::set_color_hsv(int num, int h, int s, int v){
 void FLED::set_color_hsv_all(int h, int s, int v){
 	int r, g, b; get_hsv2rgb(h, s, v, &r, &g, &b);
 	for(int i=0; i<TOTAL; i++){
-		NEOPIXEL->setPixelColor(i, r, g, b);
+		NEOPIXEL->setPixelColor(get_num(i), r, g, b);
 	}
 }
 

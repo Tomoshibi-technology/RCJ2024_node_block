@@ -70,22 +70,43 @@ void loop(){
 	for(int i=0; i<4; i++){
 		circuit_led[i].clear();
 	}
+	for(int i=0; i<6; i++){
+		led[i].clear();
+	}
 
 	// circuit_led[0].set_color_rgb_all(0, 10, 0);
-	circuit_led[0].set_width_hsv(2, 5.0*(sin(piyo)+1.0), 10, 240, 100);
+	// circuit_led[0].set_width_hsv(2, 5.0*(sin(piyo)+1.0), 10, 240, 100);
 
-	// circuit_led[0].set_width_rgb(piyo, 5.5, 10, 100, 40);
-	// circuit_led[1].set_width_rgb(piyo, 5.5, 100, 10, 40);
-	// circuit_led[2].set_width_rgb(piyo, 5.5, 40, 100, 10);
-	// circuit_led[3].set_width_rgb(piyo, 5.5, 40, 10, 100);
+	circuit_led[0].set_width_hsv(piyo, 5.5, 0, 240, 100);
+	circuit_led[1].set_width_hsv(piyo, 5.5, 63, 240, 100);
+	circuit_led[2].set_width_hsv(piyo, 5.5, 126, 240, 100);
+	circuit_led[3].set_width_hsv(piyo, 5.5, 189, 240, 100);
+
+	for(int i=0; i<6; i++){
+		led[i].set_color_hsv_all(0, 10, 3);
+	}
+
+	// for(int i=0; i<6; i++){]
+	// int i = loop_time /1000000;
+	int i = 0;
+	led[(0+i)%6].set_width_hsv( 30 + 3*sin(3*piyo + 3), 7, 0, 240, 150);
+	led[(1+i)%6].set_width_hsv( 10 + 3*sin(2*piyo + 2), 7, 42, 240, 150);
+	led[(2+i)%6].set_width_hsv( 20 + 3*sin(1*piyo + 1), 7, 84, 240, 150);
+	led[(3+i)%6].set_width_hsv( 40 + 3*sin(3*piyo + 3), 7, 126, 240, 150);
+	led[(4+i)%6].set_width_hsv( 30 + 3*sin(5*piyo + 5), 7, 168, 240, 150);
+	led[(5+i)%6].set_width_hsv( 26 + 3*sin(4*piyo + 2), 7, 210, 240, 150);
+	
 	
 	for(int i=0; i<4; i++){
 		circuit_led[i].show();
 	}
-	delay(100);
+	for(int i=0; i<6; i++){
+		led[i].show();
+	}
+	delay(30);
 
 
-	piyo += 0.1;
+	piyo += 0.01;
 	// hoge++;
 }
 
