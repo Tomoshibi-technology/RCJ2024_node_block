@@ -70,76 +70,32 @@ void FLED::set_width_rgb(float center, float width, int r, int g, int b){
 	//todo 三角関数の中身がfloatになっているか確認する
 	Vector from_vector(cos(from*2.0*PI/float(TOTAL)), sin(from*2.0*PI/float(TOTAL)));
 
-	float dot_edge = (from_vector.X * center_vector.X + from_vector.Y * center_vector.Y +1) /2;
+	float dot_edge = (from_vector.X * center_vector.X + from_vector.Y * center_vector.Y +1) / 2;//内積 0-1
 	float r_gain = r/(1.0-dot_edge);
 	float g_gain = g/(1.0-dot_edge);
 	float b_gain = b/(1.0-dot_edge);
 
-	//dot積の値は、0から1までの値をとる
-	//1に近いほど、中心に近い
-
-	Serial.println("--------------------");
-
-	for(int i=from+1; from<=i&&i<=to; i++){ //fromに+1すれば、切り上げられるはず
-	// for(int i=0; i<TOTAL; i++){
+	for(int i=from+1; from<=i&&i<=to; i++){	//fromに+1すれば、切り上げられるはず
+																					//5.0とかのとき、6からになっちゃうけど、どうせ0なので問題なし
+		//内積 0.0-1.0
 		float dot_now = (pixel_vector[i%TOTAL].X * center_vector.X + pixel_vector[i%TOTAL].Y * center_vector.Y + 1) / 2;
-		float dot_diff = abs(dot_now - dot_edge);
-		int r = r_gain * dot_diff;
-		int g = g_gain * dot_diff;
-		int b = b_gain * dot_diff;
-		Serial.print(i);
-		Serial.print(" dot_now:");
-		Serial.print(dot_now);
-		Serial.print(" diff:");
-		Serial.print(dot_diff);
+		float dot_diff = abs(dot_now - dot_edge); 
+		int R = r_gain * dot_diff;
+		int G = g_gain * dot_diff;
+		int B = b_gain * dot_diff;
+
 		if(0 <= r && r <= 255 && 0 <= g && g <= 255 && 0 <= b && b <= 255){
-			NEOPIXEL->setPixelColor(get_num(i), r, g, b);
-			Serial.print(" rgb:");
-			Serial.print(r);
-			Serial.print(" ");
-			Serial.print(g);
-			Serial.print(" ");
-			Serial.print(b);
+			// NEOPIXEL->setPixelColor(get_num(i), r, g, b);
+			this->set_color_rgb(i, R, G, B);
 		}else{
-			NEOPIXEL->setPixelColor(get_num(i), 0, 0, 0);
+			this->set_color_rgb(i, 0, 0, 0);
+			// NEOPIXEL->setPixelColor(get_num(i), 0, 0, 0);
 		}
-		Serial.println();
 	}
 
-	Serial.print(" dot_edge: ");
-	Serial.print(dot_edge);
-	Serial.print(" gain: ");
-	Serial.print(r_gain);
-	Serial.print(" ");
-	Serial.print(g_gain);
-	Serial.print(" ");
-	Serial.println(b_gain);
-
-
-	Serial.print(" center:");
-	Serial.print(center);
-	Serial.print(" diff:");
-	Serial.print(diff);
-	Serial.print(" from:");
-	Serial.print(from);
-	Serial.print(" to:");
-	Serial.println(to);
-	
-
-	Serial.print(" center_vector: ");
-	Serial.print(center_vector.X);
-	Serial.print(":");
-	Serial.println(center_vector.Y);
-
-	Serial.print(" dot: ");
 	for(int i=0; i<TOTAL; i++){
 		float dot = pixel_vector[i].X * center_vector.X + pixel_vector[i].Y * center_vector.Y;
-		Serial.print(i);
-		Serial.print(":");
-		Serial.print(dot);
-		Serial.print("  ");
 	}
-	Serial.println();
 }
 
 void FLED::debug(void){

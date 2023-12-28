@@ -74,7 +74,7 @@ void loop(){
 	for(int i=0; i<4; i++){
 		circuit_led[i].show();
 	}
-	// delay(10);
+	delay(100);
 
 	// circuit_led[0].clear();
 	// circuit_led[0].set_color_rgb(0, 10, 0, 0);
