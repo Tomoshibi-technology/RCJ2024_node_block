@@ -69,22 +69,61 @@ void FLED::set_width_rgb(float center, float width, int r, int g, int b){
 	Vector center_vector(cos(center*2.0*PI/float(TOTAL)), sin(center*2.0*PI/float(TOTAL))); //目標のベクトル
 	//todo 三角関数の中身がfloatになっているか確認する
 	Vector from_vector(cos(from*2.0*PI/float(TOTAL)), sin(from*2.0*PI/float(TOTAL)));
-	Vector to_vector(cos(to*2.0*PI/float(TOTAL)), sin(to*2.0*PI/float(TOTAL)));
 
-	float dot_from = (from_vector.X * center_vector.X + from_vector.Y * center_vector.Y +1) /2;
-	float dot_to = (to_vector.X * center_vector.X + to_vector.Y * center_vector.Y +1) /2;
+	float dot_edge = (from_vector.X * center_vector.X + from_vector.Y * center_vector.Y +1) /2;
+	float r_gain = r/(1.0-dot_edge);
+	float g_gain = g/(1.0-dot_edge);
+	float b_gain = b/(1.0-dot_edge);
 
 	//dot積の値は、0から1までの値をとる
 	//1に近いほど、中心に近い
 
-	Serial.print("center:");
+	Serial.println("--------------------");
+
+	for(int i=from+1; from<=i&&i<=to; i++){ //fromに+1すれば、切り上げられるはず
+	// for(int i=0; i<TOTAL; i++){
+		float dot_now = (pixel_vector[i%TOTAL].X * center_vector.X + pixel_vector[i%TOTAL].Y * center_vector.Y + 1) / 2;
+		float dot_diff = abs(dot_now - dot_edge);
+		int r = r_gain * dot_diff;
+		int g = g_gain * dot_diff;
+		int b = b_gain * dot_diff;
+		Serial.print(i);
+		Serial.print(" dot_now:");
+		Serial.print(dot_now);
+		Serial.print(" diff:");
+		Serial.print(dot_diff);
+		if(0 <= r && r <= 255 && 0 <= g && g <= 255 && 0 <= b && b <= 255){
+			NEOPIXEL->setPixelColor(get_num(i), r, g, b);
+			Serial.print(" rgb:");
+			Serial.print(r);
+			Serial.print(" ");
+			Serial.print(g);
+			Serial.print(" ");
+			Serial.print(b);
+		}else{
+			NEOPIXEL->setPixelColor(get_num(i), 0, 0, 0);
+		}
+		Serial.println();
+	}
+
+	Serial.print(" dot_edge: ");
+	Serial.print(dot_edge);
+	Serial.print(" gain: ");
+	Serial.print(r_gain);
+	Serial.print(" ");
+	Serial.print(g_gain);
+	Serial.print(" ");
+	Serial.println(b_gain);
+
+
+	Serial.print(" center:");
 	Serial.print(center);
 	Serial.print(" diff:");
 	Serial.print(diff);
 	Serial.print(" from:");
-	Serial.print(dot_from);
+	Serial.print(from);
 	Serial.print(" to:");
-	Serial.println(dot_to);
+	Serial.println(to);
 	
 
 	Serial.print(" center_vector: ");

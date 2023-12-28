@@ -62,22 +62,28 @@ uint32_t hoge = 0;
 float piyo = 0.0;
 
 void loop(){
-	circuit_led[0].set_width_rgb(5, 4, 255, 10, 30);
-	// circuit_led[0].debug();
+	for(int i=0; i<4; i++){
+		circuit_led[i].clear();
+	}
+	circuit_led[0].set_width_rgb(5, 5.0*(sin(piyo)+1), 10, 40, 100);
+	// circuit_led[0].set_width_rgb(piyo, 2, 40, 100, 10);
+	// circuit_led[1].set_width_rgb(piyo, 5.5, 100, 10, 40);
+	// circuit_led[2].set_width_rgb(piyo, 5.5, 40, 100, 10);
+	// circuit_led[3].set_width_rgb(piyo, 5.5, 40, 10, 100);
+	
+	for(int i=0; i<4; i++){
+		circuit_led[i].show();
+	}
+	// delay(10);
 
-	circuit_led[0].clear();
-	circuit_led[0].set_color_rgb_all(5, 10, 7);
-	circuit_led[0].show();
-	delay(1000);
-
-	circuit_led[0].clear();
-	circuit_led[0].set_color_rgb(0, 10, 0, 0);
-	circuit_led[0].set_color_rgb(4, 10, 0, 0);
-	circuit_led[0].set_color_rgb(5, 10, 0, 0);
-	circuit_led[0].set_color_rgb(9, 10, 0, 0);
-	circuit_led[0].set_color_rgb(10, 0, 10, 0);
-	circuit_led[0].show();
-	delay(1000);
+	// circuit_led[0].clear();
+	// circuit_led[0].set_color_rgb(0, 10, 0, 0);
+	// circuit_led[0].set_color_rgb(4, 10, 0, 0);
+	// circuit_led[0].set_color_rgb(5, 10, 0, 0);
+	// circuit_led[0].set_color_rgb(9, 10, 0, 0);
+	// circuit_led[0].set_color_rgb(10, 0, 10, 0);
+	// circuit_led[0].show();
+	// delay(1000);
 
 	// for(int i=0; i<6; i++){
 	// 	led[i].clear();
@@ -88,7 +94,7 @@ void loop(){
 	// 	circuit_led[i].show();
 	// }
 
-	// piyo += 0.1;
+	piyo += 0.1;
 	// hoge++;
 
 	// delay(50);
