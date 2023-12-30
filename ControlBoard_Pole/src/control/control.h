@@ -86,6 +86,7 @@ void control_loop(){
 	//ーーーーーーーーーー無線ーーーーーーーーーー
 	byte send_data = btn_val[0]*10 + btn_val[1] * 20 + btn_val[2] * 40;
 
+	twelite.read();
 	// if(twelite.read()){ //tweliteから受信成功したら1を返す
 	// 	PC.print(micros() - loop_timer);
 	// 	for(int i=0; i<4; i++){

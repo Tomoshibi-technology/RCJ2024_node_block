@@ -14,15 +14,18 @@ HardwareSerial PC(PA10, PA9); //UART1 RX, TX
 //HardwareSerial ARM(PC7, PC6); //UART6 RX, TX
 HardwareSerial POLE(PD2, PC12);
 
+#define BCD(c) 5 * (5 * (5 * (5 * (5 * (5 * (5 * (c & 128) + (c & 64)) + (c & 32)) + (c & 16)) + (c & 8)) + (c & 4)) + (c & 2)) + (c & 1)
+
+
 void setup() {
 	PC.begin(115200);
 	PC.println("start");
 
 	POLE.begin(115200);
 	
-	led0.init();
-	led0.set_color_rgb_all(50, 0, 0);
-	led0.show();
+	// led0.init();
+	// led0.set_color_rgb_all(50, 0, 0);
+	// led0.show();
 
 	//ーーーこれは必須ーーーーー
 	control_init();
@@ -31,44 +34,74 @@ void setup() {
 
 unsigned long loop_timer = 10000;
 
+uint32_t mycount = 0;
+
 void loop() {
 	//ーーーこれは必須ーーーーー
-	control_loop();
+	// control_loop();
 	//ーーーーーまじでーーーーー
+
 
 	//ーーーーーーーーーーループ計測ーーーーーーーーーー
 	// PC.print(micros() - loop_timer);
-	loop_timer = micros();
+	// loop_timer = micros();
 
-	uint8_t send_data[13] = {2,70,100,200,50,30,200,60,50,30,20,1,4};
-	
-	if(twelite.receive_data[2]==200 ){ //スタートスイッチの有無
-		send_data[0] = 10;
-	}else{
-		send_data[0] = 2;
+	mycount++;
+	//データ送る
+	uint8_t send_data[12] = {0,0, ((mycount/100)+55)%240,200,50,30,200,60,50,30,20,1};
+
+	bool send_id[16] = {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+	for(int i=0; i<8; i++){
+		if(send_id[i]){
+			send_data[0] += 1<<i;
+		}
+		if(send_id[8+i]){
+			send_data[1] += 1<<i;
+		}
 	}
+	
+	for(int i=0; i<16; i++){
+		PC.print(i);
+		PC.print(":");
+		PC.print(send_id[i]);
+		PC.print(" ");
+	}
+	PC.println();
 
-	send_data[1] = twelite.receive_data[3]; //フェーズ 6-9
+	PC.printf("id0: %08d\n", BCD(send_data[0]));
+	PC.printf("id1: %08d\n", BCD(send_data[1]));
+
+	delay(1000);
+	
+	// if(twelite.receive_data[2]==200 ){ //スタートスイッチの有無
+	// 	send_data[0] = 10;
+	// }else{
+	// 	send_data[0] = 2;
+	// }
+
+	// send_data[1] = twelite.receive_data[3]; //フェーズ 6-9
 
 	//有線送信
 	POLE.write(250);
-	for(int i=0; i<13; i++){
+	for(int i=0; i<12; i++){
 		POLE.write(send_data[i]);
+		// PC.print(send_data[i]);
 	}
 	
 
 	//ーー無線の内容が見れます(別に消して大丈夫)ーー
-	if(twelite.read()){ //tweliteから受信成功したら1を返す
-		PC.print(micros() - loop_timer);
-		for(int i=0; i<4; i++){
-			PC.print("  :");
-			PC.print(twelite.receive_data[i]);
-		}
-		PC.println();
-	}
+	// if(twelite.read()){ //tweliteから受信成功したら1を返す
+	// 	PC.print(micros() - loop_timer);
+	// 	for(int i=0; i<4; i++){
+	// 		PC.print("  :");
+	// 		PC.print(twelite.receive_data[i]);
+	// 	}
+	// 	PC.println();
+	// }
 	
 	//ーーーーーーーーーーLED(自由に光らせてね)ーーーーーーーーーーー
-	led0.clear();
-	led0.set_color_hsv_all((millis()%2550)/10 , 150, 10);
-	led0.show();
+	// led0.clear();
+	// led0.set_color_hsv_all((millis()%2550)/10 , 150, 10);
+	// led0.show();
 }

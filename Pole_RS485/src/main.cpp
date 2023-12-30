@@ -1,4 +1,7 @@
 #include <Arduino.h>
+#include <HardwareSerial.h>
+
+#define VERSION 1.00
 
 #include "./fled/fled.h"
 #include <Adafruit_NeoPixel.h>
@@ -38,15 +41,104 @@ FLED circuit_led[4] = {
 HardwareSerial ctrl(2);
 CTRL ser_ctrl(&ctrl);  
 
+
+#include "./oled/oled.h"
+#include <U8g2lib.h>
+#define SDA_PIN 21
+#define SCL_PIN 22
+U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0,/* reset=*/ U8X8_PIN_NONE);
+OLED oled(&u8g2);
+
+#include "./speaker/speaker.h"
+#define SPEAKER_PIN 4
+SPEAKER speaker(SPEAKER_PIN);
+
+#include "./power/power.h"
+#define VOL_PIN 26 //これ、無線機能のピンとかぶってるから注意
+#define VOL_MAX 12.6
+#define VOL_MIN 11.1
+POWER power(VOL_PIN, VOL_MAX, VOL_MIN);
+
+#include "./dip/dip.h"
+#define DIP_PIN0 25
+#define DIP_PIN1 18
+#define DIP_PIN2 19
+#define DIP_PIN3 23
+DIP dip(DIP_PIN0, DIP_PIN1, DIP_PIN2, DIP_PIN3);
+
+#include "./button/button.h"
+#define BUTTON_PIN0 34
+#define BUTTON_PIN1 5
+#define BUTTON_PIN2 15
+BUTTON button(BUTTON_PIN0, BUTTON_PIN1, BUTTON_PIN2);
+
+const String name[16] = {
+	"Center",
+	"Display",
+	"ArmA",
+	"ArmB",
+	"LEDPole",
+	"Robot5",
+	"Robot6",
+	"Robot7",
+	"Robot8",
+	"Robot9",
+	"Robot10",
+	"Robot11",
+	"Robot12",
+	"Robot13",
+	"Robot14",
+	"Robot15"
+};
+
 void led_test(float piyo);
 
+#define BCD(c) 5 * (5 * (5 * (5 * (5 * (5 * (5 * (c & 128) + (c & 64)) + (c & 32)) + (c & 16)) + (c & 8)) + (c & 4)) + (c & 2)) + (c & 1)
+
+
 void setup() {
+	Serial.begin(115200);
+	ser_ctrl.init();
+	
+	power.init();
+	dip.init();
+	button.init();
+	
+	oled.init();
+	speaker.init();
+	speaker.ring(C4);
+
 	for(int i=0; i<5; i++)rawpixel[i].begin();
 	for(int i=0; i<6; i++)led[i].init();
 	for(int i=0; i<4; i++)circuit_led[i].init();
 
-	Serial.begin(115200);
-	ser_ctrl.init();
+	for(int n=0; n<30; n++){
+		for(int i=0; i<6; i++)led[i].clear();
+		for(int i=0; i<4; i++)circuit_led[i].clear();
+		for(int j=0; j<6; j++){
+			led[j].set_color_hsv_all(150, 250, n);
+			// led[j].set_width_hsv(24.5, n, 150, 250, 30); //set_width_hsv(float center, float width, int h, int s, int v)
+		}
+		for(int j=0; j<4; j++){
+			circuit_led[j].set_color_hsv_all(150, 250, n);
+			// circuit_led[j].set_width_hsv(4.5, n/2.5, 150, 250, 30);
+		}
+		for(int i=0; i<6; i++)led[i].show();
+		for(int i=0; i<4; i++)circuit_led[i].show();
+		if(n > 25){
+			speaker.mute();
+		}
+	}
+
+	oled.display_version(VERSION);
+	oled.show();
+
+	speaker.boot_music();
+
+	delay(1000);
+
+	pinMode(36, INPUT); //SENSOR_VP
+	pinMode(39, INPUT); //SENSOR_VN
 }
 
 
@@ -55,18 +147,78 @@ float piyo = -30.0;
 
 uint32_t loop_time = 0;
 void loop(){
-	Serial.print("loop_time: ");
-	Serial.println(micros()-loop_time);
-	loop_time = micros();
+	// Serial.print("loop_time: ");
+	// Serial.println(micros()-loop_time);
+	// loop_time = micros();
 
-	circuit_led[0].clear();
-	circuit_led[0].set_color_rgb_all(0, 10, 0);
-	circuit_led[0].set_width_hsv(2, 5.0*(sin(piyo)+1.0), 10, 240, 100);
-	circuit_led[0].show();
+	if(digitalRead(36) == 1){
+		piyo += 0.1;
+		hoge++;
+		led_test(piyo);
+	}else{
 
-  piyo += 0.1;
-	hoge++;
-	delay(10);
+		ser_ctrl.read();
+
+		bool btn_val[3] = {0, 0, 0};
+		button.read(btn_val);
+
+		// //ーーーーーーーーーー効果音と光ーーーーーーーーーー
+		bool speaker_flg = 0;
+
+		Serial.print("data0: ");
+		Serial.print(ser_ctrl.data[0]);
+		Serial.print(" data1: ");
+		Serial.print(ser_ctrl.data[1]);
+
+		printf(" data0: %#x data1: %#x\n", ser_ctrl.data[0], ser_ctrl.data[1]);
+		printf(" data0 BCD: %08d data1 BCD: %08d\n", BCD(ser_ctrl.data[0]), BCD(ser_ctrl.data[1]));
+
+
+		if(ser_ctrl.data[0] == dip.read_ID()){
+			speaker_flg = 1;
+			if(ser_ctrl.data[1] < 60){
+				speaker.ring(C4);
+			}else if(ser_ctrl.data[1] < 120){
+				speaker.ring(E4);
+			}else if(ser_ctrl.data[1] < 160){
+				speaker.ring(G4);
+			}else{
+				speaker.ring(C6);
+			}
+		}else{
+			// speaker.mute();
+			speaker_flg = 0;
+		}
+
+		if(btn_val[0]){ 
+			speaker.ring(C6);
+			speaker_flg = 1;
+		}
+		if(btn_val[1]) {
+			speaker.ring(E6);
+			speaker_flg = 1;
+		}
+		if(btn_val[2]){
+			speaker.ring(G6);
+			speaker_flg = 1;
+		}
+		if(!speaker_flg){
+			Serial.print(" mute ");
+			speaker.mute();
+		}
+		Serial.println("");
+
+		//ーーーーーーーーーー表示ーーーーーーーーーー
+		oled.clear();
+		oled.display_title(name[dip.read_ID()]+" V" + String(VERSION));
+		oled.display_battary(power.voltage(), power.percentage());
+		oled.half_display_num(
+			"D0 = "+String(ser_ctrl.data[0]) + "  D1 = "+String(ser_ctrl.data[1]),
+			"D2 = "+String(ser_ctrl.data[2]) + "  D3 = "+String(ser_ctrl.data[3])
+		);
+		oled.half_display_3button(btn_val);
+		oled.show();
+	}
 }
 
 
