@@ -33,8 +33,12 @@ void setup() {
 }
 
 unsigned long loop_timer = 10000;
+unsigned long sec_timer = 0;
 
 uint32_t mycount = 0;
+
+uint8_t kaeru[9] = {44, 46, 48, 49, 48, 46, 44, 200, 200};
+uint8_t doremi[9] = {44, 46, 48, 49, 51, 53, 55, 200, 200};
 
 void loop() {
 	//ーーーこれは必須ーーーーー
@@ -44,35 +48,34 @@ void loop() {
 
 	//ーーーーーーーーーーループ計測ーーーーーーーーーー
 	// PC.print(micros() - loop_timer);
-	// loop_timer = micros();
-
-	mycount++;
-	//データ送る
-	uint8_t send_data[12] = {0,0, ((mycount/100)+55)%240,200,50,30,200,60,50,30,20,1};
-
-	bool send_id[16] = {1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-
-	for(int i=0; i<8; i++){
-		if(send_id[i]){
-			send_data[0] += 1<<i;
-		}
-		if(send_id[8+i]){
-			send_data[1] += 1<<i;
-		}
+	loop_timer = micros();
+	if(sec_timer+500 < millis()){
+		sec_timer = millis();
+		mycount++;
+		// PC.printf("count: %08d\n", mycount);
 	}
-	
-	for(int i=0; i<16; i++){
-		PC.print(i);
-		PC.print(":");
-		PC.print(send_id[i]);
-		PC.print(" ");
-	}
-	PC.println();
 
-	PC.printf("id0: %08d\n", BCD(send_data[0]));
-	PC.printf("id1: %08d\n", BCD(send_data[1]));
+	uint8_t send_data[12] = {0,0, ((mycount/1000)+55)%240,200,50,30,200,60,50,30,20,1};
 
-	delay(1000);
+	//送信相手選択 bit目がid番号
+	send_data[0] = 0b00000111; //0-7 
+	send_data[1] = 0b00000000; //8-15
+
+	//モード選択
+	send_data[2] = 0x1; //メロディ ドミソ
+	//未定義の何か
+	send_data[2] |= 0xA << 4;
+
+	//音を鳴らす
+	send_data[3] = kaeru[mycount%9]; //音の高さ
+	// send_data[3] = doremi[mycount%9]; //音の高さ
+
+	// if(mycount%9 == 0){
+	// 	send_data[3] = 44; //音の高さ
+	// }else{
+	// 	send_data[3] = 200; //音の高さ
+	// }
+
 	
 	// if(twelite.receive_data[2]==200 ){ //スタートスイッチの有無
 	// 	send_data[0] = 10;

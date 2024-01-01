@@ -163,58 +163,87 @@ void loop(){
 		button.read(btn_val);
 
 		// //ーーーーーーーーーー効果音と光ーーーーーーーーーー
-		bool speaker_flg = 0;
+		
+		//送信相手の判定 自分が下から何番目か数える
+		bool re_id[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0}; 
+		for(int i=0; i<8; i++){
+			re_id[i] = ser_ctrl.data[0] & (1 << i);
+			re_id[i+8] = ser_ctrl.data[1] & (1 << i);
+		}
 
-		Serial.print("data0: ");
-		Serial.print(ser_ctrl.data[0]);
-		Serial.print(" data1: ");
-		Serial.print(ser_ctrl.data[1]);
-
-		printf(" data0: %#x data1: %#x\n", ser_ctrl.data[0], ser_ctrl.data[1]);
-		printf(" data0 BCD: %08d data1 BCD: %08d\n", BCD(ser_ctrl.data[0]), BCD(ser_ctrl.data[1]));
-
-
-		if(ser_ctrl.data[0] == dip.read_ID()){
-			speaker_flg = 1;
-			if(ser_ctrl.data[1] < 60){
-				speaker.ring(C4);
-			}else if(ser_ctrl.data[1] < 120){
-				speaker.ring(E4);
-			}else if(ser_ctrl.data[1] < 160){
-				speaker.ring(G4);
-			}else{
-				speaker.ring(C6);
+		uint8_t my_number_index = 0;
+		uint8_t hogege = 0;
+		for(int i=0; i<16; i++){
+			if(re_id[i]){
+				if(i == dip.read_ID()){
+					my_number_index = hogege;
+				}
+				hogege++;
 			}
-		}else{
-			// speaker.mute();
-			speaker_flg = 0;
 		}
 
-		if(btn_val[0]){ 
-			speaker.ring(C6);
-			speaker_flg = 1;
+		//モードの確認
+		uint8_t re_mode = ser_ctrl.data[2] & 0b00001111; //0-15
+		uint8_t re_hoge = ser_ctrl.data[2] >> 4; //0-15
+
+		//音の確認
+		uint8_t re_sound = ser_ctrl.data[3]; //0-15
+
+		//出力します！
+		if(re_id[dip.read_ID()]){ //自分に送られてきたら
+			if(re_mode = 0x1){ //メロディ ドミソ
+				if(re_sound == 200){
+					speaker.mute();
+				}else{
+					if(my_number_index == 0){
+						re_sound;
+					}else if(my_number_index == 1){
+						re_sound += 4;
+					}else if(my_number_index == 2){
+						re_sound += 7;
+					}
+					speaker.ring(speaker.keybord[re_sound]);
+				}
+			}
 		}
-		if(btn_val[1]) {
-			speaker.ring(E6);
-			speaker_flg = 1;
-		}
-		if(btn_val[2]){
-			speaker.ring(G6);
-			speaker_flg = 1;
-		}
-		if(!speaker_flg){
-			Serial.print(" mute ");
-			speaker.mute();
-		}
-		Serial.println("");
+
+		printf(" id: %#X hoge: %d \n", dip.read_ID(), my_number_index);
+		// printf(" mode: %#X hoge: \n", re_mode, re_hoge);
+
+		
+		// bool speaker_flg = 0;
+		// if(btn_val[0] && re_id[dip.read_ID()]){
+		// 	speaker.ring(speaker.keybord[48]);
+		// 	speaker_flg = 1;
+		// }
+		// if(btn_val[1] && re_id[dip.read_ID()]) {
+		// 	speaker.ring(E6);
+		// 	speaker_flg = 1;
+		// }
+		// if(btn_val[2] && re_id[dip.read_ID()]){
+		// 	speaker.ring(G6);
+		// 	speaker_flg = 1;
+		// }
+		// if(!speaker_flg){
+		// 	Serial.print(" mute ");
+		// 	speaker.mute();
+		// }
+		// Serial.println("");
 
 		//ーーーーーーーーーー表示ーーーーーーーーーー
+
+		// printf(" data0: %#X data1: %#X\n", ser_ctrl.data[0], ser_ctrl.data[1]);
+
 		oled.clear();
-		oled.display_title(name[dip.read_ID()]+" V" + String(VERSION));
+		oled.display_title("Pole"+ String(dip.read_ID()) +" V" + String(VERSION));
 		oled.display_battary(power.voltage(), power.percentage());
+
+		char StrID[5];
+		sprintf(StrID, "%02X%02X ", ser_ctrl.data[1], ser_ctrl.data[0]);
+
 		oled.half_display_num(
-			"D0 = "+String(ser_ctrl.data[0]) + "  D1 = "+String(ser_ctrl.data[1]),
-			"D2 = "+String(ser_ctrl.data[2]) + "  D3 = "+String(ser_ctrl.data[3])
+			"ID = "+String(StrID) + "  D2 = "+ String(ser_ctrl.data[2]),
+			"D3 = "+String(ser_ctrl.data[3]) + "  D4 = "+String(ser_ctrl.data[4])
 		);
 		oled.half_display_3button(btn_val);
 		oled.show();
@@ -224,7 +253,8 @@ void loop(){
 
 
 
-//ーーーーーーーーーーーーーーーメモ帳ーーーーーーーーーーーーーーーー
+
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーメモ帳ーーーーーーーーーーーーーーーー
 
 	// for(int i=0; i<4; i++){ //虹色ループ
 	// 	for(int j=0; j<10; j++){
