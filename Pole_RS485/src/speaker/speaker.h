@@ -9,6 +9,8 @@ class SPEAKER{
 			uint8_t PIN;
 			int pre_freq = 0;
 
+			const uint8_t CHANNEL = 0;
+
 		public:
 			SPEAKER(uint8_t ptr_pin);
 			void init();
@@ -47,7 +49,6 @@ class SPEAKER{
 				{B3, C4s, D4s, E4, F4s, G4s, A4s, B4} //B
 			};
 
-			uint16_t m
 
 };
 

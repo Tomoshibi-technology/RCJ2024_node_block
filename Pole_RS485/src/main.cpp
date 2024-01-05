@@ -172,42 +172,49 @@ void loop(){
 		}
 
 		uint8_t my_number_index = 0;
-		uint8_t hogege = 0;
+		int8_t hogege = -1;
 		for(int i=0; i<16; i++){
 			if(re_id[i]){
+				hogege++;
 				if(i == dip.read_ID()){
 					my_number_index = hogege;
 				}
-				hogege++;
 			}
 		}
 
 		//モードの確認
-		uint8_t re_mode = ser_ctrl.data[2] & 0b00001111; //0-15
-		uint8_t re_hoge = ser_ctrl.data[2] >> 4; //0-15
+		uint8_t re_mode = ser_ctrl.data[2] & 0b00001111; //0-F
+		uint8_t re_scale = ser_ctrl.data[2] >> 4; //0-B
 
 		//音の確認
-		uint8_t re_sound = ser_ctrl.data[3]; //0-15
+		uint8_t re_sound = ser_ctrl.data[3] & 0b00001111; //0-8音 Fミュート
+		int8_t re_octave = (ser_ctrl.data[3] >> 4) - 8; //-8から7
 
 		//出力します！
 		if(re_id[dip.read_ID()]){ //自分に送られてきたら
-			if(re_mode = 0x1){ //メロディ ドミソ
-				if(re_sound == 200){
+			if(re_mode = 0x1){ //メロディ 下ハモリ 2個まで
+				if(re_sound == 0xF){
 					speaker.mute();
+					Serial.println(" mute ");
 				}else{
+					uint16_t freq;
 					if(my_number_index == 0){
-						re_sound;
-					}else if(my_number_index == 1){
-						re_sound += 4;
-					}else if(my_number_index == 2){
-						re_sound += 7;
+						freq = speaker.major[re_scale][re_sound] * pow(2, re_octave);
+					}else{ //if(my_number_index == 1){ これで越えた分は全部これになる
+						if(re_sound-2 < 0){
+							freq = speaker.major[re_scale][re_sound+5] * pow(2, re_octave-1);
+						}else{
+							freq = speaker.major[re_scale][re_sound-2] * pow(2, re_octave);
+						}
 					}
-					speaker.ring(speaker.keybord[re_sound]);
+					speaker.ring(freq);
+					Serial.print(" freq: ");
+					Serial.println(freq);
 				}
 			}
 		}
 
-		printf(" id: %#X hoge: %d \n", dip.read_ID(), my_number_index);
+		// printf(" id: %#X hoge: %d \n", dip.read_ID(), my_number_index);
 		// printf(" mode: %#X hoge: \n", re_mode, re_hoge);
 
 		

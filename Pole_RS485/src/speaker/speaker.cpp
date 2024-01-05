@@ -5,20 +5,25 @@ SPEAKER::SPEAKER(uint8_t ptr_pin){
 }
 
 void SPEAKER::init(){
-	pinMode(PIN, OUTPUT);
+	// pinMode(PIN, OUTPUT);
+
+  ledcSetup(CHANNEL,12000, 8);
+  ledcAttachPin(PIN,CHANNEL);
 }
 
 void SPEAKER::ring(int freq){
 	if(pre_freq != freq){
-		analogWriteFrequency(freq);
-		analogWrite(PIN, 128);
+		// analogWriteFrequency(freq);
+		// analogWrite(PIN, 128);
+	  ledcWriteTone(CHANNEL,freq);
 		pre_freq = freq;
 		// Serial.println(freq);
 	}
 }
 
 void SPEAKER::mute(void){
-	analogWrite(PIN, 0);
+	// analogWrite(PIN, 0);
+	  ledcWriteTone(CHANNEL,0);
 	pre_freq = 0;
 }
 
