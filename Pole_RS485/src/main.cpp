@@ -146,6 +146,9 @@ void setup() {
 uint32_t hoge = 0;
 float piyo = -30.0;
 
+uint8_t pre_phase = 0;
+uint32_t pf_time = 0;
+
 uint32_t loop_time = 0;
 void loop(){
 	// Serial.print("loop_time: ");
@@ -159,7 +162,7 @@ void loop(){
 		led_test(piyo);
 	}else{
 		ser_ctrl.read();
-		Serial.println();
+		// Serial.println();
 
 		bool btn_val[3] = {0, 0, 0};
 		button.read(btn_val);
@@ -221,30 +224,50 @@ void loop(){
 			}
 		}else{
 			//光
-			uint8_t re_mode = ser_ctrl.data[7] >> 4; //0-F
-			uint8_t re_mH = (ser_ctrl.data[8] & 0b00001111)*16; //0-F
-			uint8_t re_sH = (ser_ctrl.data[8] >> 4)*16; //0-F
-			uint8_t re_mS = 250;//(ser_ctrl.data[9]&0b00000011)*64; //0-3
-			uint8_t re_sS = 250;//(ser_ctrl.data[9]>>2 & 0b000011)*64; //0-3
-			uint8_t re_mV = 50;//(ser_ctrl.data[9]>>4 & 0b0011)*64; //0-F
-			uint8_t re_sV = 50;//(ser_ctrl.data[9]>>6)*64; //0-3
-			uint8_t re_high = ser_ctrl.data[10];//(ser_ctrl.data[10]&0b00000011)*64; //0-3
+			// uint8_t re_mode = ser_ctrl.data[7] >> 4; //0-F
+			// uint8_t re_mH = (ser_ctrl.data[8] & 0b00001111)*16; //0-F
+			// uint8_t re_sH = (ser_ctrl.data[8] >> 4)*16; //0-F
+			// uint8_t re_mS = 250;//(ser_ctrl.data[9]&0b00000011)*64; //0-3
+			// uint8_t re_sS = 250;//(ser_ctrl.data[9]>>2 & 0b000011)*64; //0-3
+			// uint8_t re_mV = 50;//(ser_ctrl.data[9]>>4 & 0b0011)*64; //0-F
+			// uint8_t re_sV = 50;//(ser_ctrl.data[9]>>6)*64; //0-3
+			// uint8_t re_high = ser_ctrl.data[10];//(ser_ctrl.data[10]&0b00000011)*64; //0-3
 
-			for(int i=0; i<4; i++) circuit_led[i].clear();
-			for(int i=0; i<6; i++) led[i].clear();
-			if(re_mode == 0x1){
-				for(int i=0;i<4;i++) circuit_led[i].set_color_hsv_all(re_sH, re_sS, re_sV);
-				for(int i=0;i<6;i++) led[i].set_color_hsv_all(re_mH, re_mS, re_mV);
-			}else if(re_mode == 0x2){
-				for(int i=0;i<4;i++) circuit_led[i].set_color_hsv_all(re_mH, re_mS, re_mV);
-				for(int i=0;i<6;i++) led[i].set_color_hsv_all(re_mH, re_mS, re_mV);
-				for(int i=0;i<6;i++) led[i].set_width_hsv(re_high*60/255, 5, re_sH, re_sS, re_sV);
-			}
-			for(int i=0; i<4; i++) circuit_led[i].show();
-			for(int i=0; i<6; i++) led[i].show();
-			Serial.printf("d7 %d d8 %d d9 %d ", BCD(ser_ctrl.data[7]), BCD(ser_ctrl.data[8]), BCD(ser_ctrl.data[9]));
-			Serial.printf("re_mode: %d re_mH: %d re_sH: %d re_mS: %d re_sS: %d re_mV: %d re_sV: %d\n", re_mode, re_mH, re_sH, re_mS, re_sS, re_mV, re_sV);
+			// for(int i=0; i<4; i++) circuit_led[i].clear();
+			// for(int i=0; i<6; i++) led[i].clear();
+			// if(re_mode == 0x1){
+			// 	for(int i=0;i<4;i++) circuit_led[i].set_color_hsv_all(re_sH, re_sS, re_sV);
+			// 	for(int i=0;i<6;i++) led[i].set_color_hsv_all(re_mH, re_mS, re_mV);
+			// }else if(re_mode == 0x2){
+			// 	for(int i=0;i<4;i++) circuit_led[i].set_color_hsv_all(re_mH, re_mS, re_mV);
+			// 	for(int i=0;i<6;i++) led[i].set_color_hsv_all(re_mH, re_mS, re_mV);
+			// 	for(int i=0;i<6;i++) led[i].set_width_hsv(re_high*60/255, 5, re_sH, re_sS, re_sV);
+			// }
+			// for(int i=0; i<4; i++) circuit_led[i].show();
+			// for(int i=0; i<6; i++) led[i].show();
 		}
+
+		uint16_t re_time = (ser_ctrl.data[7]-5) + (ser_ctrl.data[8]-5)*256;
+		uint8_t re_start = ser_ctrl.data[9];
+		uint8_t re_phase = ser_ctrl.data[10]-5;
+		
+		// Serial.printf("d7 %d d8 %d d9 %d d10 %d", ser_ctrl.data[7], ser_ctrl.data[8], ser_ctrl.data[9], ser_ctrl.data[10]);
+		// Serial.printf(" time %d start %d phase %d \n", re_time, re_start, re_phase);
+
+
+		if(pre_phase == 2 && re_phase == 3){
+			pf_time = millis();	
+		}
+		pre_phase = re_phase;
+		
+		Serial.printf("raw %d jissoku ", re_time-890);
+		if(pf_time != 0){
+			Serial.println(millis()-pf_time);
+		}else{
+			Serial.println("0");
+		}
+
+
 
 
 		//ーーーーーーーーーー表示ーーーーーーーーーー
