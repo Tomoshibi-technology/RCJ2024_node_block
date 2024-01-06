@@ -30,10 +30,10 @@ void FLED::init(void){
 }
 
 void FLED::show(void){
-	if(timer + interval < millis()){
+	// if(timer + interval < millis()){
 		NEOPIXEL->show();
-		timer = millis();
-	}
+		// timer = millis();
+	// }
 }
 
 void FLED::clear(void){

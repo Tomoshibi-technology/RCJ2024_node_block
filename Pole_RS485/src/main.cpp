@@ -92,6 +92,7 @@ const String name[16] = {
 };
 
 void led_test(float piyo);
+void led_rainbow(float piyo);
 
 #define BCD(c) 5 * (5 * (5 * (5 * (5 * (5 * (5 * (c & 128) + (c & 64)) + (c & 32)) + (c & 16)) + (c & 8)) + (c & 4)) + (c & 2)) + (c & 1)
 
@@ -148,19 +149,21 @@ float piyo = -30.0;
 uint32_t loop_time = 0;
 void loop(){
 	// Serial.print("loop_time: ");
-	// Serial.println(micros()-loop_time);
-	// loop_time = micros();
+	// Serial.print(micros()-loop_time);
+	// Serial.print("  ");
+	loop_time = micros();
 
 	if(digitalRead(36) == 1){
 		piyo += 0.1;
 		hoge++;
 		led_test(piyo);
 	}else{
-
 		ser_ctrl.read();
+		Serial.println();
 
 		bool btn_val[3] = {0, 0, 0};
 		button.read(btn_val);
+		
 
 		// //ーーーーーーーーーー効果音と光ーーーーーーーーーー
 		
@@ -170,6 +173,8 @@ void loop(){
 			re_id[i] = ser_ctrl.data[0] & (1 << i);
 			re_id[i+8] = ser_ctrl.data[1] & (1 << i);
 		}
+
+		uint8_t re_LedOrMusic = ser_ctrl.data[7] & 0b00001111; //0:LED 1:Music
 
 		uint8_t my_number_index = 0;
 		int8_t hogege = -1;
@@ -182,60 +187,65 @@ void loop(){
 			}
 		}
 
-		//モードの確認
-		uint8_t re_mode = ser_ctrl.data[2] & 0b00001111; //0-F
-		uint8_t re_scale = ser_ctrl.data[2] >> 4; //0-B
+		if(re_LedOrMusic == 1 || re_LedOrMusic == 3){
+			//モードの確認
+			uint8_t re_mode = ser_ctrl.data[2] & 0b00001111; //0-F
+			uint8_t re_scale = ser_ctrl.data[2] >> 4; //0-B
 
-		//音の確認
-		uint8_t re_sound = ser_ctrl.data[3] & 0b00001111; //0-8音 Fミュート
-		int8_t re_octave = (ser_ctrl.data[3] >> 4) - 8; //-8から7
+			//音の確認
+			uint8_t re_sound = ser_ctrl.data[3] & 0b00001111; //0-8音 Fミュート
+			int8_t re_octave = (ser_ctrl.data[3] >> 4) - 8; //-8から7
 
-		//出力します！
-		if(re_id[dip.read_ID()]){ //自分に送られてきたら
-			if(re_mode = 0x1){ //メロディ 下ハモリ 2個まで
-				if(re_sound == 0xF){
-					speaker.mute();
-					Serial.println(" mute ");
-				}else{
-					uint16_t freq;
-					if(my_number_index == 0){
-						freq = speaker.major[re_scale][re_sound] * pow(2, re_octave);
-					}else{ //if(my_number_index == 1){ これで越えた分は全部これになる
-						if(re_sound-2 < 0){
-							freq = speaker.major[re_scale][re_sound+5] * pow(2, re_octave-1);
-						}else{
-							freq = speaker.major[re_scale][re_sound-2] * pow(2, re_octave);
+			//出力します！
+			if(re_id[dip.read_ID()]){ //自分に送られてきたら
+				if(re_mode = 0x1){ //メロディ 下ハモリ 2個まで
+					if(re_sound == 0xF){
+						speaker.mute();
+						// Serial.println(" mute ");
+					}else{
+						uint16_t freq;
+						if(my_number_index == 0){
+							freq = speaker.major[re_scale][re_sound] * pow(2, re_octave);
+						}else{ //if(my_number_index == 1){ これで越えた分は全部これになる
+							if(re_sound-2 < 0){
+								freq = speaker.major[re_scale][re_sound+5] * pow(2, re_octave-1);
+							}else{
+								freq = speaker.major[re_scale][re_sound-2] * pow(2, re_octave);
+							}
 						}
+						speaker.ring(freq);
+						// Serial.print(" freq: ");
+						// Serial.println(freq);
 					}
-					speaker.ring(freq);
-					Serial.print(" freq: ");
-					Serial.println(freq);
 				}
 			}
+		}else{
+			//光
+			uint8_t re_mode = ser_ctrl.data[7] >> 4; //0-F
+			uint8_t re_mH = (ser_ctrl.data[8] & 0b00001111)*16; //0-F
+			uint8_t re_sH = (ser_ctrl.data[8] >> 4)*16; //0-F
+			uint8_t re_mS = 250;//(ser_ctrl.data[9]&0b00000011)*64; //0-3
+			uint8_t re_sS = 250;//(ser_ctrl.data[9]>>2 & 0b000011)*64; //0-3
+			uint8_t re_mV = 50;//(ser_ctrl.data[9]>>4 & 0b0011)*64; //0-F
+			uint8_t re_sV = 50;//(ser_ctrl.data[9]>>6)*64; //0-3
+			uint8_t re_high = ser_ctrl.data[10];//(ser_ctrl.data[10]&0b00000011)*64; //0-3
+
+			for(int i=0; i<4; i++) circuit_led[i].clear();
+			for(int i=0; i<6; i++) led[i].clear();
+			if(re_mode == 0x1){
+				for(int i=0;i<4;i++) circuit_led[i].set_color_hsv_all(re_sH, re_sS, re_sV);
+				for(int i=0;i<6;i++) led[i].set_color_hsv_all(re_mH, re_mS, re_mV);
+			}else if(re_mode == 0x2){
+				for(int i=0;i<4;i++) circuit_led[i].set_color_hsv_all(re_mH, re_mS, re_mV);
+				for(int i=0;i<6;i++) led[i].set_color_hsv_all(re_mH, re_mS, re_mV);
+				for(int i=0;i<6;i++) led[i].set_width_hsv(re_high*60/255, 5, re_sH, re_sS, re_sV);
+			}
+			for(int i=0; i<4; i++) circuit_led[i].show();
+			for(int i=0; i<6; i++) led[i].show();
+			Serial.printf("d7 %d d8 %d d9 %d ", BCD(ser_ctrl.data[7]), BCD(ser_ctrl.data[8]), BCD(ser_ctrl.data[9]));
+			Serial.printf("re_mode: %d re_mH: %d re_sH: %d re_mS: %d re_sS: %d re_mV: %d re_sV: %d\n", re_mode, re_mH, re_sH, re_mS, re_sS, re_mV, re_sV);
 		}
 
-		// printf(" id: %#X hoge: %d \n", dip.read_ID(), my_number_index);
-		// printf(" mode: %#X hoge: \n", re_mode, re_hoge);
-
-		
-		// bool speaker_flg = 0;
-		// if(btn_val[0] && re_id[dip.read_ID()]){
-		// 	speaker.ring(speaker.keybord[48]);
-		// 	speaker_flg = 1;
-		// }
-		// if(btn_val[1] && re_id[dip.read_ID()]) {
-		// 	speaker.ring(E6);
-		// 	speaker_flg = 1;
-		// }
-		// if(btn_val[2] && re_id[dip.read_ID()]){
-		// 	speaker.ring(G6);
-		// 	speaker_flg = 1;
-		// }
-		// if(!speaker_flg){
-		// 	Serial.print(" mute ");
-		// 	speaker.mute();
-		// }
-		// Serial.println("");
 
 		//ーーーーーーーーーー表示ーーーーーーーーーー
 
@@ -263,15 +273,22 @@ void loop(){
 
 //ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーメモ帳ーーーーーーーーーーーーーーーー
 
-	// for(int i=0; i<4; i++){ //虹色ループ
-	// 	for(int j=0; j<10; j++){
-	// 		circuit_led[i].set_color_hsv(j, 60*i+6*j, 250, 30);
-	// 	}
-	// }
-
+void led_rainbow(float piyo){
+	for(int i=0; i<4; i++){
+		circuit_led[i].clear();
+	}
+	for(int i=0; i<4; i++){ //虹色ループ
+		for(int j=0; j<10; j++){
+			circuit_led[i].set_color_hsv(j, 60*i+6*j, 250, 30);
+		}
+	}
+	for(int i=0; i<4; i++){
+		circuit_led[i].show();
+	}
 	// ser_ctrl.read();
 	// byte kidou = ser_ctrl.data[0]; //10 起動 2 停止
 	// byte phase = ser_ctrl.data[1] - 5; //1-4
+}
 
 void led_test(float piyo){
 	for(int i=0; i<4; i++){
