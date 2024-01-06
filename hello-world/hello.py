@@ -2,6 +2,10 @@ import serial
 import time
 import serial.tools.list_ports
 
+from playsound import playsound
+
+
+# playsound("World2.mp3")
 
 print('Hello, World!')
 
@@ -23,3 +27,14 @@ while True:
 	time.sleep(.05)
 	ser.write(b"0")
 	time.sleep(.05)
+	print("aaaaaaaaaaaa")
+     
+
+
+
+
+
+
+
+
+

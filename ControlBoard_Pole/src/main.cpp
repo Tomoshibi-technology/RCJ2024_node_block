@@ -14,15 +14,22 @@ HardwareSerial PC(PA10, PA9); //UART1 RX, TX
 //HardwareSerial ARM(PC7, PC6); //UART6 RX, TX
 HardwareSerial POLE(PD2, PC12);
 
+#define BCD(c) 5 * (5 * (5 * (5 * (5 * (5 * (5 * (c & 128) + (c & 64)) + (c & 32)) + (c & 16)) + (c & 8)) + (c & 4)) + (c & 2)) + (c & 1)
+
+struct Note {
+	int pitch;    // 音の高さ
+	float duration; // ビートの長さ
+};
+
 void setup() {
 	PC.begin(115200);
 	PC.println("start");
 
 	POLE.begin(115200);
 	
-	led0.init();
-	led0.set_color_rgb_all(50, 0, 0);
-	led0.show();
+	// led0.init();
+	// led0.set_color_rgb_all(50, 0, 0);
+	// led0.show();
 
 	//ーーーこれは必須ーーーーー
 	control_init();
@@ -30,45 +37,112 @@ void setup() {
 }
 
 unsigned long loop_timer = 10000;
+unsigned long sec_timer = 0;
+
+uint32_t mycount = 0;
+
+uint8_t kaeru0[9] = {0x0, 0x1, 0x2, 0x3, 0x2, 0x1, 0x0, 0xF, 0xF};
+uint8_t kaeru1[56] = {0x0, 0x1, 0x2, 0x3, 0x2, 0x1, 0x0, 0xF,
+											0x2, 0x3, 0x4, 0x5, 0x4, 0x3, 0x2, 0xF,
+											0x0, 0xF, 0xF, 0x0, 0xF, 0xF, 0x0, 0xF, 0xF, 0x0, 0xF, 0xF, 
+											0x0, 0xF, 0x0, 0xF, 0x1, 0xF, 0x1, 0xF,
+											0x2, 0xF, 0x2, 0xF, 0x3, 0xF, 0x3, 0xF,
+											0x2, 0xF, 0xF, 0x1, 0xF, 0xF, 0x0, 0xF, 0xF, 0xF, 0xF, 0xF
+										};
+uint8_t doremi[9] = {0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0xF};
+
+float hogeee = 0.45;
+Note kaeru2[42] = {
+	{0x0,1},{0x1,1},{0x2,1},{0x3,1},{0x2,1},{0x1,1},{0x0,2},
+	{0x2,1},{0x3,1},{0x4,1},{0x5,1},{0x4,1},{0x3,1},{0x2,2},
+	{0x0,1},{0xF,1},{0x0,1},{0xF,1},{0x0,1},{0xF,1},{0x0,1},{0xF,1},
+	{0x0,hogeee},{0xF,0.5-hogeee},{0x0,hogeee},{0xF,0.5-hogeee},
+	{0x1,hogeee},{0xF,0.5-hogeee},{0x1,hogeee},{0xF,0.5-hogeee},
+	{0x2,hogeee},{0xF,0.5-hogeee},{0x2,hogeee},{0xF,0.5-hogeee},
+	{0x3,hogeee},{0xF,0.5-hogeee},{0x3,hogeee},{0xF,0.5-hogeee},
+	{0x2,1},{0x1,1},{0x0,2},{0xF,2}
+};
+
 
 void loop() {
 	//ーーーこれは必須ーーーーー
 	control_loop();
 	//ーーーーーまじでーーーーー
 
+
 	//ーーーーーーーーーーループ計測ーーーーーーーーーー
 	// PC.print(micros() - loop_timer);
 	loop_timer = micros();
-
-	uint8_t send_data[13] = {2,70,100,200,50,30,200,60,50,30,20,1,4};
-	
-	if(twelite.receive_data[2]==200 ){ //スタートスイッチの有無
-		send_data[0] = 10;
-	}else{
-		send_data[0] = 2;
+	if(sec_timer+250 < millis()){
+		sec_timer = millis();
+		mycount++;
+		// PC.printf("count: %08d\n", mycount);
 	}
 
-	send_data[1] = twelite.receive_data[3]; //フェーズ 6-9
+	uint8_t send_data[12] = {0,0, 100,0xF,50,30,200,60,50,30,20,1};
+
+	//送信相手選択 bit目がid番号
+	send_data[0] = 0b00000111; //0-7 
+	send_data[1] = 0b00000000; //8-15
+
+	//モード選択
+	send_data[2] = 0x1; //メロディ 下ハモリ
+	//スケールの指定
+	send_data[2] |= 0x0 << 4; //Cmajor
+
+	//音を鳴らす
+	// send_data[3] = kaeru[mycount%9]; //音の高さ
+	// send_data[3] = doremi[mycount%9]; //音の高さ
+	// send_data[3] = kaeru1[mycount%56]; //音の高さ
+	// send_data[3] |= 0xB<< 4; //オクターブの指定
+
+	uint16_t mytime = millis()%30000; 
+	uint16_t beat_time = 60000/180; // bpm=120
+	
+	uint16_t music_time = 0;
+	bool music_time_flg[42] = {0};
+
+	for(int i=0; i<42; i++){
+		music_time += beat_time*kaeru2[i].duration;
+		if(music_time-beat_time*kaeru2[i].duration<mytime && mytime<music_time-10){
+			send_data[3] = kaeru2[i].pitch;
+			send_data[3] |= 0xB<< 4; //オクターブの指定
+		}else if(music_time-10<mytime && mytime<music_time){
+			send_data[3] = 0xF;
+		}
+		// if(beat_time*i < mytime && mytime<beat_time*(i+1)){
+		// 	send_data[3] = kaeru2[i].pitch;
+		// 	send_data[3] |= 0xB<< 4; //オクターブの指定
+		// }
+	}
+
+
+	
+	
+	// if(twelite.receive_data[2]==200 ){ //スタートスイッチの有無
+	// 	send_data[0] = 10;
+	// }else{
+	// 	send_data[0] = 2;
+	// }
+
+	// send_data[1] = twelite.receive_data[3]; //フェーズ 6-9
 
 	//有線送信
 	POLE.write(250);
-	for(int i=0; i<13; i++){
+	for(int i=0; i<12; i++){
+		if(send_data[i] == 250) send_data[i] = 251;
 		POLE.write(send_data[i]);
+		// PC.print(send_data[i]);
 	}
 	
 
-	//ーー無線の内容が見れます(別に消して大丈夫)ーー
-	if(twelite.read()){ //tweliteから受信成功したら1を返す
-		PC.print(micros() - loop_timer);
-		for(int i=0; i<4; i++){
-			PC.print("  :");
-			PC.print(twelite.receive_data[i]);
-		}
-		PC.println();
-	}
-	
-	//ーーーーーーーーーーLED(自由に光らせてね)ーーーーーーーーーーー
-	led0.clear();
-	led0.set_color_hsv_all((millis()%2550)/10 , 150, 10);
-	led0.show();
+	// ーー無線の内容が見れます(別に消して大丈夫)ーー
+	// if(twelite.read()){ //tweliteから受信成功したら1を返す
+	// 	PC.print(micros() - loop_timer);
+	// 	for(int i=0; i<4; i++){
+	// 		PC.print("  :");
+	// 		PC.print(twelite.receive_data[i]);
+	// 	}
+	// 	PC.println();
+	// }
 }
