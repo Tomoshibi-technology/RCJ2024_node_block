@@ -29,6 +29,7 @@ while True:
 	time.sleep(.05)
 	print("aaaaaaaaaaaa")
      
+    fdsa
 
 
 
