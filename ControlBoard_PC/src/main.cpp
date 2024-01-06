@@ -45,15 +45,27 @@ void setup() {
 
 	pinMode(PB13, OUTPUT);
 	pinMode(PC11,INPUT);
+	pinMode(PB14, OUTPUT);
+	PC.println("E");
 }
 
 
 uint32_t test_timer = 0;
+uint32_t send_timer = 0;
 void loop() {
 	//ーーーこれは必須ーーーーー
-	control_loop();
+	// control_loop();
 	//ーーーーーまじでーーーーー
 
+		//ーーーーーーーーーーボタンーーーーーーーーーーー
+	button.read(btn_val);
+	// byte send_data = btn_val[0]*10 + btn_val[1] * 20 + btn_val[2] * 40;
+
+
+	while(PC.available() > 10){
+		int a = PC.read();
+		digitalWrite(PB15, HIGH);
+	}
 	if(PC.available()){
 		byte read = PC.read();
 		if(read == '1'){
@@ -61,6 +73,18 @@ void loop() {
 			pc_timer++;
 		}else if(read == '0'){
 			digitalWrite(PB13, LOW);
+		}
+	}
+
+	bool music_frg = 0;
+	music_frg = start_frg;
+	send_timer++;
+	if(send_timer == 200){
+		send_timer = 0;
+		if(music_frg){
+			PC.println("D");
+		}else{
+			PC.println("E");
 		}
 	}
 
@@ -90,19 +114,32 @@ void loop() {
 	}
 
 	byte mode = 0;
+
 	if(digitalRead(PC11) == 1){
-		if(time_cnt < 630){
+		digitalWrite(PB14, HIGH);
+		//本番用
+
+		if(time_cnt < 600){ //ロボットアーム
 			mode = 1;
-		}else if(time_cnt < 1180){
+		}else if(time_cnt < 890){ //ディスプレイ
 			mode = 2;
-		}else if(time_cnt < 1800){
+		}else if(time_cnt < 1180){ //ポール
 			mode = 3;
-		}else if(time_cnt <	2400){
+		}else if(time_cnt <	1630){ //ディスプレイとポール
 			mode = 4;
-		}else{
+		}else if(time_cnt <	2200){ //全部
 			mode = 5;
+		}else{ //おわり
+			mode = 6;
 		}
+
 	}else{
+		digitalWrite(PB14, LOW);
+		//test_mode
+		// if(test_timer == 5){
+		// 	PC.println("E");
+		// }
+		
 		test_timer++;
 		if(test_timer < 500){
 			mode = 1;
@@ -112,13 +149,14 @@ void loop() {
 			mode = 3;
 		}else if(test_timer < 2000){
 			mode = 4;
-		}else{	
+		}else if(test_timer < 2500){
 			mode = 5;
+		}else if(test_timer < 3000){	
+			mode = 6;
+		}else{
 			test_timer = 0;
 		}
 	}
-
-
 
 
 	control_send_data[0] = byte(time_cnt % 240 +5);
@@ -126,6 +164,21 @@ void loop() {
 	control_send_data[2] = byte(start_frg*150 + 50);
 	control_send_data[3] = byte(mode + 5);
 	twelite.send(control_send_data);	
+
+	
+	// //ーーーーーーーーーー表示ーーーーーーーーーー
+	oled.clear();
+	oled.display_title(name[dip.read_ID()]+" V" + String(VERSION));
+	oled.display_battary(power.voltage(), power.percentage());
+	oled.half_display_num(
+		// "D0 = "+String(twelite.receive_data[0]) + "  D1 = "+String(twelite.receive_data[1]),
+		// "D2 = "+String(twelite.receive_data[2]) + "  D3 = "+String(twelite.receive_data[3])
+		"D0 = "+String(control_send_data[0]) + "  D1 = "+String(control_send_data[1]),
+		"D2 = "+String(control_send_data[2]) + "  D3 = "+String(control_send_data[3]) + " " + String(time_cnt/10)
+	);
+	oled.half_display_3button(btn_val);
+	oled.show();
+
 	
 	// PC.print(micros() - loop_timer);
 	// 	for(int i=0; i<4; i++){
@@ -136,7 +189,7 @@ void loop() {
 	
 	
 	//ーーーーーーーーーーLED(自由に光らせてね)ーーーーーーーーーーー
-	led0.clear();
-	led0.set_color_hsv_all((millis()%2550)/10 , 150, 10);
-	led0.show();
+	// led0.clear();
+	// led0.set_color_hsv_all((millis()%2550)/10 , 150, 10);
+	// led0.show();
 }
