@@ -18,7 +18,8 @@ def auto_detect_serial_port():
             return p.device
     return None
 
-ser = serial.Serial(auto_detect_serial_port(), 115200, timeout=0.1)
+# ser = serial.Serial(auto_detect_serial_port(), 115200, timeout=0.1)
+ser = serial.Serial("/dev/ttyUSB0", 115200, timeout=0.1)
 
 time.sleep(5)
 
@@ -28,8 +29,6 @@ while True:
 	ser.write(b"0")
 	time.sleep(.05)
 	print("aaaaaaaaaaaa")
-     
-    fdsa
 
 
 
