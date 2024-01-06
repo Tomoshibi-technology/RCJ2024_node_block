@@ -74,12 +74,6 @@ void control_init(){
 }
 
 void control_loop(){
-		//ーーーーーーーーーーボタンーーーーーーーーーーー
-	button.read(btn_val);
-
-	//ーーーーーーーーーー無線ーーーーーーーーーー
-	byte send_data = btn_val[0]*10 + btn_val[1] * 20 + btn_val[2] * 40;
-
 	// if(twelite.read()){ //tweliteから受信成功したら1を返す
 	// 	PC.print(micros() - loop_timer);
 	// 	for(int i=0; i<4; i++){
@@ -108,19 +102,6 @@ void control_loop(){
 		speaker.mute();
 	}
 
-
-	// //ーーーーーーーーーー表示ーーーーーーーーーー
-	oled.clear();
-	oled.display_title(name[dip.read_ID()]+" V" + String(VERSION));
-	oled.display_battary(power.voltage(), power.percentage());
-	oled.half_display_num(
-		// "D0 = "+String(twelite.receive_data[0]) + "  D1 = "+String(twelite.receive_data[1]),
-		// "D2 = "+String(twelite.receive_data[2]) + "  D3 = "+String(twelite.receive_data[3])
-		"D0 = "+String(control_send_data[0]) + "  D1 = "+String(control_send_data[1]),
-		"D2 = "+String(control_send_data[2]) + "  D3 = "+String(control_send_data[3])
-	);
-	oled.half_display_3button(btn_val);
-	oled.show();
 
 
 }
