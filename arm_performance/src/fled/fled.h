@@ -11,7 +11,7 @@ class FLED{
 		int BRIGHTNESS = 255;
 
 		long timer = 0; 
-		int interval = 20; //ms
+		int interval = 50; //ms
 	
 	public:
 		FLED(Adafruit_NeoPixel* ptr_neopixel, int num);

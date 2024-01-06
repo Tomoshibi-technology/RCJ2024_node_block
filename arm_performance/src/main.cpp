@@ -34,6 +34,7 @@ int calc_diff(double cossim, int led_width, int brightness);
 void exe_led(int id, int h, int s, int target_center, int target_width, int brightness);
 
 void apply(int id, int target, int speed, int acceleration);
+void apply2(int id, int target, int speed, int acceleration);
 
 void exe1();
 void exe2();
@@ -51,6 +52,9 @@ void exe13();
 void exe14();
 void exe15();
 void exe16();
+void exe17();
+void exe18();
+void exe19();
 
 void setup()
 {
@@ -70,59 +74,76 @@ void setup()
 void loop()
 {
   control_loop();
-  if (twelite.receive_data[2] == 200 && once == 0)
+  long time = twelite.receive_data[0] - 5 + (twelite.receive_data[1] - 5) * 250;
+  Serial1.println(time);
+  if (time > 0 && once == 0)
   {
     start = int(millis() / 100);
     once += 1;
     Serial1.println("!!!!!!!");
     Serial1.println(start);
   }
-  if (twelite.read())
-  { // tweliteから受信成功したら1を返す
-    // PC.print(micros() - loop_timer);
-    //  for(int i=0; i<4; i++){
-    //  	Serial1.print("  :");
-    //  	Serial1.print(twelite.receive_data[i]);
-    //  }
-    //  Serial1.println();
+  if (time > 1670 && once == 1)
+  {
+    start = int(millis() / 100);
+    once += 1;
+    Serial1.println("!!!!!!!");
+    Serial1.println(start);
   }
+  if (twelite.read()){}
   //---------------------
-  // unsigned long now = millis();
+  // long now = millis() / 100 - 100;
   if (once == 1)
   {
     now = int(millis() / 100) - start;
-    if (40 <= now && now < 100)
+    if (0 <= now && now < 60)
       exe1();
-    if (100 <= now && now < 110)
+    if (60 <= now && now < 70)
       exe2();
-    if (115 <= now && now < 125)
+    if (75 <= now && now < 85)
       exe3();
-    if (130 <= now && now < 150)
+    if (90 <= now && now < 110)
       exe4();
-    if (140 <= now && now < 160)
+    if (100 <= now && now < 120)
       exe5();
-    if (160 <= now && now < 180)
+    if (120 <= now && now < 140)
       exe6();
-    if (180 <= now && now < 200)
+    if (140 <= now && now < 160)
       exe7();
-    if (245 <= now && now < 255)
+    if (205 <= now && now < 215)
       exe8();
-    if (255 <= now && now < 275)
+    if (215 <= now && now < 235)
       exe9();
-    if (285 <= now && now < 305)
+    if (245 <= now && now < 265)
       exe10();
-    if (310 <= now && now < 350)
+    if (270 <= now && now < 310)
       exe11();
-    if (350 <= now && now < 400)
+    if (310 <= now && now < 360)
       exe12();
-    if (450 <= now && now < 500)
+    if (410 <= now && now < 460)
       exe13();
-    if (500 <= now && now < 550)
+    if (460 <= now && now < 510)
       exe14();
-    if (555 <= now && now < 570)
+    if (515 <= now && now < 540)
       exe15();
-    if (580 <= now && now < 590)
+    if (540 <= now && now < 700)
       exe16();
+  }
+  if(once == 2)
+  {
+    now = int(millis() / 100) - start;
+    if (0 <= now && now < 50)
+      exe13();
+    if (50 <= now && now < 100)
+      exe14();
+    if (105 <= now && now < 125)
+      exe15();
+    if (125 <= now && now < 250)
+      exe17();
+    if (300 <= now && now < 350)
+      exe18();
+    if (372 <= now && now < 380)
+      exe19();
   }
 }
 
@@ -131,13 +152,11 @@ void exe1()
   apply(1, 90, 500, 20);
   apply(2, 180, 500, 20);
   apply(3, 0, 500, 20);
-  Serial1.println("exe1");
 }
 
 void exe2()
 {
   apply(1, 180, 4095, 100);
-  Serial1.print("exe2");
 }
 
 void exe3()
@@ -285,10 +304,49 @@ void exe16()
   raw_led2.show();
 }
 
+void exe17()
+{
+  for (int i = 0; i < 920; i++)
+  {
+    apply2(1, 180 + 180 * sin(i / 100), 2000, 100);
+    apply2(2, 180 + 180 * sin(i / 100), 2000, 100);
+    apply2(3, 180 + 180 * sin(i / 100), 2000, 100);
+    exe_led(11, i % 250, 255, 0, 500, (i % 60) * 4);
+    exe_led(12, i % 250, 255, 0, 500, (i % 60) * 4);
+    exe_led(21, i % 250, 255, 0, 500, (i % 60) * 4);
+    exe_led(22, i % 250, 255, 0, 500, (i % 60) * 4);
+  }
+}
+
+void exe18()
+{
+  apply(1,180,200,100);
+  apply(2,180,200,100);
+  apply(3,180,200,100);
+}
+
+void exe19()
+{
+  for(int i = 255; i >= 0; i--)
+  {
+    exe_led(11, 0, 0, 0, 500, i);
+    exe_led(12, 0, 0, 0, 500, i);
+    exe_led(21, 0, 0, 0, 500, i);
+    exe_led(22, 0, 0, 0, 500, i);
+    delay(4);
+  }
+}
+
 void apply(int id, int target, int speed, int acceleration)
 {
   st.WritePosEx(id + 10, (int)(target * 4000 / 360) + 50, speed, acceleration);
   st.WritePosEx(id + 20, (int)((360 - target) * 4000 / 360) + 50, speed, acceleration);
+}
+
+void apply2(int id, int target, int speed, int acceleration)
+{
+  st.WritePosEx(id + 10, (int)(target * 4000 / 360) + 50, speed, acceleration);
+  st.WritePosEx(id + 20, (int)((target * 4000 / 360 + 2000) % 4000) + 50, speed, acceleration);
 }
 
 void calc_led_vector(int led_id, double *led_vector)
