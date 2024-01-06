@@ -27,7 +27,7 @@ def auto_detect_serial_port():
 
 auto_detect_serial_port()
 # ser = serial.Serial(auto_detect_serial_port(), 115200, timeout=0.1)
-ser = serial.Serial("/dev/ttyUSB1", 115200, timeout=0.0001)
+ser = serial.Serial("/dev/ttyUSB0", 115200, timeout=0.0001)
 
 ser.close()
 ser.open()
