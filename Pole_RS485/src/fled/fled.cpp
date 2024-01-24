@@ -30,10 +30,10 @@ void FLED::init(void){
 }
 
 void FLED::show(void){
-	if(timer + interval < millis()){
+	// if(timer + interval < millis()){
 		NEOPIXEL->show();
-		timer = millis();
-	}
+		// timer = millis();
+	// }
 }
 
 void FLED::clear(void){
@@ -129,6 +129,33 @@ void FLED::set_width_hsv(float center, float width, int h, int s, int v){
 }
 
 
+void FLED::set_height_rgb(float height, int r, int g, int b){
+	//今度滑らかにする
+	for(int i=0; i<height; i++){
+		NEOPIXEL->setPixelColor(get_num(i), r, g, b);
+	}
+}
+
+void FLED::set_height_hsv(float height, int h, int s, int v){
+	for(int i=0; i<height; i++){
+		uint16_t hogeH = (h+224 + int(32.0*i/height))%255;
+		if(s < 100)s=100;
+		uint16_t hogeS = 100 + (s-100)*i/height;
+
+		Serial.print(hogeH);
+		Serial.print(" ");
+		this->set_color_hsv(i, hogeH, hogeS, v);
+	}
+	Serial.println();
+}
+
+void FLED::set_raimbow(float piyo,int s, int v){
+	while(piyo>100) piyo -= 100;
+	while(piyo<0) piyo += 100;
+	for(int i=0; i<TOTAL; i++){
+		this->set_color_hsv(i,int((255*i/TOTAL)+piyo)%255,s,v);
+	}
+}
 
 
 //---------private---------

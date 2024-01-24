@@ -34,6 +34,8 @@ void setup() {
 	//ーーーこれは必須ーーーーー
 	control_init();
 	//ーーーーーまじでーーーーー
+
+	pinMode(PC11,INPUT); // 下のスライド
 }
 
 unsigned long loop_timer = 10000;
@@ -79,44 +81,57 @@ void loop() {
 		// PC.printf("count: %08d\n", mycount);
 	}
 
-	uint8_t send_data[12] = {0,0, 100,0xF,50,30,200,60,50,30,20,1};
+	uint8_t send_data[12] = {0,0, 100,0xF,40,50,60,70,80,90,100,110};
 
-	//送信相手選択 bit目がid番号
-	send_data[0] = 0b00000111; //0-7 
-	send_data[1] = 0b00000000; //8-15
+	if(digitalRead(PC11)){
+		send_data[7] = 0x1; //音だけ
+		//送信相手選択 bit目がid番号
+		send_data[0] = 0b00000111; //0-7 
+		send_data[1] = 0b00000000; //8-15
 
-	//モード選択
-	send_data[2] = 0x1; //メロディ 下ハモリ
-	//スケールの指定
-	send_data[2] |= 0x0 << 4; //Cmajor
+		//モード選択
+		send_data[2] = 0x1; //メロディ 下ハモリ
+		//スケールの指定
+		send_data[2] |= 0x0 << 4; //Cmajor
 
-	//音を鳴らす
-	// send_data[3] = kaeru[mycount%9]; //音の高さ
-	// send_data[3] = doremi[mycount%9]; //音の高さ
-	// send_data[3] = kaeru1[mycount%56]; //音の高さ
-	// send_data[3] |= 0xB<< 4; //オクターブの指定
+		uint16_t mytime = millis()%30000; 
+		uint16_t beat_time = 60000/180; // bpm=120
+		
+		uint16_t music_time = 0;
+		bool music_time_flg[42] = {0};
 
-	uint16_t mytime = millis()%30000; 
-	uint16_t beat_time = 60000/180; // bpm=120
-	
-	uint16_t music_time = 0;
-	bool music_time_flg[42] = {0};
-
-	for(int i=0; i<42; i++){
-		music_time += beat_time*kaeru2[i].duration;
-		if(music_time-beat_time*kaeru2[i].duration<mytime && mytime<music_time-10){
-			send_data[3] = kaeru2[i].pitch;
-			send_data[3] |= 0xB<< 4; //オクターブの指定
-		}else if(music_time-10<mytime && mytime<music_time){
-			send_data[3] = 0xF;
+		for(int i=0; i<42; i++){
+			music_time += beat_time*kaeru2[i].duration;
+			if(music_time-beat_time*kaeru2[i].duration<mytime && mytime<music_time-10){
+				send_data[3] = kaeru2[i].pitch;
+				send_data[3] |= 0xB<< 4; //オクターブの指定
+			}else if(music_time-10<mytime && mytime<music_time){
+				send_data[3] = 0xF;
+			}
 		}
-		// if(beat_time*i < mytime && mytime<beat_time*(i+1)){
-		// 	send_data[3] = kaeru2[i].pitch;
-		// 	send_data[3] |= 0xB<< 4; //オクターブの指定
-		// }
+	}else{
+		// 光
+		send_data[0] = 0b00000111; //7-0 
+		send_data[1] = 0b00000000; //15-8
+
+		// send_data[7] = 0x2; //光だけ
+		// send_data[7] |= 0x2 << 4; //mode指定
+
+		// send_data[8] = (0)%0xF; // 主H
+		// send_data[8] |= (5)%0xF << 4; //副H
+
+		// send_data[9] = 3; // 主S
+		// send_data[9] |= 3 << 2; //副S
+		// send_data[9] |= 1 << 4; //主V
+		// send_data[9] |= 1 << 6; //副V
+
+		// send_data[10] = (mycount)%255; // 主H
 	}
 
-
+	send_data[7] = twelite.receive_data[0];
+	send_data[8] = twelite.receive_data[1];
+	send_data[9] = twelite.receive_data[2];
+	send_data[10] = twelite.receive_data[3];
 	
 	
 	// if(twelite.receive_data[2]==200 ){ //スタートスイッチの有無

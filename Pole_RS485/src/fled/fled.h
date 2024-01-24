@@ -49,6 +49,12 @@ class FLED{
 		void set_width_rgb(float center, float width, int r, int g, int b);
 		void set_width_hsv(float center, float width, int h, int s, int v);
 
+		void set_height_rgb(float height, int r, int g, int b);
+		void set_height_hsv(float height, int h, int s, int v);
+
+		void set_raimbow(float piyo,int s, int v);
+		
+
 		~FLED(){ //デストラクタ
 			delete[] pixel_vector; //一応メモリ解放しておく
 		}

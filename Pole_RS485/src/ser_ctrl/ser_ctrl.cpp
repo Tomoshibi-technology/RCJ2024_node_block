@@ -11,9 +11,11 @@ void CTRL::init(void){
 
 void CTRL::read(void){
 	int n = SER->available();
-	// Serial.println(n);
+	// Serial.print(n);
+	// Serial.print(" ");
 	while(SER->available() > 25){
-		byte n = SER->read();
+		byte aaa = SER->read();
+		// Serial.print("dsadsa");
 	}
 	if(SER->available()){
 		// do{
@@ -26,8 +28,16 @@ void CTRL::read(void){
 			for(int i=0; i<12; i++){
 				if(SER->available()){
 					raw_receive_data[i] = SER->read();
-					if(raw_receive_data[i] == 250){receive_bad_flg = 1; break;} //受信失敗フラグを立てる(250が来たら
+					if(raw_receive_data[i] == 250){
+					// Serial.print("250data ");
+					receive_bad_flg = 1; break;} //受信失敗フラグを立てる(250が来たら
+					if(i == 9){
+						if(raw_receive_data[9] != 50 && raw_receive_data[9] != 200){
+							receive_bad_flg = 1; break;
+						}
+					}
 				}else{
+					// Serial.print("not data ");
 					receive_bad_flg = 1; break;
 				}
 			}
@@ -41,7 +51,7 @@ void CTRL::read(void){
 				}
 				// Serial.println();
 			}else{
-				// Serial.println("receive_bad_flg");
+				// Serial.print("receive_bad_flg");
 			}
 		}
 	}
